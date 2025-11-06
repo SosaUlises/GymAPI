@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sosa.Gym.Domain.Entidades.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,7 @@ namespace Sosa.Gym.Domain.Entidades.Rutina
         public string Nombre { get; set; }
         public string Descripcion {  get; set; }
         public DateTime FechaCreacion { get; set; }
+        public UsuarioEntity Usuario { get; set; }
+        public ICollection<DiasRutinaEntity> DiasRutina { get; set; } = new List<DiasRutinaEntity>();
     }
 }

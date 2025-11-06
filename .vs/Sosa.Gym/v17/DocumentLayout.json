@@ -1,7 +1,48 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.persistence\\configuration\\diasrutinaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|solutionrelative:sosa.gym.persistence\\configuration\\diasrutinaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.domain\\entidades\\rutina\\diasrutinaentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|solutionrelative:sosa.gym.domain\\entidades\\rutina\\diasrutinaentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.persistence\\configuration\\ejercicioconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|solutionrelative:sosa.gym.persistence\\configuration\\ejercicioconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.domain\\entidades\\ejercicio\\ejercicioentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|solutionrelative:sosa.gym.domain\\entidades\\ejercicio\\ejercicioentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.persistence\\configuration\\progresoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|solutionrelative:sosa.gym.persistence\\configuration\\progresoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.domain\\entidades\\progreso\\progresoentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|solutionrelative:sosa.gym.domain\\entidades\\progreso\\progresoentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.persistence\\configuration\\rutinaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|solutionrelative:sosa.gym.persistence\\configuration\\rutinaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.persistence\\configuration\\usuarioconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|solutionrelative:sosa.gym.persistence\\configuration\\usuarioconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.domain\\entidades\\usuario\\usuarioentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|solutionrelative:sosa.gym.domain\\entidades\\usuario\\usuarioentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.domain\\entidades\\rutina\\rutinaentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|solutionrelative:sosa.gym.domain\\entidades\\rutina\\rutinaentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +63,136 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DiasRutinaEntity.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Rutina\\DiasRutinaEntity.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Domain\\Entidades\\Rutina\\DiasRutinaEntity.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Rutina\\DiasRutinaEntity.cs",
+              "RelativeToolTip": "Sosa.Gym.Domain\\Entidades\\Rutina\\DiasRutinaEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:51:20.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DiasRutinaConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\DiasRutinaConfiguration.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Persistence\\Configuration\\DiasRutinaConfiguration.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\DiasRutinaConfiguration.cs",
+              "RelativeToolTip": "Sosa.Gym.Persistence\\Configuration\\DiasRutinaConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:51:18.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EjercicioEntity.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Ejercicio\\EjercicioEntity.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Domain\\Entidades\\Ejercicio\\EjercicioEntity.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Ejercicio\\EjercicioEntity.cs",
+              "RelativeToolTip": "Sosa.Gym.Domain\\Entidades\\Ejercicio\\EjercicioEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:51:04.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EjercicioConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\EjercicioConfiguration.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Persistence\\Configuration\\EjercicioConfiguration.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\EjercicioConfiguration.cs",
+              "RelativeToolTip": "Sosa.Gym.Persistence\\Configuration\\EjercicioConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:51:02.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProgresoEntity.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Progreso\\ProgresoEntity.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Domain\\Entidades\\Progreso\\ProgresoEntity.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Progreso\\ProgresoEntity.cs",
+              "RelativeToolTip": "Sosa.Gym.Domain\\Entidades\\Progreso\\ProgresoEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:49:58.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProgresoConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\ProgresoConfiguration.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Persistence\\Configuration\\ProgresoConfiguration.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\ProgresoConfiguration.cs",
+              "RelativeToolTip": "Sosa.Gym.Persistence\\Configuration\\ProgresoConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:49:56.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UsuarioEntity.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
+              "RelativeToolTip": "Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:48:53.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsuarioConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\UsuarioConfiguration.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Persistence\\Configuration\\UsuarioConfiguration.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\UsuarioConfiguration.cs",
+              "RelativeToolTip": "Sosa.Gym.Persistence\\Configuration\\UsuarioConfiguration.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:48:50.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RutinaEntity.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Rutina\\RutinaEntity.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Domain\\Entidades\\Rutina\\RutinaEntity.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Rutina\\RutinaEntity.cs",
+              "RelativeToolTip": "Sosa.Gym.Domain\\Entidades\\Rutina\\RutinaEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T10:59:55.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RutinaConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\RutinaConfiguration.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Persistence\\Configuration\\RutinaConfiguration.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Configuration\\RutinaConfiguration.cs",
+              "RelativeToolTip": "Sosa.Gym.Persistence\\Configuration\\RutinaConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:02:37.232Z",
+              "EditorCaption": ""
             }
           ]
         }

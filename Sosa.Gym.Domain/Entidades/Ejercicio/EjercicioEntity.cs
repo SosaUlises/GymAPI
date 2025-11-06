@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sosa.Gym.Domain.Entidades.Rutina;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace Sosa.Gym.Domain.Entidades.Ejercicio
         public int Series {  get; set; }
         public int Repeticiones { get; set; }
         public decimal PesoUtilizado { get; set; }
+        public DiasRutinaEntity DiasRutina { get; set; }
     }
 }
