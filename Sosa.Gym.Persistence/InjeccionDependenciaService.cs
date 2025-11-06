@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sosa.Gym.Application.DataBase;
+using Sosa.Gym.Persistence.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace Sosa.Gym.Persistence
         public static IServiceCollection AddPersistence(this IServiceCollection services,
             IConfiguration configuration)
         {
+
             return services;
         }
     }

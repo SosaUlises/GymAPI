@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sosa.Gym.Application.DataBase;
 using Sosa.Gym.Persistence.DataBase;
 
 namespace Sosa.Gym.External
@@ -16,6 +17,8 @@ namespace Sosa.Gym.External
             services.AddDbContext<DataBaseService>(options =>
             options.UseNpgsql(connectionString));
 
+            // Inyecciones de dependencia servicios
+            services.AddScoped<IDataBaseService, DataBaseService>();
 
             return services;
         }

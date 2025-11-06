@@ -18,6 +18,7 @@ namespace Sosa.Gym.Application.DataBase
         DbSet<DiasRutinaEntity> DiasRutinas { get; set; }
         DbSet<RutinaEntity> Rutinas { get; set; }
         DbSet<UsuarioEntity> Usuarios { get; set; }
+        DbSet<UsuarioEntity> Clientes { get; set; }
 
         Task<bool> SaveAsync();
     }
