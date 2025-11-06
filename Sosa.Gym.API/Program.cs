@@ -1,10 +1,22 @@
+using Sosa.Gym.Application;
+using Sosa.Gym.Common;
+using Sosa.Gym.External;
+using Sosa.Gym.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Configuración de los servicios del contenedor
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+
+// Inyección de dependencias
+builder.Services
+    .AddCommon()
+    .AddApplication()
+    .AddExternal(builder.Configuration)
+    .AddPersistence(builder.Configuration);
+
 
 var app = builder.Build();
 
