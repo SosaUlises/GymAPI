@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.Application.DataBase;
+using Sosa.Gym.Domain.Entidades.Cliente;
 using Sosa.Gym.Domain.Entidades.Ejercicio;
 using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Entidades.Rutina;
@@ -23,6 +24,7 @@ namespace Sosa.Gym.Persistence.DataBase
         }
 
         public DbSet<EjercicioEntity> Ejercicios { get; set; }
+        public DbSet<EjercicioEntity> Clientes { get; set; }
         public DbSet<ProgresoEntity> Progresos { get; set; }
         public DbSet<DiasRutinaEntity> DiasRutinas { get; set; }
         public DbSet<RutinaEntity> Rutinas { get; set; }
@@ -43,6 +45,7 @@ namespace Sosa.Gym.Persistence.DataBase
         private void EntityConfiguration(ModelBuilder modelBuilder) 
         {
             new UsuarioConfiguration(modelBuilder.Entity<UsuarioEntity>());
+            new ClienteConfiguration(modelBuilder.Entity<ClienteEntity>());
             new RutinaConfiguration(modelBuilder.Entity<RutinaEntity>());
             new ProgresoConfiguration(modelBuilder.Entity<ProgresoEntity>());
             new EjercicioConfiguration(modelBuilder.Entity<EjercicioEntity>());

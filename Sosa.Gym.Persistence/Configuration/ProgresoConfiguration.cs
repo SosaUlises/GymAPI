@@ -24,7 +24,7 @@ namespace Sosa.Gym.Persistence.Configuration
             entityBuilder.Property(x => x.Piernas).IsRequired();
             entityBuilder.Property(x => x.Pecho).IsRequired();
 
-            entityBuilder.HasOne(x => x.Usuario).WithMany(x => x.Progresos).HasForeignKey(x => x.UsuarioId);
+            entityBuilder.HasOne(x => x.Cliente).WithMany(x => x.Progresos).HasForeignKey(x => x.ClienteId);
         }
     }
 }

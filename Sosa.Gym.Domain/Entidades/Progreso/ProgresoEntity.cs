@@ -1,4 +1,5 @@
-﻿using Sosa.Gym.Domain.Entidades.Usuario;
+﻿using Sosa.Gym.Domain.Entidades.Cliente;
+using Sosa.Gym.Domain.Entidades.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Sosa.Gym.Domain.Entidades.Progreso
     public class ProgresoEntity
     {
         public int Id { get; set; }
-        public int UsuarioId { get; set; }
+        public int ClienteId { get; set; }
         public DateTime FechaRegistro { get; set; }
         public decimal PesoActual { get; set; }
         public decimal Pecho { get; set; }
@@ -18,6 +19,6 @@ namespace Sosa.Gym.Domain.Entidades.Progreso
         public decimal Cintura { get; set; }
         public decimal Piernas { get; set; }
         public string Observaciones { get; set; }
-        public UsuarioEntity Usuario { get; set; }
+        public ClienteEntity Cliente { get; set; }
     }
 }

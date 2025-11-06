@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Sosa.Gym.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Primera : Migration
+    public partial class primera : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,14 +35,9 @@ namespace Sosa.Gym.Persistence.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nombre = table.Column<string>(type: "text", nullable: false),
                     Apellido = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    Edad = table.Column<int>(type: "integer", nullable: false),
-                    Altura = table.Column<decimal>(type: "numeric", nullable: false),
-                    Peso = table.Column<decimal>(type: "numeric", nullable: false),
-                    Objetivo = table.Column<string>(type: "text", nullable: false),
-                    FechaRegistro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: true),
@@ -167,12 +162,36 @@ namespace Sosa.Gym.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Progresos",
+                name: "Clientes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    Edad = table.Column<int>(type: "integer", nullable: false),
+                    Altura = table.Column<decimal>(type: "numeric", nullable: false),
+                    Peso = table.Column<decimal>(type: "numeric", nullable: false),
+                    Objetivo = table.Column<string>(type: "text", nullable: true),
+                    FechaRegistro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clientes_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Progresos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClienteId = table.Column<int>(type: "integer", nullable: false),
                     FechaRegistro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     PesoActual = table.Column<decimal>(type: "numeric", nullable: false),
                     Pecho = table.Column<decimal>(type: "numeric", nullable: false),
@@ -185,9 +204,9 @@ namespace Sosa.Gym.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Progresos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Progresos_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        name: "FK_Progresos_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -198,7 +217,7 @@ namespace Sosa.Gym.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    ClienteId = table.Column<int>(type: "integer", nullable: false),
                     Nombre = table.Column<string>(type: "text", nullable: false),
                     Descripcion = table.Column<string>(type: "text", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
@@ -207,9 +226,9 @@ namespace Sosa.Gym.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Rutinas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rutinas_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        name: "FK_Rutinas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -284,6 +303,12 @@ namespace Sosa.Gym.Persistence.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Clientes_UsuarioId",
+                table: "Clientes",
+                column: "UsuarioId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DiasRutina_RutinaId",
                 table: "DiasRutina",
                 column: "RutinaId");
@@ -294,14 +319,14 @@ namespace Sosa.Gym.Persistence.Migrations
                 column: "DiaRutinaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Progresos_UsuarioId",
+                name: "IX_Progresos_ClienteId",
                 table: "Progresos",
-                column: "UsuarioId");
+                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rutinas_UsuarioId",
+                name: "IX_Rutinas_ClienteId",
                 table: "Rutinas",
-                column: "UsuarioId");
+                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -347,6 +372,9 @@ namespace Sosa.Gym.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rutinas");
+
+            migrationBuilder.DropTable(
+                name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");

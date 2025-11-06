@@ -154,6 +154,40 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Altura")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Edad")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Objetivo")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Peso")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId")
+                        .IsUnique();
+
+                    b.ToTable("Clientes", (string)null);
+                });
+
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Ejercicio.EjercicioEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -199,6 +233,9 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.Property<decimal>("Cintura")
                         .HasColumnType("numeric");
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("timestamp with time zone");
 
@@ -215,12 +252,9 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.Property<decimal>("Piernas")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Progresos", (string)null);
                 });
@@ -255,6 +289,9 @@ namespace Sosa.Gym.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("text");
@@ -266,12 +303,9 @@ namespace Sosa.Gym.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Rutinas", (string)null);
                 });
@@ -287,9 +321,6 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<decimal>("Altura")
-                        .HasColumnType("numeric");
-
                     b.Property<string>("Apellido")
                         .IsRequired()
                         .HasColumnType("text");
@@ -298,19 +329,12 @@ namespace Sosa.Gym.Persistence.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
-                    b.Property<int>("Edad")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTime>("FechaRegistro")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -330,15 +354,8 @@ namespace Sosa.Gym.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<string>("Objetivo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
-
-                    b.Property<decimal>("Peso")
-                        .HasColumnType("numeric");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
@@ -419,6 +436,17 @@ namespace Sosa.Gym.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", b =>
+                {
+                    b.HasOne("Sosa.Gym.Domain.Entidades.Usuario.UsuarioEntity", "Usuario")
+                        .WithOne("Cliente")
+                        .HasForeignKey("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", "UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Ejercicio.EjercicioEntity", b =>
                 {
                     b.HasOne("Sosa.Gym.Domain.Entidades.Rutina.DiasRutinaEntity", "DiasRutina")
@@ -432,13 +460,13 @@ namespace Sosa.Gym.Persistence.Migrations
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Progreso.ProgresoEntity", b =>
                 {
-                    b.HasOne("Sosa.Gym.Domain.Entidades.Usuario.UsuarioEntity", "Usuario")
+                    b.HasOne("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", "Cliente")
                         .WithMany("Progresos")
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.DiasRutinaEntity", b =>
@@ -454,13 +482,20 @@ namespace Sosa.Gym.Persistence.Migrations
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.RutinaEntity", b =>
                 {
-                    b.HasOne("Sosa.Gym.Domain.Entidades.Usuario.UsuarioEntity", "Usuario")
+                    b.HasOne("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", "Cliente")
                         .WithMany("Rutinas")
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", b =>
+                {
+                    b.Navigation("Progresos");
+
+                    b.Navigation("Rutinas");
                 });
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.DiasRutinaEntity", b =>
@@ -475,9 +510,7 @@ namespace Sosa.Gym.Persistence.Migrations
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Usuario.UsuarioEntity", b =>
                 {
-                    b.Navigation("Progresos");
-
-                    b.Navigation("Rutinas");
+                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

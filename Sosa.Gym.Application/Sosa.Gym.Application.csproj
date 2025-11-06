@@ -30,7 +30,7 @@
     <Folder Include="DataBase\DiasRutina\" />
     <Folder Include="DataBase\Rutina\" />
     <Folder Include="DataBase\Progreso\" />
-    <Folder Include="DataBase\Usuario\" />
+    <Folder Include="DataBase\Usuario\Queries\" />
   </ItemGroup>
 
 </Project>
