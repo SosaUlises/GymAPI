@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Sosa.Gym.Application.DataBase;
 using Sosa.Gym.Domain.Entidades.Ejercicio;
 using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Entidades.Rutina;
@@ -12,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Persistence.DataBase
 {
-    public class DataBaseService : DbContext
+    public class DataBaseService : IdentityDbContext<UsuarioEntity, IdentityRole<int>, int>, IDataBaseService
     {
         public DataBaseService(DbContextOptions options) : base(options)
         { 

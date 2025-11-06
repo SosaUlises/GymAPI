@@ -2,6 +2,7 @@ using Sosa.Gym.Application;
 using Sosa.Gym.Common;
 using Sosa.Gym.External;
 using Sosa.Gym.Persistence;
+using Sosa.Gym.Persistence.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services
 
 
 var app = builder.Build();
+
+await IdentityDataSeed.SeedRolesAsync(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

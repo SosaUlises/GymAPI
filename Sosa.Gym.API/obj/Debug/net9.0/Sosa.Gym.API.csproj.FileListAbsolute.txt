@@ -140,3 +140,8 @@ C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net9.0\refint\Sosa.G
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net9.0\Sosa.Gym.API.pdb
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net9.0\Sosa.Gym.API.genruntimeconfig.cache
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net9.0\ref\Sosa.Gym.API.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll

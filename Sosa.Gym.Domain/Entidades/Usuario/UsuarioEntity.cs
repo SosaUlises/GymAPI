@@ -1,4 +1,5 @@
-﻿using Sosa.Gym.Domain.Entidades.Progreso;
+﻿using Microsoft.AspNetCore.Identity;
+using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Entidades.Rutina;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Domain.Entidades.Usuario
 {
-    public class UsuarioEntity
+    public class UsuarioEntity : IdentityUser<int>
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
