@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sosa.Gym.Application.Configuration;
-using AutoMapper;
-using Sosa.Gym.Domain.Entidades.Usuario;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.DeleteUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
@@ -26,6 +24,7 @@ namespace Sosa.Gym.Application
             services.AddTransient<IGetUsuarioByIdQuery, GetUsuarioByIdQuery>();
             services.AddTransient<IGetUsuarioByNombreAndApellidoQuery, GetUsuarioByNombreAndApellidoQuery>();
             services.AddTransient<IGetAllUsuariosQuery, GetAllUsuariosQuery>();
+            services.AddTransient<ICreateUsuarioCommand, CreateUsuarioCommand>();
 
 
             // Validators

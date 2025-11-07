@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
 using Sosa.Gym.Domain.Entidades.Usuario;
 using System;
@@ -14,6 +15,11 @@ namespace Sosa.Gym.Application.Configuration
         public MapperProfile()
         {
             CreateMap<UsuarioEntity, UpdateUsuarioModel>().ReverseMap();
+            CreateMap<UsuarioEntity, CreateUsuarioModel>()
+            .ForMember(dest => dest.Password, opt => opt.Ignore()) 
+            .ReverseMap()
+            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email));
+            
         }
     }
 }

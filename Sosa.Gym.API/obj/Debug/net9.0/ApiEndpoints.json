@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
+    "Method": "Crear",
+    "RelativePath": "api/v1/usuario/crear",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario.CreateUsuarioModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

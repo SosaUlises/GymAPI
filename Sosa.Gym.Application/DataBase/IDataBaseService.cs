@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sosa.Gym.Domain.Entidades.Cliente;
 using Sosa.Gym.Domain.Entidades.Ejercicio;
 using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Entidades.Rutina;
@@ -18,7 +19,7 @@ namespace Sosa.Gym.Application.DataBase
         DbSet<DiasRutinaEntity> DiasRutinas { get; set; }
         DbSet<RutinaEntity> Rutinas { get; set; }
         DbSet<UsuarioEntity> Usuarios { get; set; }
-        DbSet<UsuarioEntity> Clientes { get; set; }
+        DbSet<ClienteEntity> Clientes { get; set; }
 
         Task<bool> SaveAsync();
     }

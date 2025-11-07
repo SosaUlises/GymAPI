@@ -24,7 +24,7 @@ namespace Sosa.Gym.Persistence.DataBase
         }
 
         public DbSet<EjercicioEntity> Ejercicios { get; set; }
-        public DbSet<EjercicioEntity> Clientes { get; set; }
+        public DbSet<ClienteEntity> Clientes { get; set; }
         public DbSet<ProgresoEntity> Progresos { get; set; }
         public DbSet<DiasRutinaEntity> DiasRutinas { get; set; }
         public DbSet<RutinaEntity> Rutinas { get; set; }
