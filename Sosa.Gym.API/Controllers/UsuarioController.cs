@@ -6,6 +6,7 @@ using Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.DeleteUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
+using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
@@ -130,14 +131,25 @@ namespace Sosa.Gym.API.Controllers
 
             var data = await getUsuarioByIdQuery.Execute(userId);
 
-            if (data == null)
+            return StatusCode(data.StatusCode, data);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getByDni/{dni}")]
+        public async Task<IActionResult> GetByDni(
+            long dni,
+            [FromServices] IGetUsuarioByDniQuery getUsuarioByDniQuery)
+        {
+
+            if(dni == 0)
             {
-                return StatusCode(StatusCodes.Status404NotFound,
-                   ResponseApiService.Response(StatusCodes.Status404NotFound));
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
             }
 
-            return StatusCode(StatusCodes.Status200OK,
-                  ResponseApiService.Response(StatusCodes.Status200OK,data));
+            var data = await getUsuarioByDniQuery.Execute(dni);
+
+            return StatusCode(data.StatusCode, data);
         }
 
        

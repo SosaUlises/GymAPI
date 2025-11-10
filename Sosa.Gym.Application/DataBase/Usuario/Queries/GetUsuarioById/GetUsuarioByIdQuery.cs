@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Sosa.Gym.Application.Features;
+using Sosa.Gym.Domain.Entidades.Usuario;
+using Sosa.Gym.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +15,29 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById
 {
     public class GetUsuarioByIdQuery : IGetUsuarioByIdQuery
     {
-        private readonly IDataBaseService _dataBaseService;
+        private readonly UserManager<UsuarioEntity> _userManager;
         private readonly IMapper _mapper;
         public GetUsuarioByIdQuery(
-            IDataBaseService dataBaseService,
+           UserManager<UsuarioEntity> userManager,
             IMapper mapper
             )
         {
-            _dataBaseService = dataBaseService;
+            _userManager = userManager ;
             _mapper = mapper;   
         }
 
-        public async Task<GetUsuarioByIdModel> Execute(int userId)
+        public async Task<BaseRespondeModel> Execute(int userId)
         {
-            var user = await _dataBaseService.Usuarios.FirstOrDefaultAsync(x=> x.Id == userId);
+            var user = await _userManager.Users.FirstOrDefaultAsync(x=> x.Id == userId);
 
             if (user == null)
             {
-                throw new Exception("Usuario no encontrado");
+                return ResponseApiService.Response(StatusCodes.Status404NotFound,
+                    "Usuario no encontrado");
             }
 
-            return _mapper.Map<GetUsuarioByIdModel>(user);
+            return ResponseApiService.Response(StatusCodes.Status200OK,
+                _mapper.Map<GetUsuarioByIdModel>(user));
         }
     }
 }

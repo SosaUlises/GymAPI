@@ -12,8 +12,8 @@ using Sosa.Gym.Persistence.DataBase;
 namespace Sosa.Gym.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseService))]
-    [Migration("20251106202202_primera")]
-    partial class primera
+    [Migration("20251110102955_Primera")]
+    partial class Primera
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -331,6 +331,9 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
+
+                    b.Property<long>("Dni")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)

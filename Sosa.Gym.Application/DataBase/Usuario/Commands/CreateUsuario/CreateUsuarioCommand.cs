@@ -15,27 +15,30 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario
     public class CreateUsuarioCommand : ICreateUsuarioCommand
     {
         private readonly UserManager<UsuarioEntity> _userManager;
-        private readonly IDataBaseService _dataBaseService;
         private readonly IMapper _mapper;
 
         public CreateUsuarioCommand(
             UserManager<UsuarioEntity> userManager,
-            IMapper mapper,
-            IDataBaseService dataBaseService
+            IMapper mapper
             )
         {
-            _dataBaseService = dataBaseService;
             _mapper = mapper;
             _userManager = userManager;
         }
 
         public async Task<BaseRespondeModel> Execute(CreateUsuarioModel model)
         {
-            var existe = _dataBaseService.Usuarios.FirstOrDefault(x=> x.Email == model.Email);
+            var existeEmail = _userManager.Users.FirstOrDefault(x=> x.Email == model.Email);
+            var existeDni = _userManager.Users.FirstOrDefault(x=> x.Dni == model.Dni);
+  
 
-            if (existe != null) 
+            if (existeEmail != null) 
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest,
                     $"Ya existe un usuario con el email {model.Email}");
+
+            if (existeDni != null) 
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    $"Ya existe un usuario con el DNI {model.Dni}");
 
             var entity = _mapper.Map<UsuarioEntity>(model);
             entity.UserName = model.Email;

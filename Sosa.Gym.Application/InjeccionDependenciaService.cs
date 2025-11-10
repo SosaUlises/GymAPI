@@ -7,6 +7,7 @@ using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using FluentValidation;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario;
 using Sosa.Gym.Application.Validators.Usuario;
+using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 
 namespace Sosa.Gym.Application
 {
@@ -22,6 +23,7 @@ namespace Sosa.Gym.Application
             services.AddTransient<IDeleteUsuarioCommand, DeleteUsuarioCommand>();
             services.AddTransient<IGetUsuarioByIdQuery, GetUsuarioByIdQuery>();
             services.AddTransient<IGetAllUsuariosQuery, GetAllUsuariosQuery>();
+            services.AddTransient<IGetUsuarioByDniQuery, GetUsuarioByDniQuery>();
             services.AddTransient<ICreateUsuarioCommand, CreateUsuarioCommand>();
 
 

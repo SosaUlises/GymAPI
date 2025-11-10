@@ -54,6 +54,22 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
+    "Method": "GetByDni",
+    "RelativePath": "api/v1/usuario/getByDni/{dni}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dni",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "GetById",
     "RelativePath": "api/v1/usuario/getById/{userId}",
     "HttpMethod": "GET",

@@ -20,6 +20,7 @@ namespace Sosa.Gym.Persistence.Configuration
 
             entityBuilder.Property(x => x.Nombre).IsRequired();
             entityBuilder.Property(x => x.Apellido).IsRequired();
+            entityBuilder.Property(x => x.Dni).IsRequired();
 
             entityBuilder.HasOne(x => x.Cliente)
                 .WithOne(x => x.Usuario)

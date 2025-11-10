@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Identity;
+using Sosa.Gym.Domain.Entidades.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +14,21 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios
 {
     public class GetAllUsuariosQuery : IGetAllUsuariosQuery
     {
-        private readonly IDataBaseService _dataBaseService;
+        private readonly UserManager<UsuarioEntity> _userManager;
         private readonly IMapper _mapper;
 
         public GetAllUsuariosQuery(
-            IDataBaseService dataBaseService,
+            UserManager<UsuarioEntity> userManager,
             IMapper mapper
             )
         {
-            _dataBaseService = dataBaseService;
+            _userManager = userManager;
             _mapper = mapper;
         }
 
         public async Task <IPagedList<GetAllUsuariosModel>> Execute(int pageNumber, int pageSize)
         {
-            var users = _dataBaseService.Usuarios.AsQueryable();
+            var users = _userManager.Users.AsQueryable();
 
             var queryDto = users.ProjectTo<GetAllUsuariosModel>(_mapper.ConfigurationProvider);
 

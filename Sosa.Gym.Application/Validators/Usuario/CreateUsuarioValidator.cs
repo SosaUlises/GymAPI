@@ -14,6 +14,7 @@ namespace Sosa.Gym.Application.Validators.Usuario
         {
             RuleFor(x => x.Nombre).NotNull().NotEmpty().MaximumLength(30);
             RuleFor(x => x.Apellido).NotNull().NotEmpty().MaximumLength(30);
+            RuleFor(x => x.Dni).NotNull().NotEmpty();
             RuleFor(x => x.Email).NotNull().NotEmpty().MaximumLength(50);
             RuleFor(x => x.Password).NotNull().NotEmpty().MaximumLength(30);
         }

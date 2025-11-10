@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\queries\\getusuariobydni\\getusuariobydniquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\queries\\getusuariobydni\\getusuariobydniquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\queries\\getallusuarios\\getallusuariosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\queries\\getallusuarios\\getallusuariosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,41 +34,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GetAllUsuariosModel.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetAllUsuarios\\GetAllUsuariosModel.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetAllUsuarios\\GetAllUsuariosModel.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetAllUsuarios\\GetAllUsuariosModel.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetAllUsuarios\\GetAllUsuariosModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:23:14.132Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GetUsuarioByIdModel.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
+              "Title": "GetUsuarioByDniQuery.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioByDni\\GetUsuarioByDniQuery.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioByDni\\GetUsuarioByDniQuery.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioByDni\\GetUsuarioByDniQuery.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioByDni\\GetUsuarioByDniQuery.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:23:06.814Z",
+              "WhenOpened": "2025-11-10T10:57:57.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetUsuarioByIdQuery.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "Sosa.Gym.API\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAcwI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:20:45.177Z",
+              "WhenOpened": "2025-11-10T10:56:51.681Z",
               "EditorCaption": ""
             }
           ]
