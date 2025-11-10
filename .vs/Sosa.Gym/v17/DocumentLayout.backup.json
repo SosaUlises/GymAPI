@@ -21,19 +21,6 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UpdateUsuarioModel.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T00:56:09.188Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
@@ -47,13 +34,25 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UpdateUsuarioModel.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T00:56:09.188Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\UsuarioController.cs",
               "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "Sosa.Gym.API\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAQwC4AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAowE8AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T00:49:03.924Z",
               "EditorCaption": ""
