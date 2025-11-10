@@ -2,7 +2,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "Crear",
-    "RelativePath": "api/v1/usuario/crear",
+    "RelativePath": "api/v1/usuario/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -10,6 +10,22 @@
       {
         "Name": "model",
         "Type": "Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario.CreateUsuarioModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
+    "Method": "Update",
+    "RelativePath": "api/v1/usuario/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario.UpdateUsuarioModel",
         "IsRequired": true
       }
     ],

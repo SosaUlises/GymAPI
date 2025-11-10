@@ -13,5 +13,6 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string Rol { get; set; }
     }
 }

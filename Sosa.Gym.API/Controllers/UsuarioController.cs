@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario;
+using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 using Sosa.Gym.Application.Validators.Usuario;
@@ -18,7 +19,7 @@ namespace Sosa.Gym.API.Controllers
 
 
         [AllowAnonymous]
-        [HttpPost("crear")]
+        [HttpPost("create")]
         public async Task<IActionResult> Crear(
             [FromBody] CreateUsuarioModel model,
             [FromServices] ICreateUsuarioCommand createUsuarioCommand,
@@ -39,5 +40,28 @@ namespace Sosa.Gym.API.Controllers
                 StatusCodes.Status200OK,
                 new { usuario.Id, usuario.Email, usuario.Nombre, usuario.Apellido }));
         }
+
+        [AllowAnonymous]
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(
+            [FromBody] UpdateUsuarioModel model,
+            [FromServices] IUpdateUsuarioCommand updateUsuarioCommand,
+            [FromServices] IValidator<UpdateUsuarioModel> validator
+            )
+        {
+            var validationResult = await validator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
+            }
+
+            var usuarioUpdate = await updateUsuarioCommand.Execute(model);
+
+            return StatusCode(StatusCodes.Status200OK,
+                ResponseApiService.Response(StatusCodes.Status200OK,usuarioUpdate)); 
+        }
+
     }
 }
