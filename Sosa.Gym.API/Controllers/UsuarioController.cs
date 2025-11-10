@@ -39,9 +39,8 @@ namespace Sosa.Gym.API.Controllers
 
             var usuario = await createUsuarioCommand.Execute(model);
 
-            return Ok(ResponseApiService.Response(
-                StatusCodes.Status200OK,
-                new { usuario.Id, usuario.Email, usuario.Nombre, usuario.Apellido }));
+            return StatusCode(usuario.StatusCode, usuario);
+       
         }
 
         [AllowAnonymous]
@@ -62,8 +61,7 @@ namespace Sosa.Gym.API.Controllers
 
             var usuarioUpdate = await updateUsuarioCommand.Execute(model);
 
-            return StatusCode(StatusCodes.Status200OK,
-                ResponseApiService.Response(StatusCodes.Status200OK,usuarioUpdate)); 
+            return StatusCode(usuarioUpdate.StatusCode,usuarioUpdate); 
         }
 
         [AllowAnonymous]

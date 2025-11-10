@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Entidades.Usuario;
+using Sosa.Gym.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,24 +29,32 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario
             _userManager = userManager;
         }
 
-        public async Task<UsuarioEntity> Execute(CreateUsuarioModel model)
+        public async Task<BaseRespondeModel> Execute(CreateUsuarioModel model)
         {
             var existe = _dataBaseService.Usuarios.FirstOrDefault(x=> x.Email == model.Email);
 
-
-            if (existe != null) throw new Exception($"Ya existe un usuario registrado con el email {model.Email}");
+            if (existe != null) 
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    $"Ya existe un usuario con el email {model.Email}");
 
             var entity = _mapper.Map<UsuarioEntity>(model);
             entity.UserName = model.Email;
 
             var result = await _userManager.CreateAsync(entity, model.Password);
 
-            if (!result.Succeeded) throw new Exception(result.Errors.FirstOrDefault()?.Description);
+            if (!result.Succeeded)
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    $"Error al crear el usuario");
 
-            await _userManager.AddToRoleAsync(entity, model.Rol);
+            var rolResult = await _userManager.AddToRoleAsync(entity, model.Rol);
 
-            return entity;
+            if (!rolResult.Succeeded)
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    $"Error al asignar rol al usuario");
 
+            return ResponseApiService.Response(StatusCodes.Status200OK,
+                new { entity.Id, entity.Email, entity.Nombre, entity.Apellido },
+                "Usuario creado correctamente");
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Sosa.Gym.Domain.Entidades.Usuario;
+using Sosa.Gym.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario
 {
     public interface ICreateUsuarioCommand
     {
-        Task<UsuarioEntity> Execute(CreateUsuarioModel model);
+        Task<BaseRespondeModel> Execute(CreateUsuarioModel model);
     }
 }

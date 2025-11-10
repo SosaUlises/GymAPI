@@ -3,32 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\configuration\\mapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\configuration\\mapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\queries\\getallusuarios\\getallusuariosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\queries\\getallusuarios\\getallusuariosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\injecciondependenciaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\injecciondependenciaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\commands\\createusuario\\createusuariocommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\commands\\createusuario\\createusuariocommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\commands\\updateusuario\\updateusuariomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\commands\\updateusuario\\updateusuariomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\exceptions\\exceptionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\exceptions\\exceptionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\usuario\\queries\\getusuariobyid\\getusuariobyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,87 +44,35 @@
               "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetAllUsuarios\\GetAllUsuariosModel.cs",
               "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetAllUsuarios\\GetAllUsuariosModel.cs",
               "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetAllUsuarios\\GetAllUsuariosModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:46:01.675Z",
+              "WhenOpened": "2025-11-10T10:23:14.132Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MapperProfile.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABJAAAAAAAAAA==",
+              "Title": "GetUsuarioByIdModel.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:44:34.249Z",
+              "WhenOpened": "2025-11-10T10:23:06.814Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "InjeccionDependenciaService.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\InjeccionDependenciaService.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\InjeccionDependenciaService.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\InjeccionDependenciaService.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\InjeccionDependenciaService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "GetUsuarioByIdQuery.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Queries\\GetUsuarioById\\GetUsuarioByIdQuery.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:44:22.321Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ExceptionManager.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Exceptions\\ExceptionManager.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Exceptions\\ExceptionManager.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Exceptions\\ExceptionManager.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\Exceptions\\ExceptionManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:40:04.458Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateUsuarioCommand.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\CreateUsuario\\CreateUsuarioCommand.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\CreateUsuario\\CreateUsuarioCommand.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\CreateUsuario\\CreateUsuarioCommand.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\CreateUsuario\\CreateUsuarioCommand.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAvwCEAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:31:22.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UpdateUsuarioModel.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Usuario\\Commands\\UpdateUsuario\\UpdateUsuarioModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T00:56:09.188Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "Sosa.Gym.API\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAUwCUAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T00:49:03.924Z",
+              "WhenOpened": "2025-11-10T10:20:45.177Z",
               "EditorCaption": ""
             }
           ]

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sosa.Gym.External")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b6459d9a6ac5175a8723b460bc1ef891616226b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb1f13626dfcb7304ec39efd84c14d60a8b03a96")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sosa.Gym.External")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sosa.Gym.External")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

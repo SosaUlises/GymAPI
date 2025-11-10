@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Entidades.Usuario;
+using Sosa.Gym.Domain.Models;
 
 namespace Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario
 {
@@ -16,13 +19,14 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario
             _mapper = mapper;
         }
 
-        public async Task<UpdateUsuarioModel> Execute(UpdateUsuarioModel model)
+        public async Task<BaseRespondeModel> Execute(UpdateUsuarioModel model)
         {
             var entity = await _userManager.FindByIdAsync(model.UserId.ToString());
 
             if (entity == null)
             {
-                throw new Exception("Usuario no encontrado");
+                return ResponseApiService.Response(StatusCodes.Status404NotFound
+                    , "Usuario no encontrado");
             }
 
             _mapper.Map(model, entity);
@@ -31,10 +35,12 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario
 
             if (!result.Succeeded)
             {
-                throw new Exception(result.Errors.FirstOrDefault()?.Description);
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    "Error al modificar el usuario");
             }
 
-            return model;
+            return ResponseApiService.Response(StatusCodes.Status200OK,
+                 result);
         }
     }
 }
