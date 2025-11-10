@@ -3,7 +3,6 @@ using Sosa.Gym.Application.Configuration;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.DeleteUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
-using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByNombreAndApellido;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using FluentValidation;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario;
@@ -22,7 +21,6 @@ namespace Sosa.Gym.Application
             services.AddTransient<IUpdateUsuarioCommand, UpdateUsuarioCommand>();
             services.AddTransient<IDeleteUsuarioCommand, DeleteUsuarioCommand>();
             services.AddTransient<IGetUsuarioByIdQuery, GetUsuarioByIdQuery>();
-            services.AddTransient<IGetUsuarioByNombreAndApellidoQuery, GetUsuarioByNombreAndApellidoQuery>();
             services.AddTransient<IGetAllUsuariosQuery, GetAllUsuariosQuery>();
             services.AddTransient<ICreateUsuarioCommand, CreateUsuarioCommand>();
 

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.CreateUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
+using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
+using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
 using Sosa.Gym.Domain.Entidades.Usuario;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,10 @@ namespace Sosa.Gym.Application.Configuration
             .ForMember(dest => dest.Password, opt => opt.Ignore()) 
             .ReverseMap()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email));
-            
+
+            CreateMap<UsuarioEntity, GetAllUsuariosModel>().ReverseMap();
+            CreateMap<UsuarioEntity, GetUsuarioByIdModel>().ReverseMap();
+
         }
     }
 }

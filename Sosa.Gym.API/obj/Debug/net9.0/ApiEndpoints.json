@@ -33,6 +33,43 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/usuario/getAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/usuario/getById/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "Update",
     "RelativePath": "api/v1/usuario/update",
     "HttpMethod": "PUT",
