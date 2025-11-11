@@ -31,6 +31,7 @@ namespace Sosa.Gym.Application
             services.AddTransient<IUpdateClienteCommand, UpdateClienteCommand>();
             services.AddTransient<IGetAllClientesQuery, GetAllClientesQuery>();
             services.AddTransient<IGetClienteByIdQuery, GetClienteByIdQuery>();
+            services.AddTransient<IGetClienteByDniQuery, GetClienteByDniQuery>();
 
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();

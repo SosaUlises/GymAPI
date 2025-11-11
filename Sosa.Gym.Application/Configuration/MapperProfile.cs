@@ -52,6 +52,12 @@ namespace Sosa.Gym.Application.Configuration
                 .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Usuario.Email));
 
+            CreateMap<ClienteEntity, GetClienteByDniModel>()
+              .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Usuario.Nombre))
+              .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Usuario.Apellido))
+              .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))
+              .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Usuario.Email));
+
         }
     }
 }

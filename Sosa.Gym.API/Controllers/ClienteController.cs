@@ -121,5 +121,25 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(data.StatusCode, data);
 
         }
+
+
+        [AllowAnonymous]
+        [HttpGet("getByDni/{dni}")]
+        public async Task<IActionResult> GetByDni(
+            long dni,
+          [FromServices] IGetClienteByDniQuery getClienteByDniQuery)
+        {
+
+            if (dni == 0)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            }
+
+            var data = await getClienteByDniQuery.Execute(dni);
+
+            return StatusCode(data.StatusCode, data);
+
+        }
     }
 }
