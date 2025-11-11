@@ -33,6 +33,27 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/cliente/getAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "Update",
     "RelativePath": "api/v1/cliente/update",
     "HttpMethod": "PUT",

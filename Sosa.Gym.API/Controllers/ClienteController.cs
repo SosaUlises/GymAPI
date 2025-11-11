@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
+using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
@@ -75,6 +76,30 @@ namespace Sosa.Gym.API.Controllers
             var data = await deleteClienteCommand.Execute(clienteId);
 
             return StatusCode(data.StatusCode, data);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll(
+            [FromServices] IGetAllClientesQuery getAllClientesQuery,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
+        {
+            if (pageNumber <= 0) pageNumber = 1;
+            if (pageSize <= 0) pageSize = 10;
+            if (pageSize > 100) pageSize = 100;
+
+            var data = await getAllClientesQuery.Execute(pageNumber, pageSize);
+
+            if (!data.Any())
+            {
+                return StatusCode(StatusCodes.Status404NotFound,
+                    ResponseApiService.Response(StatusCodes.Status404NotFound));
+            }
+
+            return StatusCode(StatusCodes.Status200OK,
+                ResponseApiService.Response(StatusCodes.Status200OK, data));
+
         }
     }
 }
