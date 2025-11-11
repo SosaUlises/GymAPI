@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
-using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
+using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
@@ -20,8 +20,6 @@ namespace Sosa.Gym.Application.Configuration
         {
 
             // Usuarios
-
-            CreateMap<UsuarioEntity, UpdateUsuarioModel>().ReverseMap();
             CreateMap<UsuarioEntity, GetAllUsuariosModel>().ReverseMap();
             CreateMap<UsuarioEntity, GetUsuarioByIdModel>().ReverseMap();
             CreateMap<UsuarioEntity, GetUsuarioByDniModel>().ReverseMap();
@@ -34,7 +32,10 @@ namespace Sosa.Gym.Application.Configuration
                 .ForMember(dest => dest.Id, opt => opt.Ignore()) 
                 .ForMember(dest => dest.UsuarioId, opt => opt.Ignore()) 
                 .ForMember(dest => dest.Usuario, opt => opt.Ignore()) 
-                .ForMember(dest => dest.FechaRegistro, opt => opt.Ignore()); 
+                .ForMember(dest => dest.FechaRegistro, opt => opt.Ignore());
+
+            CreateMap<UsuarioEntity, UpdateClienteModel>().ReverseMap();
+            CreateMap<ClienteEntity, UpdateClienteModel>().ReverseMap();
 
         }
     }

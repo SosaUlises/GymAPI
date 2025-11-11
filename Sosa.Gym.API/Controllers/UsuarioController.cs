@@ -1,15 +1,10 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Sosa.Gym.Application.DataBase.Usuario.Commands.UpdateUsuario;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
-using Sosa.Gym.Application.Validators.Usuario;
-using Sosa.Gym.Domain.Entidades.Usuario;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -18,30 +13,6 @@ namespace Sosa.Gym.API.Controllers
     [TypeFilter(typeof(ExceptionManager))]
     public class UsuarioController : ControllerBase
     {
-
-
-        [AllowAnonymous]
-        [HttpPut("update")]
-        public async Task<IActionResult> Update(
-            [FromBody] UpdateUsuarioModel model,
-            [FromServices] IUpdateUsuarioCommand updateUsuarioCommand,
-            [FromServices] IValidator<UpdateUsuarioModel> validator
-            )
-        {
-            var validationResult = await validator.ValidateAsync(model);
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest,
-                    validationResult.Errors));
-            }
-
-            var usuarioUpdate = await updateUsuarioCommand.Execute(model);
-
-            return StatusCode(usuarioUpdate.StatusCode,usuarioUpdate); 
-        }
-
-       
 
         [AllowAnonymous]
         [HttpGet("getAll")]
@@ -54,7 +25,7 @@ namespace Sosa.Gym.API.Controllers
             if (pageSize <= 0) pageSize = 10;
             if (pageSize > 100) pageSize = 100;
 
-            var data = await getAllUsuariosQuery.Execute(pageNumber,pageSize);
+            var data = await getAllUsuariosQuery.Execute(pageNumber, pageSize);
 
             if (!data.Any())
             {
@@ -63,7 +34,7 @@ namespace Sosa.Gym.API.Controllers
             }
 
             return StatusCode(StatusCodes.Status200OK,
-                ResponseApiService.Response(StatusCodes.Status200OK,data));
+                ResponseApiService.Response(StatusCodes.Status200OK, data));
 
         }
 
@@ -74,7 +45,7 @@ namespace Sosa.Gym.API.Controllers
             [FromServices] IGetUsuarioByIdQuery getUsuarioByIdQuery)
         {
 
-            if(userId == 0)
+            if (userId == 0)
             {
                 return StatusCode(StatusCodes.Status400BadRequest,
                     ResponseApiService.Response(StatusCodes.Status400BadRequest));
@@ -92,7 +63,7 @@ namespace Sosa.Gym.API.Controllers
             [FromServices] IGetUsuarioByDniQuery getUsuarioByDniQuery)
         {
 
-            if(dni == 0)
+            if (dni == 0)
             {
                 return StatusCode(StatusCodes.Status400BadRequest,
                     ResponseApiService.Response(StatusCodes.Status400BadRequest));
@@ -103,7 +74,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(data.StatusCode, data);
         }
 
-       
+
 
     }
 }
