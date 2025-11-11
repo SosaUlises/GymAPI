@@ -2,6 +2,7 @@
 using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
+using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
@@ -40,6 +41,12 @@ namespace Sosa.Gym.Application.Configuration
 
             CreateMap<ClienteEntity, GetAllClientesModel>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Usuario.Id))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Usuario.Nombre))
+                .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Usuario.Apellido))
+                .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Usuario.Email));
+
+            CreateMap<ClienteEntity, GetClienteByIdModel>()
                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Usuario.Nombre))
                 .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Usuario.Apellido))
                 .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))

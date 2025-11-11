@@ -5,6 +5,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
+using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
@@ -99,6 +100,25 @@ namespace Sosa.Gym.API.Controllers
 
             return StatusCode(StatusCodes.Status200OK,
                 ResponseApiService.Response(StatusCodes.Status200OK, data));
+
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getById/{clienteId}")]
+        public async Task<IActionResult> GetById(
+            int clienteId,
+          [FromServices] IGetClienteByIdQuery getClienteByIdQuery)
+        {
+
+            if (clienteId == 0)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            }
+
+            var data = await getClienteByIdQuery.Execute(clienteId);
+
+            return StatusCode(data.StatusCode, data);
 
         }
     }

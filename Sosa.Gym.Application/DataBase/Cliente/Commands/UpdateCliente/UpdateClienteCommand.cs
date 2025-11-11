@@ -35,6 +35,16 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
             if (usuario == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Usuario no encontrado");
 
+            var existeEmail = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+            var existeDni = await _userManager.Users.FirstOrDefaultAsync(x => x.Dni == model.Dni);
+
+            if (existeEmail != null)
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    $"Ya existe un usuario con el email {model.Email}");
+
+            if (existeDni != null)
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                    $"Ya existe un usuario con el DNI {model.Dni}");
 
             _mapper.Map(model, usuario);
             var result = await _userManager.UpdateAsync(usuario);

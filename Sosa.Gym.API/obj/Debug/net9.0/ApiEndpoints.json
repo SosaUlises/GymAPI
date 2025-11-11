@@ -54,6 +54,22 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/cliente/getById/{clienteId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "Update",
     "RelativePath": "api/v1/cliente/update",
     "HttpMethod": "PUT",

@@ -33,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataBase\Cliente\Queries\GetClienteByDni\" />
     <Folder Include="DataBase\Ejercicio\" />
     <Folder Include="DataBase\DiasRutina\" />
     <Folder Include="DataBase\Rutina\" />

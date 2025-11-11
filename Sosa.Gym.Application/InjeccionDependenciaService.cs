@@ -9,6 +9,7 @@ using Sosa.Gym.Application.Validators.Cliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
+using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 
 namespace Sosa.Gym.Application
 {
@@ -29,6 +30,7 @@ namespace Sosa.Gym.Application
             services.AddTransient<IDeleteClienteCommand, DeleteClienteCommand>();
             services.AddTransient<IUpdateClienteCommand, UpdateClienteCommand>();
             services.AddTransient<IGetAllClientesQuery, GetAllClientesQuery>();
+            services.AddTransient<IGetClienteByIdQuery, GetClienteByIdQuery>();
 
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();
