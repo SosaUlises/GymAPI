@@ -12,7 +12,7 @@ using Sosa.Gym.Persistence.DataBase;
 namespace Sosa.Gym.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseService))]
-    [Migration("20251110102955_Primera")]
+    [Migration("20251111101118_Primera")]
     partial class Primera
     {
         /// <inheritdoc />
