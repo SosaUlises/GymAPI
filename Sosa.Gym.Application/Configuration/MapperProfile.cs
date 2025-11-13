@@ -3,6 +3,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
+using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId;
@@ -67,6 +68,9 @@ namespace Sosa.Gym.Application.Configuration
             CreateMap<RutinaEntity, CreateRutinaModel>().ReverseMap();
             CreateMap<RutinaEntity, UpdateRutinaModel>().ReverseMap();
             CreateMap<RutinaEntity, GetRutinaByClienteIdModel>().ReverseMap();
+
+            // DiaRutina
+            CreateMap<DiasRutinaEntity, CreateDiaRutinaModel>().ReverseMap();
         }
     }
 }
