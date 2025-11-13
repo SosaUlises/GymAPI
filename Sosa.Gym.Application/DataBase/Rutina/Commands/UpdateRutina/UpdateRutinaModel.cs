@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sosa.Gym.Application.DataBase.Rutina.CreateRutina
+namespace Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina
 {
-    public class CreateRutinaModel
+    public class UpdateRutinaModel
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public int ClienteId { get; set; }
+        public int Id { get; set; }
     }
 }

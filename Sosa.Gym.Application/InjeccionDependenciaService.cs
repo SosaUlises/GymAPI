@@ -10,8 +10,9 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
-using Sosa.Gym.Application.DataBase.Rutina.CreateRutina;
 using Sosa.Gym.Application.Validators.Rutina;
+using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 
 namespace Sosa.Gym.Application
 {
@@ -37,11 +38,14 @@ namespace Sosa.Gym.Application
 
             // Rutinas
             services.AddTransient<ICreateRutinaCommand, CreateRutinaCommand>();
+            services.AddTransient<IUpdateRutinaCommand, UpdateRutinaCommand>();
 
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();
             services.AddScoped<IValidator<UpdateClienteModel>, UpdateClienteValidator>();
+
             services.AddScoped<IValidator<CreateRutinaModel>, CreateRutinaValidator>();
+            services.AddScoped<IValidator<UpdateRutinaModel>, UpdateRutinaValidator>();
 
             return services;
         }

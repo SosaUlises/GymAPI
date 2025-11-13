@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sosa.Gym.Application.DataBase.Rutina.CreateRutina
+namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
 {
     public class CreateRutinaCommand : ICreateRutinaCommand
     {

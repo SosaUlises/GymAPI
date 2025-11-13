@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\validators\\rutina\\createrutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\validators\\rutina\\createrutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\rutina\\createrutina\\createrutinacommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\rutina\\createrutina\\createrutinacommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\cliente\\commands\\createcliente\\createclientecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\cliente\\commands\\createcliente\\createclientecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\rutinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\rutinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\rutina\\createrutina\\createrutinamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\rutina\\createrutina\\createrutinamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\configuration\\mapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\configuration\\mapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\injecciondependenciaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\injecciondependenciaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\validators\\rutina\\updaterutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\validators\\rutina\\updaterutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\validators\\rutina\\createrutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\validators\\rutina\\createrutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,67 +46,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateRutinaValidator.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:49:23.83Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CreateRutinaCommand.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaCommand.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaCommand.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaCommand.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaCommand.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAxwB0AAAA6AAAAAAAAAA==",
+              "Title": "MapperProfile.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\Configuration\\MapperProfile.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:46:34.819Z",
+              "WhenOpened": "2025-11-13T19:03:36.168Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CreateClienteCommand.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Title": "InjeccionDependenciaService.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:46:23.253Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CreateRutinaModel.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaModel.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaModel.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaModel.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Rutina\\CreateRutina\\CreateRutinaModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:45:09.848Z",
+              "WhenOpened": "2025-11-13T19:03:24.904Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "UpdateRutinaValidator.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\UpdateRutinaValidator.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Validators\\Rutina\\UpdateRutinaValidator.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\UpdateRutinaValidator.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\Validators\\Rutina\\UpdateRutinaValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T19:03:10.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "RutinaController.cs",
               "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\RutinaController.cs",
               "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\RutinaController.cs",
               "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\RutinaController.cs",
               "RelativeToolTip": "Sosa.Gym.API\\Controllers\\RutinaController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:37:37.976Z",
+              "WhenOpened": "2025-11-13T19:01:50.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateRutinaValidator.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T19:03:15.207Z",
               "EditorCaption": ""
             }
           ]

@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Sosa.Gym.Application.DataBase.Rutina.CreateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using Sosa.Gym.Application.Validators.Rutina;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -29,6 +31,28 @@ namespace Sosa.Gym.API.Controllers
             }
 
             var rutina = await createRutinaCommand.Execute(model);
+
+            return StatusCode(rutina.StatusCode, rutina);
+
+        }
+
+        [AllowAnonymous]
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(
+                [FromBody] UpdateRutinaModel model,
+                [FromServices] IUpdateRutinaCommand updateRutinaCommand,
+                [FromServices] IValidator<UpdateRutinaModel> validator
+                )
+        {
+            var validationResult = await validator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
+            }
+
+            var rutina = await updateRutinaCommand.Execute(model);
 
             return StatusCode(rutina.StatusCode, rutina);
 

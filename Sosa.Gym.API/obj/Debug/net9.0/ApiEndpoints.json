@@ -110,7 +110,23 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Rutina.CreateRutina.CreateRutinaModel",
+        "Type": "Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina.CreateRutinaModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
+    "Method": "Update",
+    "RelativePath": "api/v1/rutina/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina.UpdateRutinaModel",
         "IsRequired": true
       }
     ],
