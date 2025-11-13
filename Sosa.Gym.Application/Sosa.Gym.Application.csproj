@@ -35,7 +35,6 @@
   <ItemGroup>
     <Folder Include="DataBase\Ejercicio\" />
     <Folder Include="DataBase\DiasRutina\" />
-    <Folder Include="DataBase\Rutina\" />
     <Folder Include="DataBase\Progreso\" />
   </ItemGroup>
 
