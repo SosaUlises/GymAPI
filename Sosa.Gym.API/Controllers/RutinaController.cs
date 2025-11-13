@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
@@ -54,6 +55,24 @@ namespace Sosa.Gym.API.Controllers
 
             var rutina = await updateRutinaCommand.Execute(model);
 
+            return StatusCode(rutina.StatusCode, rutina);
+
+        }
+
+        [AllowAnonymous]
+        [HttpDelete("delete/{rutinaId}")]
+        public async Task<IActionResult> Delete(
+               int rutinaId,
+               [FromServices] IDeleteRutinaCommand deleteRutinaCommand
+               )
+        {
+            if (rutinaId == 0)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            }
+
+            var rutina = await deleteRutinaCommand.Execute(rutinaId);
             return StatusCode(rutina.StatusCode, rutina);
 
         }

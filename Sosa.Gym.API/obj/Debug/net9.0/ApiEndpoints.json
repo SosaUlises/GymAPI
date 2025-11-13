@@ -118,9 +118,25 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/rutina/delete/{rutinaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
     "Method": "Update",
     "RelativePath": "api/v1/rutina/update",
-    "HttpMethod": "POST",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [

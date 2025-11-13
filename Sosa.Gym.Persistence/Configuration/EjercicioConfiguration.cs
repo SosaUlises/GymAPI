@@ -22,9 +22,11 @@ namespace Sosa.Gym.Persistence.Configuration
             entityBuilder.Property(x => x.Repeticiones).IsRequired();
             entityBuilder.Property(x => x.Series).IsRequired();
 
-            entityBuilder.HasOne(x => x.DiasRutina)
-                .WithMany(x => x.Ejercicios)
-                .HasForeignKey(x => x.DiaRutinaId); 
+            entityBuilder
+            .HasOne(x => x.DiasRutina)
+            .WithMany(x => x.Ejercicios)
+            .HasForeignKey(x => x.DiaRutinaId)
+            .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
