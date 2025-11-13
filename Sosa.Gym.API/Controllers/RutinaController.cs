@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Queries;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
-using Sosa.Gym.Application.Validators.Rutina;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -74,6 +74,24 @@ namespace Sosa.Gym.API.Controllers
 
             var rutina = await deleteRutinaCommand.Execute(rutinaId);
             return StatusCode(rutina.StatusCode, rutina);
+
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getByClienteId/{clienteId}")]
+        public async Task<IActionResult> GetByClienteId(
+               int clienteId,
+               [FromServices] IGetRutinaByClienteIdQuery getRutinaByClienteIdQuery
+               )
+        {
+            if (clienteId == 0)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            }
+
+            var rutinas = await getRutinaByClienteIdQuery.Execute(clienteId);
+            return StatusCode(rutinas.StatusCode, rutinas);
 
         }
     }

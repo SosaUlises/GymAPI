@@ -5,6 +5,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Queries;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
@@ -65,6 +66,7 @@ namespace Sosa.Gym.Application.Configuration
             // Rutina
             CreateMap<RutinaEntity, CreateRutinaModel>().ReverseMap();
             CreateMap<RutinaEntity, UpdateRutinaModel>().ReverseMap();
+            CreateMap<RutinaEntity, GetRutinaByClienteIdModel>().ReverseMap();
         }
     }
 }

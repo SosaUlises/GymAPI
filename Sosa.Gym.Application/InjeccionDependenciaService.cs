@@ -14,6 +14,7 @@ using Sosa.Gym.Application.Validators.Rutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Queries;
 
 namespace Sosa.Gym.Application
 {
@@ -41,6 +42,7 @@ namespace Sosa.Gym.Application
             services.AddTransient<ICreateRutinaCommand, CreateRutinaCommand>();
             services.AddTransient<IUpdateRutinaCommand, UpdateRutinaCommand>();
             services.AddTransient<IDeleteRutinaCommand, DeleteRutinaCommand>();
+            services.AddTransient<IGetRutinaByClienteIdQuery, GetRutinaByClienteIdQuery>();
 
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();
