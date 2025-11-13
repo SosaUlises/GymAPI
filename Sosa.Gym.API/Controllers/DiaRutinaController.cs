@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
+using Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
@@ -30,6 +31,25 @@ namespace Sosa.Gym.API.Controllers
             }
 
             var diaRutina = await createDiaRutinaCommand.Execute(model);
+
+            return StatusCode(diaRutina.StatusCode, diaRutina);
+        }
+
+        [AllowAnonymous]
+        [HttpDelete("delete/{diaRutinaId}")]
+        public async Task<IActionResult> Delete(
+                int diaRutinaId,
+                [FromServices] IDeleteDiaRutinaCommand deleteDiaRutinaCommand
+                )
+        {
+
+            if (diaRutinaId == 0)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            }
+
+            var diaRutina = await deleteDiaRutinaCommand.Execute(diaRutinaId);
 
             return StatusCode(diaRutina.StatusCode, diaRutina);
 

@@ -117,6 +117,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/diaRutina/delete/{diaRutinaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "diaRutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
     "Method": "Create",
     "RelativePath": "api/v1/rutina/create",
