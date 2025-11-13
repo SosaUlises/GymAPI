@@ -14,7 +14,7 @@ using Sosa.Gym.Application.Validators.Rutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
-using Sosa.Gym.Application.DataBase.Rutina.Queries;
+using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId;
 
 namespace Sosa.Gym.Application
 {

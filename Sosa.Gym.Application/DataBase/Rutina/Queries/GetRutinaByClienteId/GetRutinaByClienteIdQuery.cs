@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sosa.Gym.Application.DataBase.Rutina.Queries
+namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
 {
     public class GetRutinaByClienteIdQuery : IGetRutinaByClienteIdQuery
     {

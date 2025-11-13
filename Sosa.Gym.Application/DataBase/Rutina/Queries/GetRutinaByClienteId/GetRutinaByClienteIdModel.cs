@@ -1,4 +1,4 @@
-﻿namespace Sosa.Gym.Application.DataBase.Rutina.Queries
+﻿namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
 {
     public class GetRutinaByClienteIdModel
     {
