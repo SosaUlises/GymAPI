@@ -133,6 +133,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
+    "Method": "GetDiasRutinaByRutinaId",
+    "RelativePath": "api/v1/diaRutina/getDiasRutinaByRutinaId/{rutinaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
     "Method": "Create",
     "RelativePath": "api/v1/rutina/create",
