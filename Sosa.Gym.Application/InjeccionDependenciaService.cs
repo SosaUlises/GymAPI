@@ -13,6 +13,7 @@ using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
+using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
@@ -23,6 +24,7 @@ using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
 using Sosa.Gym.Application.Validators.Cliente;
 using Sosa.Gym.Application.Validators.DiaRutina;
 using Sosa.Gym.Application.Validators.Ejercicio;
+using Sosa.Gym.Application.Validators.Progreso;
 using Sosa.Gym.Application.Validators.Rutina;
 
 namespace Sosa.Gym.Application
@@ -64,6 +66,9 @@ namespace Sosa.Gym.Application
             services.AddTransient<IDeleteEjercicioCommand, DeleteEjercicioCommand>();
             services.AddTransient<IGetEjerciciosByDiaRutinaQuery, GetEjerciciosByDiaRutinaQuery>();
 
+            // Progreso
+            services.AddTransient<ICreateProgresoCommand, CreateProgresoCommand>();
+
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();
             services.AddScoped<IValidator<UpdateClienteModel>, UpdateClienteValidator>();
@@ -75,6 +80,8 @@ namespace Sosa.Gym.Application
 
             services.AddScoped<IValidator<CreateEjercicioModel>, CreateEjercicioValidator>();
             services.AddScoped<IValidator<UpdateEjercicioModel>, UpdateEjercicioValidator>();
+
+            services.AddScoped<IValidator<CreateProgresoModel>, CreateProgresoValidator>();
 
 
             return services;

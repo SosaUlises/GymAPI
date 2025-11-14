@@ -213,6 +213,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Sosa.Gym.API.Controllers.ProgresoController",
+    "Method": "Create",
+    "RelativePath": "api/v1/progreso/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso.CreateProgresoModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
     "Method": "Create",
     "RelativePath": "api/v1/rutina/create",
