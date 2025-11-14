@@ -10,6 +10,7 @@ using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
+using Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
@@ -59,6 +60,7 @@ namespace Sosa.Gym.Application
             // Ejercicio
             services.AddTransient<ICreateEjercicioCommand, CreateEjercicioCommand>();
             services.AddTransient<IUpdateEjercicioCommand, UpdateEjercicioCommand>();
+            services.AddTransient<IDeleteEjercicioCommand, DeleteEjercicioCommand>();
 
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
+using Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
@@ -55,6 +56,22 @@ namespace Sosa.Gym.API.Controllers
 
             return StatusCode(ejercicio.StatusCode, ejercicio);
 
+        }
+
+        [AllowAnonymous]
+        [HttpDelete("delete/{ejercicioId}")]
+        public async Task<IActionResult> Delete(
+            int ejercicioId,
+            [FromServices] IDeleteEjercicioCommand deleteEjercicioCommand
+            )
+        {
+            if(ejercicioId == 0)
+            return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
+
+            var ejercicio = await deleteEjercicioCommand.Execute(ejercicioId);
+
+            return StatusCode(ejercicio.StatusCode, ejercicio);
+            
         }
     }
 }

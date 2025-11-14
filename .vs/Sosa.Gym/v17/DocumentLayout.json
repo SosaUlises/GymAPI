@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\validators\\ejercicio\\createejerciciovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\validators\\ejercicio\\createejerciciovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\validators\\ejercicio\\updateejerciciovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\validators\\ejercicio\\updateejerciciovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\ejerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\ejerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\rutinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\rutinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\injecciondependenciaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\injecciondependenciaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\ejercicio\\commands\\deleteejercicio\\ideleteejerciciocommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\ejercicio\\commands\\deleteejercicio\\ideleteejerciciocommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\ejercicio\\commands\\deleteejercicio\\deleteejerciciocommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\ejercicio\\commands\\deleteejercicio\\deleteejerciciocommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,53 +47,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UpdateEjercicioValidator.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Ejercicio\\UpdateEjercicioValidator.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Validators\\Ejercicio\\UpdateEjercicioValidator.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Ejercicio\\UpdateEjercicioValidator.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\Validators\\Ejercicio\\UpdateEjercicioValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T17:59:43.631Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateEjercicioValidator.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Ejercicio\\CreateEjercicioValidator.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Validators\\Ejercicio\\CreateEjercicioValidator.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Ejercicio\\CreateEjercicioValidator.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\Validators\\Ejercicio\\CreateEjercicioValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T17:59:36.816Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "RutinaController.cs",
               "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\RutinaController.cs",
               "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\RutinaController.cs",
               "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\RutinaController.cs",
               "RelativeToolTip": "Sosa.Gym.API\\Controllers\\RutinaController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAgwDsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T17:56:55.794Z",
+              "WhenOpened": "2025-11-14T18:05:42.313Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "EjercicioController.cs",
               "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\EjercicioController.cs",
               "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\EjercicioController.cs",
               "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\EjercicioController.cs",
               "RelativeToolTip": "Sosa.Gym.API\\Controllers\\EjercicioController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAowEgAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T17:40:32.67Z",
+              "WhenOpened": "2025-11-14T18:04:26.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InjeccionDependenciaService.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\InjeccionDependenciaService.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwD4AAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T18:04:09.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IDeleteEjercicioCommand.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\IDeleteEjercicioCommand.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\IDeleteEjercicioCommand.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\IDeleteEjercicioCommand.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\IDeleteEjercicioCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T18:02:33.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DeleteEjercicioCommand.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\DeleteEjercicioCommand.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\DeleteEjercicioCommand.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\DeleteEjercicioCommand.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Ejercicio\\Commands\\DeleteEjercicio\\DeleteEjercicioCommand.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAABEAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T18:02:27.205Z",
               "EditorCaption": ""
             }
           ]

@@ -166,6 +166,22 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/ejercicio/delete/{ejercicioId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ejercicioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
     "Method": "Update",
     "RelativePath": "api/v1/ejercicio/update",
     "HttpMethod": "PUT",
