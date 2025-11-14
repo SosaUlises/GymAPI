@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
+using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
@@ -72,6 +73,23 @@ namespace Sosa.Gym.API.Controllers
 
             return StatusCode(ejercicio.StatusCode, ejercicio);
             
+        }
+
+
+        [AllowAnonymous]
+        [HttpGet("getByDiaRutina/{diaRutinaId}")]
+        public async Task<IActionResult> GetByDiaRutina(
+            int diaRutinaId,
+            [FromServices] IGetEjerciciosByDiaRutinaQuery getEjerciciosByDiaRutinaQuery
+            )
+        {
+            if (diaRutinaId == 0)
+                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
+
+            var ejercicios = await getEjerciciosByDiaRutinaQuery.Execute(diaRutinaId);
+
+            return StatusCode(ejercicios.StatusCode, ejercicios);
+
         }
     }
 }

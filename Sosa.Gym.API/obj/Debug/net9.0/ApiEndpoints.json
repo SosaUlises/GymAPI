@@ -182,6 +182,22 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
+    "Method": "GetByDiaRutina",
+    "RelativePath": "api/v1/ejercicio/getByDiaRutina/{diaRutinaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "diaRutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
     "Method": "Update",
     "RelativePath": "api/v1/ejercicio/update",
     "HttpMethod": "PUT",
