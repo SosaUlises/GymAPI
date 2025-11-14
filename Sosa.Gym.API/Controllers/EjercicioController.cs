@@ -2,10 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
-using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
+using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
-using Sosa.Gym.Application.Validators.Ejercicio;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -31,6 +30,28 @@ namespace Sosa.Gym.API.Controllers
             }
 
             var ejercicio = await createEjercicioCommand.Execute(model);
+
+            return StatusCode(ejercicio.StatusCode, ejercicio);
+
+        }
+
+        [AllowAnonymous]
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(
+                [FromBody] UpdateEjercicioModel model,
+                [FromServices] IUpdateEjercicioCommand updateEjercicioCommand,
+                [FromServices] IValidator<UpdateEjercicioModel> validator
+                )
+        {
+            var validationResult = await validator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
+            }
+
+            var ejercicio = await updateEjercicioCommand.Execute(model);
 
             return StatusCode(ejercicio.StatusCode, ejercicio);
 

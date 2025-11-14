@@ -1,17 +1,16 @@
 ﻿using FluentValidation;
-using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
+using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 
 namespace Sosa.Gym.Application.Validators.Ejercicio
 {
-    public class CreateEjercicioValidator : AbstractValidator<CreateEjercicioModel>
+    public class UpdateEjercicioValidator : AbstractValidator<UpdateEjercicioModel>
     {
-        public CreateEjercicioValidator()
+        public UpdateEjercicioValidator()
         {
             RuleFor(x => x.Nombre).NotNull().NotEmpty();
             RuleFor(x => x.Series).NotNull().NotEmpty();
             RuleFor(x => x.Repeticiones).NotNull().NotEmpty();
             RuleFor(x => x.PesoUtilizado).NotNull().NotEmpty();
-
         }
     }
 }
