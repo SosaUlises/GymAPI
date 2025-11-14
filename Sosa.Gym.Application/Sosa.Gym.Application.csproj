@@ -33,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataBase\Ejercicio\" />
     <Folder Include="DataBase\Progreso\" />
   </ItemGroup>
 

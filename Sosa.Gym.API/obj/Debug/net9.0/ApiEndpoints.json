@@ -149,6 +149,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
+    "Method": "Create",
+    "RelativePath": "api/v1/ejercicio/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio.CreateEjercicioModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
     "Method": "Create",
     "RelativePath": "api/v1/rutina/create",
