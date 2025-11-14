@@ -9,6 +9,7 @@ using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
+using Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId;
@@ -87,6 +88,7 @@ namespace Sosa.Gym.Application.Configuration
 
             // Progreso 
             CreateMap<ProgresoEntity, CreateProgresoModel>().ReverseMap();
+            CreateMap<ProgresoEntity, UpdateProgresoModel>().ReverseMap();
         }
     }
 }

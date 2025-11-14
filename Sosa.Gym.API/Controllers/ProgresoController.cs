@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
+using Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
@@ -29,6 +30,28 @@ namespace Sosa.Gym.API.Controllers
             }
 
             var progreso = await createProgresoCommand.Execute(model);
+
+            return StatusCode(progreso.StatusCode, progreso);
+
+        }
+
+        [AllowAnonymous]
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(
+                [FromBody] UpdateProgresoModel model,
+                [FromServices] IUpdateProgresoCommand updateProgresoCommand,
+                [FromServices] IValidator<UpdateProgresoModel> validator
+                )
+        {
+            var validationResult = await validator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
+            }
+
+            var progreso = await updateProgresoCommand.Execute(model);
 
             return StatusCode(progreso.StatusCode, progreso);
 
