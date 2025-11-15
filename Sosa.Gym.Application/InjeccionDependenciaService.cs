@@ -15,6 +15,7 @@ using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso;
+using Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
@@ -70,6 +71,7 @@ namespace Sosa.Gym.Application
             // Progreso
             services.AddTransient<ICreateProgresoCommand, CreateProgresoCommand>();
             services.AddTransient<IUpdateProgresoCommand, UpdateProgresoCommand>();
+            services.AddTransient<IGetProgresoByClienteQuery, GetProgresoByClienteQuery>();
 
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();

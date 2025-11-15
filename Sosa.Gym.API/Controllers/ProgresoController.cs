@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso;
+using Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
@@ -54,6 +55,26 @@ namespace Sosa.Gym.API.Controllers
             var progreso = await updateProgresoCommand.Execute(model);
 
             return StatusCode(progreso.StatusCode, progreso);
+
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getByCliente/{idCliente}")]
+        public async Task<IActionResult> GetProgresoByCliente(
+                int idCliente,
+                [FromServices] IGetProgresoByClienteQuery getProgresoByClienteQuery
+                )
+        {
+
+            if (idCliente == 0)
+            {
+                return BadRequest(ResponseApiService.Response
+                    (StatusCodes.Status400BadRequest));
+            }
+
+            var Getprogresos = await getProgresoByClienteQuery.Execute(idCliente);
+
+            return StatusCode(Getprogresos.StatusCode, Getprogresos);
 
         }
     }
