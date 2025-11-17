@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "Sosa.Gym.API.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/v1/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Login.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "Create",
     "RelativePath": "api/v1/cliente/create",

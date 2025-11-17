@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Login
 {
-    public class LoginCommand
+    public class LoginCommand : ILoginCommand
     {
         private readonly UserManager<UsuarioEntity> _userManager;
         private readonly SignInManager<UsuarioEntity> _signInManager;

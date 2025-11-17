@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\cliente\\commands\\createcliente\\createclientecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\cliente\\commands\\createcliente\\createclientecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\login\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\login\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\login\\logincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\login\\logincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateClienteCommand.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Cliente\\Commands\\CreateCliente\\CreateClienteCommand.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowEEAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "LoginCommand.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Login\\LoginCommand.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Login\\LoginCommand.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Login\\LoginCommand.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Login\\LoginCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T16:48:34.098Z",
+              "WhenOpened": "2025-11-17T16:58:26.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Login\\LoginModel.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Login\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Login\\LoginModel.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Login\\LoginModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T16:58:25.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Sosa.Gym.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T16:54:58.085Z",
               "EditorCaption": ""
             }
           ]
