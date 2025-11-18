@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Sosa.Gym.Domain.Entidades.Usuario;
 
 namespace Sosa.Gym.Persistence.Seed
 {
@@ -13,20 +10,52 @@ namespace Sosa.Gym.Persistence.Seed
     {
         public static async Task SeedRolesAsync(IHost app)
         {
-            using (var scope = app.Services.CreateScope())
+            using var scope = app.Services.CreateScope();
+
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UsuarioEntity>>();
+            var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+
+            // Roles
+            string[] roles = { "Cliente", "Administrador" };
+
+            foreach (var role in roles)
             {
-                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
-
-                // Creacion Roles
-                if (!await roleManager.RoleExistsAsync("Cliente"))
+                if (!await roleManager.RoleExistsAsync(role))
                 {
-                    await roleManager.CreateAsync(new IdentityRole<int>("Cliente"));
+                    await roleManager.CreateAsync(new IdentityRole<int>(role));
+                }
+            }
+
+            // Crear Administrador
+            var adminEmail = config["Admin:Email"];
+            var adminPassword = config["Admin:Password"];
+
+            if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminPassword))
+                throw new Exception("Debes configurar Admin:Email y Admin:Password como secreto");
+
+            var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
+            if (adminUser == null)
+            {
+                adminUser = new UsuarioEntity
+                {
+                    Email = adminEmail,
+                    UserName = adminEmail,
+                    Nombre = "Admin",
+                    Apellido = "Sistema",
+                    Dni = 000000
+                };
+
+                var createResult = await userManager.CreateAsync(adminUser, adminPassword);
+
+                if (!createResult.Succeeded)
+                {
+                    throw new Exception("No se pudo crear el usuario administrador: " +
+                                        string.Join(", ", createResult.Errors.Select(e => e.Description)));
                 }
 
-                if (!await roleManager.RoleExistsAsync("Administrador"))
-                {
-                    await roleManager.CreateAsync(new IdentityRole<int>("Administrador"));
-                }
+                await userManager.AddToRoleAsync(adminUser, "Administrador");
             }
         }
     }

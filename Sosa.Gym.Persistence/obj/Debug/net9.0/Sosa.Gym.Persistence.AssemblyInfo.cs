@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sosa.Gym.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52a4a652999bd66578f5c81492631a4b41e30b82")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3c99fc913a00b02cf73ea9299a16f141bff825c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sosa.Gym.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sosa.Gym.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
