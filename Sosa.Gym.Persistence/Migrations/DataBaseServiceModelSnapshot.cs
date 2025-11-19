@@ -188,6 +188,46 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.ToTable("Clientes", (string)null);
                 });
 
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Cuota.CuotaEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Anio")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("FechaPago")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Mes")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MetodoPago")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Cuotas", (string)null);
+                });
+
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Ejercicio.EjercicioEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -450,6 +490,17 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Cuota.CuotaEntity", b =>
+                {
+                    b.HasOne("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", "Cliente")
+                        .WithMany("Cuotas")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Ejercicio.EjercicioEntity", b =>
                 {
                     b.HasOne("Sosa.Gym.Domain.Entidades.Rutina.DiasRutinaEntity", "DiasRutina")
@@ -496,6 +547,8 @@ namespace Sosa.Gym.Persistence.Migrations
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", b =>
                 {
+                    b.Navigation("Cuotas");
+
                     b.Navigation("Progresos");
 
                     b.Navigation("Rutinas");

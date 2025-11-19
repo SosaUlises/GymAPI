@@ -6,6 +6,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
+using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId;
@@ -25,6 +26,7 @@ using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
 using Sosa.Gym.Application.Validators.Cliente;
+using Sosa.Gym.Application.Validators.Cuota;
 using Sosa.Gym.Application.Validators.DiaRutina;
 using Sosa.Gym.Application.Validators.Ejercicio;
 using Sosa.Gym.Application.Validators.Login;
@@ -75,6 +77,10 @@ namespace Sosa.Gym.Application
             services.AddTransient<IUpdateProgresoCommand, UpdateProgresoCommand>();
             services.AddTransient<IGetProgresoByClienteQuery, GetProgresoByClienteQuery>();
 
+            // Cuota
+            services.AddTransient<ICreateCuotaCommand, CreateCuotaCommand>();
+
+
             // Login
             services.AddTransient<ILoginCommand, LoginCommand>();
 
@@ -94,6 +100,8 @@ namespace Sosa.Gym.Application
             services.AddScoped<IValidator<UpdateProgresoModel>, UpdateProgresoValidator>();
 
             services.AddScoped<IValidator<LoginModel>, LoginValidator>();
+
+            services.AddScoped<IValidator<CreateCuotaModel>, CreateCuotaValidator>();
 
 
             return services;

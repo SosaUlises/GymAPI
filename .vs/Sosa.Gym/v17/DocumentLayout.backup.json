@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.persistence\\seed\\identitydataseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{88EE8D46-D39E-4F96-A49C-BE1EE752D779}|Sosa.Gym.Persistence\\Sosa.Gym.Persistence.csproj|solutionrelative:sosa.gym.persistence\\seed\\identitydataseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\cuota\\commands\\createcuota\\createcuotacommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\cuota\\commands\\createcuota\\createcuotacommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.domain\\entidades\\usuario\\usuarioentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{595DCD35-7124-42B1-8697-A355955E1E14}|Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj|solutionrelative:sosa.gym.domain\\entidades\\usuario\\usuarioentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\cuotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\cuotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\database\\cuota\\commands\\createcuota\\createcuotamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\database\\cuota\\commands\\createcuota\\createcuotamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,41 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuarioEntity.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
-              "RelativeToolTip": "Sosa.Gym.Domain\\Entidades\\Usuario\\UsuarioEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T10:35:42.514Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IdentityDataSeed.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Seed\\IdentityDataSeed.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Persistence\\Seed\\IdentityDataSeed.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Persistence\\Seed\\IdentityDataSeed.cs",
-              "RelativeToolTip": "Sosa.Gym.Persistence\\Seed\\IdentityDataSeed.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwC0AAAApAAAAAAAAAA==",
+              "Title": "CreateCuotaCommand.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaCommand.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaCommand.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaCommand.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaCommand.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwDAAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T10:33:09.371Z",
+              "WhenOpened": "2025-11-19T21:55:46.94Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Program.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.API\\Program.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Program.cs",
-              "RelativeToolTip": "Sosa.Gym.API\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "CreateCuotaModel.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaModel.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaModel.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaModel.cs",
+              "RelativeToolTip": "Sosa.Gym.Application\\DataBase\\Cuota\\Commands\\CreateCuota\\CreateCuotaModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T10:31:35.788Z",
+              "WhenOpened": "2025-11-19T21:51:41.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CuotaController.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\CuotaController.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\CuotaController.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\CuotaController.cs",
+              "RelativeToolTip": "Sosa.Gym.API\\Controllers\\CuotaController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:47:44.045Z",
               "EditorCaption": ""
             }
           ]

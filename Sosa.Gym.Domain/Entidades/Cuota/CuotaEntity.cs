@@ -24,6 +24,6 @@ namespace Sosa.Gym.Domain.Entidades.Cuota
         public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
         public DateTime? FechaPago { get; set; }
 
-        public string MetodoPago { get; set; } 
+        public string? MetodoPago { get; set; } 
     }
 }

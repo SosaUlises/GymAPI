@@ -3,6 +3,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
+using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
@@ -18,6 +19,7 @@ using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
 using Sosa.Gym.Domain.Entidades.Cliente;
+using Sosa.Gym.Domain.Entidades.Cuota;
 using Sosa.Gym.Domain.Entidades.Ejercicio;
 using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Entidades.Rutina;
@@ -91,6 +93,10 @@ namespace Sosa.Gym.Application.Configuration
             CreateMap<ProgresoEntity, CreateProgresoModel>().ReverseMap();
             CreateMap<ProgresoEntity, UpdateProgresoModel>().ReverseMap();
             CreateMap<ProgresoEntity, GetProgresoByClienteModel>().ReverseMap();
+
+
+            // Cuota
+            CreateMap<CuotaEntity, CreateCuotaModel>().ReverseMap();
         }
     }
 }
