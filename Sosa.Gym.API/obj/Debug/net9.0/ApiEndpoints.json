@@ -150,6 +150,22 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "GetByEstado",
+    "RelativePath": "api/v1/cuotas/getByEstado/{estado}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "estado",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
     "Method": "Pagar",
     "RelativePath": "api/v1/cuotas/pagar",
     "HttpMethod": "POST",
