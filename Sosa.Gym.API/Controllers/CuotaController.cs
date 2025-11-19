@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
+using Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
@@ -29,6 +30,28 @@ namespace Sosa.Gym.API.Controllers
             }
 
             var cuota = await createCuotaCommand.Execute(model);
+
+            return StatusCode(cuota.StatusCode, cuota);
+
+        }
+
+        [AllowAnonymous]
+        [HttpPost("pagar")]
+        public async Task<IActionResult> Pagar(
+             [FromBody] PagarCuotaModel model,
+             [FromServices] IPagarCuotaCommand pagarCuotaCommand,
+             [FromServices] IValidator<PagarCuotaModel> validator
+             )
+        {
+            var validationResult = await validator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
+            }
+
+            var cuota = await pagarCuotaCommand.Execute(model);
 
             return StatusCode(cuota.StatusCode, cuota);
 

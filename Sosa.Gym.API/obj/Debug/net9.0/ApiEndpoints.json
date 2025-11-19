@@ -133,6 +133,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "Pagar",
+    "RelativePath": "api/v1/cuotas/pagar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota.PagarCuotaModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
     "Method": "Create",
     "RelativePath": "api/v1/diaRutina/create",

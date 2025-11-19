@@ -7,6 +7,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
+using Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId;
@@ -79,6 +80,7 @@ namespace Sosa.Gym.Application
 
             // Cuota
             services.AddTransient<ICreateCuotaCommand, CreateCuotaCommand>();
+            services.AddTransient<IPagarCuotaCommand, PagarCuotaCommand>();
 
 
             // Login
@@ -102,6 +104,7 @@ namespace Sosa.Gym.Application
             services.AddScoped<IValidator<LoginModel>, LoginValidator>();
 
             services.AddScoped<IValidator<CreateCuotaModel>, CreateCuotaValidator>();
+            services.AddScoped<IValidator<PagarCuotaModel>, PagarCuotaValidator>();
 
 
             return services;
