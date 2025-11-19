@@ -1,4 +1,5 @@
-﻿using Sosa.Gym.Domain.Entidades.Progreso;
+﻿using Sosa.Gym.Domain.Entidades.Cuota;
+using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Entidades.Rutina;
 using Sosa.Gym.Domain.Entidades.Usuario;
 using System;
@@ -22,5 +23,6 @@ namespace Sosa.Gym.Domain.Entidades.Cliente
 
         public ICollection<ProgresoEntity> Progresos { get; set; } = new List<ProgresoEntity>();
         public ICollection<RutinaEntity> Rutinas { get; set; } = new List<RutinaEntity>();
+        public ICollection<CuotaEntity> Cuotas { get; set; } = new List<CuotaEntity>();
     }
 }
