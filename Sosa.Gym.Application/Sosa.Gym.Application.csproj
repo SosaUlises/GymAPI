@@ -34,8 +34,4 @@
     <ProjectReference Include="..\Sosa.Gym.Domain\Sosa.Gym.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataBase\Cuota\Queries\" />
-  </ItemGroup>
-
 </Project>

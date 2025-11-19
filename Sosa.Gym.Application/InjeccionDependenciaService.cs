@@ -8,6 +8,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota;
+using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId;
@@ -81,6 +82,7 @@ namespace Sosa.Gym.Application
             // Cuota
             services.AddTransient<ICreateCuotaCommand, CreateCuotaCommand>();
             services.AddTransient<IPagarCuotaCommand, PagarCuotaCommand>();
+            services.AddTransient<IGetCuotaByClienteQuery, GetCuotaByClienteQuery>();
 
 
             // Login

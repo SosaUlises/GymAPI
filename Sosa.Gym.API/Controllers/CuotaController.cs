@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota;
+using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
@@ -54,6 +55,22 @@ namespace Sosa.Gym.API.Controllers
             var cuota = await pagarCuotaCommand.Execute(model);
 
             return StatusCode(cuota.StatusCode, cuota);
+
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getByClienteId/{clienteId}")]
+        public async Task<IActionResult> GetByClienteId(
+            int clienteId,
+            [FromServices] IGetCuotaByClienteQuery getCuotaByClienteQuery
+            )
+        {
+            if (clienteId == 0)
+                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
+
+            var cuotas = await getCuotaByClienteQuery.Execute(clienteId);
+
+            return StatusCode(cuotas.StatusCode, cuotas);
 
         }
     }

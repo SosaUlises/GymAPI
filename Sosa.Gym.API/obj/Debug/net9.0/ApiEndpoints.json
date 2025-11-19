@@ -134,6 +134,22 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "GetByClienteId",
+    "RelativePath": "api/v1/cuotas/getByClienteId/{clienteId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
     "Method": "Pagar",
     "RelativePath": "api/v1/cuotas/pagar",
     "HttpMethod": "POST",

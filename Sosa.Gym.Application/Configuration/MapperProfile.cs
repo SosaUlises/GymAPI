@@ -4,6 +4,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
+using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
@@ -97,6 +98,7 @@ namespace Sosa.Gym.Application.Configuration
 
             // Cuota
             CreateMap<CuotaEntity, CreateCuotaModel>().ReverseMap();
+            CreateMap<CuotaEntity, GetCuotaByClienteModel>().ReverseMap();
         }
     }
 }
