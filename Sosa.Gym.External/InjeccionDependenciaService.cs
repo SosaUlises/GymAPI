@@ -50,6 +50,17 @@ namespace Sosa.Gym.External
             var jwtIssuer = configuration["Jwt_Issuer"];
             var jwtAudience = configuration["Jwt_Audience"];
 
+            // VALIDACIÓN CRÍTICA: Si esto falla, es que no leyó el secreto
+            if (string.IsNullOrEmpty(jwtKey) || jwtKey.Length < 32)
+            {
+                // Este Console.WriteLine te salvará la vida en los logs de Render
+                Console.WriteLine($"[ERROR CRÍTICO] La Jwt_Key es nula o muy corta. Valor leído: '{jwtKey}'");
+
+                // Si estamos en desarrollo, lanzamos error para que te des cuenta
+                // if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                //    throw new Exception("JWT Key no configurada en Secrets o AppSettings.");
+            }
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

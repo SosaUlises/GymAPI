@@ -7,19 +7,19 @@ using Sosa.Gym.Persistence.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de los servicios del contenedor
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddHttpContextAccessor();
 
-// Inyección de dependencias
 builder.Services
     .AddWebApi()
     .AddCommon()
     .AddApplication()
     .AddExternal(builder.Configuration)
     .AddPersistence(builder.Configuration);
-
 
 var app = builder.Build();
 
@@ -29,17 +29,10 @@ app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = string.Empty;
+    options.RoutePrefix = string.Empty; 
 });
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
 app.UseHttpsRedirection();
-
 
 app.UseAuthorization();
 

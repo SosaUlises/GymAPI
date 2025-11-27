@@ -23,9 +23,9 @@ namespace Sosa.Gym.External.GetTokenJWT
 
         public string Execute(string userId, string role, UsuarioEntity usuario)
         {
-            var jwtKey = _configuration["Jwt:Key"];
-            var jwtIssuer = _configuration["Jwt:Issuer"];
-            var jwtAudience = _configuration["Jwt:Audience"];
+            var jwtKey = _configuration["Jwt_Key"];
+            var jwtIssuer = _configuration["Jwt_Issuer"];
+            var jwtAudience = _configuration["Jwt_Audience"];
 
             if (string.IsNullOrEmpty(jwtKey) ||
                 string.IsNullOrEmpty(jwtIssuer) ||

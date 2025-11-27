@@ -1,5 +1,4 @@
-﻿using Microsoft.OpenApi;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 namespace Sosa.Gym.API
@@ -17,9 +16,13 @@ namespace Sosa.Gym.API
                     Description = "Administracion de APIs para Gym App"
                 });
 
-
                 var fileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, fileName));
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, fileName);
+
+                if (File.Exists(xmlPath))
+                {
+                    options.IncludeXmlComments(xmlPath);
+                }
 
                 // === CONFIG JWT BEARER PARA AUTH ===
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -33,22 +36,22 @@ namespace Sosa.Gym.API
                 });
 
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
-            {
-                new OpenApiSecurityScheme
                 {
-                    Reference = new OpenApiReference
                     {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
                     }
-                },
-                Array.Empty<string>()
-            }
-        });
+                });
             });
 
             return services;
         }
-    }
+        }
 }
