@@ -7,6 +7,7 @@ using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente;
 using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -66,10 +67,12 @@ namespace Sosa.Gym.API.Controllers
             [FromServices] IGetCuotaByClienteQuery getCuotaByClienteQuery
             )
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (clienteId == 0)
                 return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
 
-            var cuotas = await getCuotaByClienteQuery.Execute(clienteId);
+            var cuotas = await getCuotaByClienteQuery.Execute(clienteId, int.Parse(userId));
 
             return StatusCode(cuotas.StatusCode, cuotas);
 

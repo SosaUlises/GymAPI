@@ -8,6 +8,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -24,6 +25,7 @@ namespace Sosa.Gym.API.Controllers
                [FromServices] IValidator<CreateClienteModel> validator
                )
         {
+
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
             {
@@ -38,7 +40,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Cliente")]
         [HttpPut("update")]
         public async Task<IActionResult> Update(
             [FromBody] UpdateClienteModel model,
@@ -53,15 +55,16 @@ namespace Sosa.Gym.API.Controllers
                     ResponseApiService.Response(StatusCodes.Status400BadRequest,
                     validationResult.Errors));
             }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var clienteUpdate = await updateClienteCommand.Execute(model);
+            var clienteUpdate = await updateClienteCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(clienteUpdate.StatusCode, clienteUpdate);
         }
 
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         [HttpDelete("delete/{clienteId}")]
         public async Task<IActionResult> Delete(
            int clienteId,
@@ -103,7 +106,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador, Cliente")]
         [HttpGet("getById/{clienteId}")]
         public async Task<IActionResult> GetById(
             int clienteId,
@@ -115,8 +118,9 @@ namespace Sosa.Gym.API.Controllers
                 return StatusCode(StatusCodes.Status400BadRequest,
                     ResponseApiService.Response(StatusCodes.Status400BadRequest));
             }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var data = await getClienteByIdQuery.Execute(clienteId);
+            var data = await getClienteByIdQuery.Execute(clienteId, int.Parse(userId));
 
             return StatusCode(data.StatusCode, data);
 

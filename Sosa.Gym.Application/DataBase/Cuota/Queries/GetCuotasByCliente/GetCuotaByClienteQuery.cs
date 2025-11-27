@@ -8,6 +8,7 @@ using Sosa.Gym.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,14 +21,21 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente
         public GetCuotaByClienteQuery(
             IDataBaseService dataBaseService,
             IMapper mapper
+  
             )
         {
             _dataBaseService = dataBaseService;
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(int id)
+        public async Task<BaseRespondeModel> Execute(int id, int userId)
         {
+            if (id != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes acceder a datos de otro usuario");
+            }
 
             var existeCliente = await _dataBaseService.Clientes
                          .AnyAsync(c => c.Id == id);

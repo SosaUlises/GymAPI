@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
 {
     public interface IGetClienteByIdQuery
     {
-        Task<BaseRespondeModel> Execute(int clienteId);
+        Task<BaseRespondeModel> Execute(int clienteId, int userId);
     }
 }

@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuración de los servicios del contenedor
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
-
+builder.Services.AddHttpContextAccessor();
 
 // Inyección de dependencias
 builder.Services
@@ -39,6 +39,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 
