@@ -19,15 +19,24 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int idDiaRutina)
+        public async Task<BaseRespondeModel> Execute(int idDiaRutina, int userId)
         {
-            var diaRutina = await _dataBaseService.DiasRutinas.FirstOrDefaultAsync(x => x.Id == idDiaRutina);
+            var diaRutina = await _dataBaseService.DiasRutinas
+                                                    .Include(d => d.Rutina)
+                                                    .FirstOrDefaultAsync(x => x.Id == idDiaRutina);
 
             if (diaRutina == null) 
             {
                 return ResponseApiService.Response(
                        StatusCodes.Status404NotFound,
                        "El Dia de la rutina no fue encontrada");
+            }
+
+            if (diaRutina.Rutina.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes eliminar días a una rutina que no te pertenece");
             }
 
             _dataBaseService.DiasRutinas.Remove(diaRutina);

@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
 {
     public interface IDeleteDiaRutinaCommand
     {
-        Task<BaseRespondeModel> Execute(int idDiaRutina);
+        Task<BaseRespondeModel> Execute(int idDiaRutina, int userId);
     }
 }

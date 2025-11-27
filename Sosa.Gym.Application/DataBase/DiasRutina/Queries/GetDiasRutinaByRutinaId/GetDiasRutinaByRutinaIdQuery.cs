@@ -28,15 +28,26 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int rutinaId)
+        public async Task<BaseRespondeModel> Execute(int rutinaId, int userId)
         {
             var diasRutina = await _dataBaseService.DiasRutinas
-                                        .Where(x=> x.RutinaId == rutinaId).ToListAsync();
+                                        .Where(x=> x.RutinaId == rutinaId)  
+                                        .Include(d=> d.Rutina)
+                                        .ToListAsync();
 
        
             if (diasRutina == null || !diasRutina.Any())
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, 
                     "No se encontraron dias para esta rutina");
+
+            var clienteIdDeLaRutina = diasRutina.First().Rutina.ClienteId;
+
+            if (clienteIdDeLaRutina != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes ver los días de una rutina que no te pertenece");
+            }
 
             return ResponseApiService.Response(
                 StatusCodes.Status200OK,

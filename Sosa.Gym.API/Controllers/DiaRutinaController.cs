@@ -8,6 +8,7 @@ using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -33,7 +34,8 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var diaRutina = await createDiaRutinaCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var diaRutina = await createDiaRutinaCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(diaRutina.StatusCode, diaRutina);
         }
@@ -52,7 +54,8 @@ namespace Sosa.Gym.API.Controllers
                     ResponseApiService.Response(StatusCodes.Status400BadRequest));
             }
 
-            var diaRutina = await deleteDiaRutinaCommand.Execute(diaRutinaId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var diaRutina = await deleteDiaRutinaCommand.Execute(diaRutinaId, int.Parse(userId));
 
             return StatusCode(diaRutina.StatusCode, diaRutina);
 
@@ -71,7 +74,8 @@ namespace Sosa.Gym.API.Controllers
                     ResponseApiService.Response(StatusCodes.Status400BadRequest));
             }
 
-            var diasRutinas = await getDiasRutinaByRutinaIdQuery.Execute(rutinaId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var diasRutinas = await getDiasRutinaByRutinaIdQuery.Execute(rutinaId, int.Parse(userId));
             return StatusCode(diasRutinas.StatusCode, diasRutinas);
 
         }

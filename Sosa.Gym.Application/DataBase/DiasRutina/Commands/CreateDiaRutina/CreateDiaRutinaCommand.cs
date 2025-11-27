@@ -26,7 +26,7 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateDiaRutinaModel model)
+        public async Task<BaseRespondeModel> Execute(CreateDiaRutinaModel model, int userId)
         {
             var rutina = await _dataBaseService.Rutinas.FindAsync(model.RutinaId);
 
@@ -35,6 +35,13 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
                 return ResponseApiService.Response(
                         StatusCodes.Status404NotFound,
                         "La rutina no fue encontrada");
+            }
+
+            if (rutina.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes agregar días a una rutina que no te pertenece");
             }
 
             var diaRutina = _mapper.Map<DiasRutinaEntity>(model);
