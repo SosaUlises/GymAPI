@@ -9,6 +9,34 @@ Construida con **.NET**, **Clean Architecture**, **PostgreSQL** e **Identity + J
 >
 > 👉 **[Ver Documentación y API en Vivo](https://gymapi-yln2.onrender.com/index.html)**
 
+### 🔐 Guía para Probar la API
+
+La API cuenta con seguridad JWT. Para probar los endpoints protegidos, sigue estos pasos según el rol que quieras testear:
+
+#### 1. Rol Administrador (Acceso Total)
+Utiliza estas credenciales precargadas para acceder a funcionalidades de gestión:
+
+| Campo | Valor |
+| :--- | :--- |
+| **Email** | `admin@sosa.com` |
+| **Password** | `Admin123!` |
+
+**Pasos para autenticarse:**
+1. Ve al endpoint `POST /api/Auth/login`.
+2. Ingresa las credenciales de arriba y ejecuta ("Execute").
+3. Copia el `token` que recibirás en la respuesta.
+4. Sube al inicio de la página, haz clic en el botón verde **Authorize**.
+5. Escribe: `Bearer TU_TOKEN_AQUI` (respetando el espacio después de Bearer) y dale a **Authorize**.
+
+#### 2. Rol Cliente (Nuevo Usuario)
+Si deseas probar el flujo de un usuario normal:
+
+1. Ve al endpoint `POST /api/Cliente` (Crear Cliente).
+2. Rellena el formulario (JSON) con tus datos y ejecútalo para registrarte.
+3. Luego, usa tu nuevo email y contraseña en el endpoint de `Login` para obtener tu token de acceso.
+
+---
+
 ## 🚀 Características Principales
 
 ### 🔐 Autenticación y Autorización
