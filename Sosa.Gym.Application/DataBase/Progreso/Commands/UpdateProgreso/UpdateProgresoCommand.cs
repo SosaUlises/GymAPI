@@ -26,12 +26,22 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(UpdateProgresoModel model)
+        public async Task<BaseRespondeModel> Execute(UpdateProgresoModel model, int userId)
         {
-            var progreso = await _dataBaseService.Progresos.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var progreso = await _dataBaseService.Progresos
+                .FirstOrDefaultAsync(x => x.Id == model.Id);
 
             if (progreso == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Progreso no encontrado");
+
+
+            if (progreso.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes modificar progresos que no te pertenecen");
+            }
+
 
             _mapper.Map(model, progreso);
             _dataBaseService.Progresos.Update(progreso);

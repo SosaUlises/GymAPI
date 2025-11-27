@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
 {
     public interface IGetProgresoByClienteQuery
     {
-        Task<BaseRespondeModel> Execute(int clienteId);
+        Task<BaseRespondeModel> Execute(int clienteId, int userId);
     }
 }

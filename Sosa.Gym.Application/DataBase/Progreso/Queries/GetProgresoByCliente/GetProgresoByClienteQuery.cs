@@ -27,7 +27,7 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(int clienteId)
+        public async Task<BaseRespondeModel> Execute(int clienteId, int userId)
         {
             var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(x => x.Id == clienteId);
 
@@ -41,7 +41,16 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
             if (progresos == null || !progresos.Any())
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "No hay progresos cargados");
 
-                return ResponseApiService.Response
+            var clienteIdDeLaRutina = progresos.First().ClienteId;
+
+            if (clienteIdDeLaRutina != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes ver los progresos que no te pertenece");
+            }
+
+            return ResponseApiService.Response
                 (StatusCodes.Status200OK,
                 _mapper.Map<List<GetProgresoByClienteModel>>(progresos));
         }

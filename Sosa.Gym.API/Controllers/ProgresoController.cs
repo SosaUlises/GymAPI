@@ -6,6 +6,7 @@ using Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso;
 using Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -31,7 +32,8 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var progreso = await createProgresoCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var progreso = await createProgresoCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(progreso.StatusCode, progreso);
 
@@ -53,7 +55,8 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var progreso = await updateProgresoCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var progreso = await updateProgresoCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(progreso.StatusCode, progreso);
 
@@ -73,7 +76,8 @@ namespace Sosa.Gym.API.Controllers
                     (StatusCodes.Status400BadRequest));
             }
 
-            var Getprogresos = await getProgresoByClienteQuery.Execute(idCliente);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var Getprogresos = await getProgresoByClienteQuery.Execute(idCliente, int.Parse(userId));
 
             return StatusCode(Getprogresos.StatusCode, Getprogresos);
 

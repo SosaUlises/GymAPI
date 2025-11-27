@@ -21,11 +21,19 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateProgresoModel model)
+        public async Task<BaseRespondeModel> Execute(CreateProgresoModel model, int userId)
         {
             var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(x => x.Id == model.ClienteId);
             if (cliente == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
+
+            if (cliente.Id != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes agregar progresos a una cuenta que no te pertenece");
+            }
 
             var progreso = _mapper.Map<ProgresoEntity>(model);
             progreso.FechaRegistro = DateTime.UtcNow;
