@@ -2,7 +2,12 @@
 API RESTful para la gestión de clientes, rutinas, ejercicios, progreso físico y cuotas mensuales.  
 Construida con **.NET**, **Clean Architecture**, **PostgreSQL** e **Identity + JWT**.
 
----
+> [!NOTE]
+> **🚀 DESPLIEGUE EN VIVO (LIVE DEMO)**
+>
+> El proyecto se encuentra desplegado en **Render**. Al hacer clic en el enlace, accederás a la interfaz de **Swagger UI**, donde podrás probar los endpoints de la API, autenticarte y ver los esquemas de datos.
+>
+> 👉 **[Ver Documentación y API en Vivo](https://gymapi-yln2.onrender.com/index.html)**
 
 ## 🚀 Características Principales
 
