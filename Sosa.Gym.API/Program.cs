@@ -1,3 +1,4 @@
+using Sosa.Gym.API;
 using Sosa.Gym.Application;
 using Sosa.Gym.Common;
 using Sosa.Gym.External;
@@ -13,6 +14,7 @@ builder.Services.AddOpenApi();
 
 // Inyección de dependencias
 builder.Services
+    .AddWebApi()
     .AddCommon()
     .AddApplication()
     .AddExternal(builder.Configuration)
@@ -22,6 +24,13 @@ builder.Services
 var app = builder.Build();
 
 await IdentityDataSeed.SeedRolesAsync(app);
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
