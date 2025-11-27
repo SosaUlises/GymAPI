@@ -15,12 +15,22 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int ejercicioId)
+        public async Task<BaseRespondeModel> Execute(int ejercicioId, int userId)
         {
-            var ejercicio = await _dataBaseService.Ejercicios.FirstOrDefaultAsync(x => x.Id == ejercicioId);
+            var ejercicio = await _dataBaseService.Ejercicios
+                              .Include(e => e.DiasRutina)
+                              .ThenInclude(dr => dr.Rutina)
+                              .FirstOrDefaultAsync(x => x.Id == ejercicioId);
 
             if (ejercicio == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Ejercicio no encontrado");
+
+            if (ejercicio.DiasRutina.Rutina.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes eliminar ejercicios que no te pertenecen");
+            }
 
             _dataBaseService.Ejercicios.Remove(ejercicio);
             await _dataBaseService.SaveAsync();

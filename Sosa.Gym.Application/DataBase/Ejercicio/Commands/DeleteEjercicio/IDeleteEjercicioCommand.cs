@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
 {
     public interface IDeleteEjercicioCommand
     {
-        Task<BaseRespondeModel> Execute(int ejercicioId);
+        Task<BaseRespondeModel> Execute(int ejercicioId, int userId);
     }
 }

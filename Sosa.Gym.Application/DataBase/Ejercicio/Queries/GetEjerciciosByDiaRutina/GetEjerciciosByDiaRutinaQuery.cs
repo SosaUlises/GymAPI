@@ -26,15 +26,25 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRuti
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(int diaRutinaId)
+        public async Task<BaseRespondeModel> Execute(int diaRutinaId, int userId)
         {
             var ejercicios = await _dataBaseService.Ejercicios
                                                    .Where(x => x.DiaRutinaId == diaRutinaId)
+                                                   .Include(e => e.DiasRutina)
+                                                   .ThenInclude(dr => dr.Rutina)
                                                    .ToListAsync();
 
             if(!ejercicios.Any() || ejercicios == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "No se encontraron ejercicios para este dia");
 
+            var clienteIdDeLaRutina = ejercicios.First().DiasRutina.Rutina.ClienteId;
+
+            if (clienteIdDeLaRutina != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes ver los ejercicios de una rutina que no te pertenece");
+            }
 
             return ResponseApiService.Response(
                 StatusCodes.Status200OK,

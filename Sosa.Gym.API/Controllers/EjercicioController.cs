@@ -7,6 +7,7 @@ using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -32,7 +33,8 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var ejercicio = await createEjercicioCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var ejercicio = await createEjercicioCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(ejercicio.StatusCode, ejercicio);
 
@@ -54,7 +56,8 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var ejercicio = await updateEjercicioCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var ejercicio = await updateEjercicioCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(ejercicio.StatusCode, ejercicio);
 
@@ -70,7 +73,8 @@ namespace Sosa.Gym.API.Controllers
             if(ejercicioId == 0)
             return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
 
-            var ejercicio = await deleteEjercicioCommand.Execute(ejercicioId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var ejercicio = await deleteEjercicioCommand.Execute(ejercicioId, int.Parse(userId));
 
             return StatusCode(ejercicio.StatusCode, ejercicio);
             
@@ -87,7 +91,8 @@ namespace Sosa.Gym.API.Controllers
             if (diaRutinaId == 0)
                 return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
 
-            var ejercicios = await getEjerciciosByDiaRutinaQuery.Execute(diaRutinaId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var ejercicios = await getEjerciciosByDiaRutinaQuery.Execute(diaRutinaId, int.Parse(userId));
 
             return StatusCode(ejercicios.StatusCode, ejercicios);
 

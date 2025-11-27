@@ -26,12 +26,22 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(UpdateEjercicioModel model)
+        public async Task<BaseRespondeModel> Execute(UpdateEjercicioModel model, int userId)
         {
-            var ejercicio = await _dataBaseService.Ejercicios.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var ejercicio = await _dataBaseService.Ejercicios
+                             .Include(e => e.DiasRutina)
+                             .ThenInclude(dr => dr.Rutina)
+                             .FirstOrDefaultAsync(x => x.Id == model.Id);
 
             if (ejercicio == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Ejercicio no encontrado");
+
+            if (ejercicio.DiasRutina.Rutina.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes modificar ejercicios que no te pertenecen");
+            }
 
             _mapper.Map(model, ejercicio);
             _dataBaseService.Ejercicios.Update(ejercicio);

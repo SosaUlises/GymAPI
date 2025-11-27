@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio
 {
     public interface IUpdateEjercicioCommand
     {
-        Task<BaseRespondeModel> Execute(UpdateEjercicioModel model);
+        Task<BaseRespondeModel> Execute(UpdateEjercicioModel model, int userId);
     }
 }

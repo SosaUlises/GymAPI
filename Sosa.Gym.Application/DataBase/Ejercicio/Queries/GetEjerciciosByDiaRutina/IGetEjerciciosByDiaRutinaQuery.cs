@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRuti
 {
     public interface IGetEjerciciosByDiaRutinaQuery
     {
-        Task<BaseRespondeModel> Execute(int diaRutinaId);
+        Task<BaseRespondeModel> Execute(int diaRutinaId, int userId);
     }
 }

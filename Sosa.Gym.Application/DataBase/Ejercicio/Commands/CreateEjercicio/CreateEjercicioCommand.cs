@@ -27,12 +27,21 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio
             _mapper = mapper;   
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateEjercicioModel model)
+        public async Task<BaseRespondeModel> Execute(CreateEjercicioModel model, int userId)
         {
-            var diaRutina = await _dataBaseService.DiasRutinas.FirstOrDefaultAsync(x => x.Id == model.DiaRutinaId);
+            var diaRutina = await _dataBaseService.DiasRutinas
+                .Include(d=> d.Rutina)
+                .FirstOrDefaultAsync(x => x.Id == model.DiaRutinaId);
 
             if (diaRutina == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Dia de Rutina no encontrado");
+
+            if (diaRutina.Rutina.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes agregar ejercicios a una rutina que no te pertenece");
+            }
 
             var result = _mapper.Map<EjercicioEntity>(model);
 
