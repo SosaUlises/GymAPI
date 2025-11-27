@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
 {
     public interface ICreateRutinaCommand
     {
-        Task<BaseRespondeModel> Execute(CreateRutinaModel model);
+        Task<BaseRespondeModel> Execute(CreateRutinaModel model, int userId);
     }
 }

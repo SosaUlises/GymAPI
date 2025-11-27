@@ -20,12 +20,19 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(UpdateRutinaModel model)
+        public async Task<BaseRespondeModel> Execute(UpdateRutinaModel model, int userId)
         {
             var rutina = await _dataBaseService.Rutinas.FirstOrDefaultAsync(x => x.Id == model.Id);
 
             if (rutina == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Rutina no encontrada");
+
+            if (rutina.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes modificar rutinas a una cuenta que no te pertenece");
+            }
 
             _mapper.Map(model, rutina);
             _dataBaseService.Rutinas.Update(rutina);

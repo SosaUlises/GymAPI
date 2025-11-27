@@ -25,7 +25,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int clienteId)
+        public async Task<BaseRespondeModel> Execute(int clienteId, int userId)
         {
             var rutinas = await _dataBaseService.Rutinas   
                                                      .Where(x => x.ClienteId == clienteId)
@@ -33,6 +33,16 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
 
             if (rutinas == null || !rutinas.Any())
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "No se encontraron rutinas para este cliente");
+
+            var clienteIdDeLaRutina = rutinas.First().ClienteId;
+
+            if (clienteIdDeLaRutina != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes ver las rutinas que no te pertenecen");
+            }
+
 
             return ResponseApiService.Response(
                 StatusCodes.Status200OK,

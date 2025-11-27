@@ -7,6 +7,7 @@ using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -32,7 +33,8 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var rutina = await createRutinaCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var rutina = await createRutinaCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(rutina.StatusCode, rutina);
 
@@ -54,7 +56,8 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var rutina = await updateRutinaCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var rutina = await updateRutinaCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(rutina.StatusCode, rutina);
 
@@ -73,7 +76,8 @@ namespace Sosa.Gym.API.Controllers
                     ResponseApiService.Response(StatusCodes.Status400BadRequest));
             }
 
-            var rutina = await deleteRutinaCommand.Execute(rutinaId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var rutina = await deleteRutinaCommand.Execute(rutinaId, int.Parse(userId));
             return StatusCode(rutina.StatusCode, rutina);
 
         }
@@ -91,7 +95,8 @@ namespace Sosa.Gym.API.Controllers
                     ResponseApiService.Response(StatusCodes.Status400BadRequest));
             }
 
-            var rutinas = await getRutinaByClienteIdQuery.Execute(clienteId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var rutinas = await getRutinaByClienteIdQuery.Execute(clienteId, int.Parse(userId));
             return StatusCode(rutinas.StatusCode, rutinas);
 
         }

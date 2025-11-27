@@ -25,10 +25,18 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
             _mapper = mapper;   
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateRutinaModel model)
+        public async Task<BaseRespondeModel> Execute(CreateRutinaModel model, int userId)
         {
             var rutina = _mapper.Map<RutinaEntity>(model);
             rutina.FechaCreacion = DateTime.UtcNow;
+
+            if (rutina.ClienteId != userId)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status403Forbidden,
+                    "No puedes agregar rutinas a una cuenta que no te pertenece");
+            }
+
             await _dataBaseService.Rutinas.AddAsync(rutina);
             await _dataBaseService.SaveAsync();
 

@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
 {
     public interface IGetRutinaByClienteIdQuery
     {
-        Task<BaseRespondeModel> Execute(int clienteId);
+        Task<BaseRespondeModel> Execute(int clienteId, int userId);
     }
 }
