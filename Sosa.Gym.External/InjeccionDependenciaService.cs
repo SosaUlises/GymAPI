@@ -46,9 +46,9 @@ namespace Sosa.Gym.External
        
             // JWT – Configuración completa
 
-            var jwtKey = configuration["Jwt:Key"];
-            var jwtIssuer = configuration["Jwt:Issuer"];
-            var jwtAudience = configuration["Jwt:Audience"];
+            var jwtKey = configuration["Jwt_Key"];
+            var jwtIssuer = configuration["Jwt_Issuer"];
+            var jwtAudience = configuration["Jwt_Audience"];
 
             services.AddAuthentication(options =>
             {

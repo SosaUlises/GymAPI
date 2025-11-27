@@ -28,8 +28,8 @@ namespace Sosa.Gym.Persistence.Seed
             }
 
             // Crear Administrador
-            var adminEmail = config["Admin:Email"];
-            var adminPassword = config["Admin:Password"];
+            var adminEmail = config["Admin_Email"];
+            var adminPassword = config["Admin_Password"];
 
             if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminPassword))
                 throw new Exception("Debes configurar Admin:Email y Admin:Password como secreto");
