@@ -13,10 +13,11 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("/api/v1/diaRutina")]
     [ApiController]
+    [Authorize(Roles = "Cliente")]
     [TypeFilter(typeof(ExceptionManager))]
     public class DiaRutinaController : Controller
     {
-        [AllowAnonymous]
+
         [HttpPost("create")]
         public async Task<IActionResult> Create(
                 [FromBody] CreateDiaRutinaModel model,
@@ -37,7 +38,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(diaRutina.StatusCode, diaRutina);
         }
 
-        [AllowAnonymous]
+
         [HttpDelete("delete/{diaRutinaId}")]
         public async Task<IActionResult> Delete(
                 int diaRutinaId,
@@ -57,7 +58,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpGet("getDiasRutinaByRutinaId/{rutinaId}")]
         public async Task<IActionResult> GetDiasRutinaByRutinaId(
                int rutinaId,

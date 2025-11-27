@@ -12,10 +12,11 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("/api/v1/rutina")]
     [ApiController]
+    [Authorize(Roles = "Cliente")]
     [TypeFilter(typeof(ExceptionManager))]
     public class RutinaController : Controller
     {
-        [AllowAnonymous]
+
         [HttpPost("create")]
         public async Task<IActionResult> Create(
                 [FromBody] CreateRutinaModel model,
@@ -37,7 +38,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpPut("update")]
         public async Task<IActionResult> Update(
                 [FromBody] UpdateRutinaModel model,
@@ -59,7 +60,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpDelete("delete/{rutinaId}")]
         public async Task<IActionResult> Delete(
                int rutinaId,
@@ -77,7 +78,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpGet("getByClienteId/{clienteId}")]
         public async Task<IActionResult> GetByClienteId(
                int clienteId,

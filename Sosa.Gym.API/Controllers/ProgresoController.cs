@@ -11,10 +11,11 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("/api/v1/progreso")]
     [ApiController]
+    [Authorize(Roles = "Cliente")]
     [TypeFilter(typeof(ExceptionManager))]
     public class ProgresoController : Controller
     {
-        [AllowAnonymous]
+
         [HttpPost("create")]
         public async Task<IActionResult> Create(
                  [FromBody] CreateProgresoModel model,
@@ -36,7 +37,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpPut("update")]
         public async Task<IActionResult> Update(
                 [FromBody] UpdateProgresoModel model,
@@ -58,7 +59,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpGet("getByCliente/{idCliente}")]
         public async Task<IActionResult> GetProgresoByCliente(
                 int idCliente,

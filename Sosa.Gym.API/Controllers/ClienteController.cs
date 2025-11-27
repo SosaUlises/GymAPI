@@ -79,7 +79,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(data.StatusCode, data);
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         [HttpGet("getAll")]
         public async Task<IActionResult> GetAll(
             [FromServices] IGetAllClientesQuery getAllClientesQuery,
@@ -123,7 +123,7 @@ namespace Sosa.Gym.API.Controllers
         }
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         [HttpGet("getByDni/{dni}")]
         public async Task<IActionResult> GetByDni(
             long dni,

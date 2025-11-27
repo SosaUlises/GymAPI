@@ -15,7 +15,7 @@ namespace Sosa.Gym.API.Controllers
     [TypeFilter(typeof(ExceptionManager))]
     public class CuotaController : Controller
     {
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         [HttpPost("create")]
         public async Task<IActionResult> Create(
               [FromBody] CreateCuotaModel model,
@@ -37,7 +37,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Cliente")]
         [HttpPost("pagar")]
         public async Task<IActionResult> Pagar(
              [FromBody] PagarCuotaModel model,
@@ -75,7 +75,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         [HttpGet("getByEstado/{estado}")]
         public async Task<IActionResult> GetByEstado(
            string estado,

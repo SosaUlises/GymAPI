@@ -10,11 +10,12 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("/api/v1/usuario")]
     [ApiController]
+    [Authorize(Roles = "Administrador")]
     [TypeFilter(typeof(ExceptionManager))]
     public class UsuarioController : ControllerBase
     {
 
-        [AllowAnonymous]
+
         [HttpGet("getAll")]
         public async Task<IActionResult> GetAll(
             [FromServices] IGetAllUsuariosQuery getAllUsuariosQuery,
@@ -38,7 +39,7 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpGet("getById/{userId}")]
         public async Task<IActionResult> GetById(
             int userId,
@@ -56,7 +57,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(data.StatusCode, data);
         }
 
-        [AllowAnonymous]
+
         [HttpGet("getByDni/{dni}")]
         public async Task<IActionResult> GetByDni(
             long dni,
