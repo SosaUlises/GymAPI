@@ -54,13 +54,15 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var cuota = await pagarCuotaCommand.Execute(model);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var cuota = await pagarCuotaCommand.Execute(model, int.Parse(userId));
 
             return StatusCode(cuota.StatusCode, cuota);
 
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador, Cliente")]
         [HttpGet("getByClienteId/{clienteId}")]
         public async Task<IActionResult> GetByClienteId(
             int clienteId,
@@ -78,13 +80,14 @@ namespace Sosa.Gym.API.Controllers
 
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Cliente")]
         [HttpGet("getByEstado/{estado}")]
         public async Task<IActionResult> GetByEstado(
            string estado,
            [FromServices] IGetCuotasByEstadoQuery getCuotasByEstadoQuery
            )
         {
+
             if (estado == "")
                 return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
 

@@ -21,43 +21,42 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente
         public GetCuotaByClienteQuery(
             IDataBaseService dataBaseService,
             IMapper mapper
-  
+
             )
         {
             _dataBaseService = dataBaseService;
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(int id, int userId)
+        public async Task<BaseRespondeModel> Execute(int clienteId, int userId)
         {
-            if (id != userId)
+            var cliente = await _dataBaseService.Clientes
+                .Include(c => c.Usuario)
+                .FirstOrDefaultAsync(c => c.Id == clienteId);
+
+            if (cliente == null)
+                return ResponseApiService.Response(
+                    StatusCodes.Status404NotFound,
+                    "Cliente no encontrado");
+
+            // Si no es admin, validar pertenencia
+            if (cliente.UsuarioId != userId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
                     "No puedes acceder a datos de otro usuario");
             }
 
-            var existeCliente = await _dataBaseService.Clientes
-                         .AnyAsync(c => c.Id == id);
-
-            if (!existeCliente)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status404NotFound,
-                    "Cliente no encontrado");
-            }
-
-
-            var cuotas =  await _dataBaseService.Cuotas
-                            .Where(x => x.ClienteId == id)
-                            .OrderByDescending(x => x.Anio)
-                            .ThenByDescending(x => x.Mes)
-                            .ToListAsync();
+            var cuotas = await _dataBaseService.Cuotas
+                .Where(x => x.ClienteId == clienteId)
+                .OrderByDescending(x => x.Anio)
+                .ThenByDescending(x => x.Mes)
+                .ToListAsync();
 
             return ResponseApiService.Response(
                 StatusCodes.Status200OK,
                 _mapper.Map<List<GetCuotaByClienteModel>>(cuotas));
         }
     }
-}
+    }
 

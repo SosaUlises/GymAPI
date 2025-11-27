@@ -15,13 +15,18 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota
             _dataBaseService = db;
         }
 
-        public async Task<BaseRespondeModel> Execute(PagarCuotaModel model)
+        public async Task<BaseRespondeModel> Execute(PagarCuotaModel model, int userId)
         {
             var cuota = await _dataBaseService.Cuotas.FindAsync(model.CuotaId);
 
             if (cuota == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound,
                     "La cuota no existe");
+
+            if (cuota.Cliente.UsuarioId != userId)
+                return ResponseApiService.Response(StatusCodes.Status403Forbidden,
+                    "No puedes pagar la cuota de otro cliente");
+
 
             if (cuota.Estado == "Pagado")
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest,
