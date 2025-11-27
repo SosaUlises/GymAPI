@@ -35,8 +35,10 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "No se encontraron rutinas para este cliente");
 
             var clienteIdDeLaRutina = rutinas.First().ClienteId;
+            var cliente = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
 
-            if (clienteIdDeLaRutina != userId)
+            if (clienteIdDeLaRutina != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

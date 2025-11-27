@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Entidades.Rutina;
 using Sosa.Gym.Domain.Models;
@@ -30,7 +31,14 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
             var rutina = _mapper.Map<RutinaEntity>(model);
             rutina.FechaCreacion = DateTime.UtcNow;
 
-            if (rutina.ClienteId != userId)
+            var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(x => x.Id == model.ClienteId);
+            if (cliente == null)
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
+            var clienteLog = await _dataBaseService.Clientes
+                                   .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
+            if (rutina.ClienteId != clienteLog.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

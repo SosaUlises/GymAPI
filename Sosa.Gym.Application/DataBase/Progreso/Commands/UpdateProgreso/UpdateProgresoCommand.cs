@@ -34,8 +34,10 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso
             if (progreso == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Progreso no encontrado");
 
+            var cliente = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
 
-            if (progreso.ClienteId != userId)
+            if (progreso.ClienteId != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

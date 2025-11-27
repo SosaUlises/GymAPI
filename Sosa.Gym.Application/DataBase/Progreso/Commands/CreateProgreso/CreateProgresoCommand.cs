@@ -27,8 +27,10 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso
             if (cliente == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
+            var clienteLog = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
 
-            if (cliente.Id != userId)
+            if (cliente.Id != clienteLog.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

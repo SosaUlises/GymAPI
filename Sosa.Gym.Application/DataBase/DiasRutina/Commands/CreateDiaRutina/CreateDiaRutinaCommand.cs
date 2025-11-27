@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Entidades.Rutina;
 using Sosa.Gym.Domain.Models;
@@ -37,7 +38,10 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
                         "La rutina no fue encontrada");
             }
 
-            if (rutina.ClienteId != userId)
+            var cliente = await _dataBaseService.Clientes
+                                 .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
+            if (rutina.ClienteId != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

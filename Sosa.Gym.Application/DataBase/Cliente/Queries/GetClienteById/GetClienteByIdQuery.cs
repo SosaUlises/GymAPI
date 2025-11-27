@@ -50,6 +50,8 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
 
             var roles = await _userManager.GetRolesAsync(usuarioActual);
 
+
+
             // Si NO es admin y NO es el dueño de la info, no lo dejamos ver
             if (!roles.Contains("Administrador") && cliente.UsuarioId != userId)
             {

@@ -41,8 +41,11 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
 
             bool esAdmin = roles.Contains("Administrador");
 
+            var clienteLog = await _dataBaseService.Clientes
+                                  .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
             // Validar propiedad SOLO si es Cliente
-            if (!esAdmin && model.Id != userId)
+            if (!esAdmin && model.Id != clienteLog.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

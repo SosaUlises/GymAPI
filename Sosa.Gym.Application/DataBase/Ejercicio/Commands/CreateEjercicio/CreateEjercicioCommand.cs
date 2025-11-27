@@ -36,7 +36,10 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio
             if (diaRutina == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Dia de Rutina no encontrado");
 
-            if (diaRutina.Rutina.ClienteId != userId)
+            var cliente = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
+            if (diaRutina.Rutina.ClienteId != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

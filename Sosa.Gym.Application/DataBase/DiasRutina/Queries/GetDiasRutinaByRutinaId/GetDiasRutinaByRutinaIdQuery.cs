@@ -40,9 +40,12 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutina
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, 
                     "No se encontraron dias para esta rutina");
 
+            var cliente = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
             var clienteIdDeLaRutina = diasRutina.First().Rutina.ClienteId;
 
-            if (clienteIdDeLaRutina != userId)
+            if (clienteIdDeLaRutina != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

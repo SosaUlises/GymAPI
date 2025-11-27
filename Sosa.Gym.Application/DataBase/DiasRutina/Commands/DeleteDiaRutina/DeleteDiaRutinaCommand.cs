@@ -32,7 +32,10 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
                        "El Dia de la rutina no fue encontrada");
             }
 
-            if (diaRutina.Rutina.ClienteId != userId)
+            var cliente = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
+            if (diaRutina.Rutina.ClienteId != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

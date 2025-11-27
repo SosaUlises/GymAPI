@@ -43,7 +43,10 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
 
             var clienteIdDeLaRutina = progresos.First().ClienteId;
 
-            if (clienteIdDeLaRutina != userId)
+            var clienteLog = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
+            if (clienteIdDeLaRutina != clienteLog.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Models;
 
@@ -22,6 +23,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota
             if (cuota == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound,
                     "La cuota no existe");
+
 
             if (cuota.Cliente.UsuarioId != userId)
                 return ResponseApiService.Response(StatusCodes.Status403Forbidden,

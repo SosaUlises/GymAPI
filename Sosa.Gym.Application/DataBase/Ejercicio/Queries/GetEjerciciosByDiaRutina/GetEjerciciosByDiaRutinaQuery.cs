@@ -39,7 +39,10 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRuti
 
             var clienteIdDeLaRutina = ejercicios.First().DiasRutina.Rutina.ClienteId;
 
-            if (clienteIdDeLaRutina != userId)
+            var cliente = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
+            if (clienteIdDeLaRutina != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,

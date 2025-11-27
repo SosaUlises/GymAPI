@@ -36,7 +36,10 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio
             if (ejercicio == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Ejercicio no encontrado");
 
-            if (ejercicio.DiasRutina.Rutina.ClienteId != userId)
+            var cliente = await _dataBaseService.Clientes
+                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+
+            if (ejercicio.DiasRutina.Rutina.ClienteId != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
