@@ -77,7 +77,7 @@ Construida con **.NET**, **Clean Architecture**, **PostgreSQL** e **Identity + J
 
 | Categoría         | Tecnología |
 |------------------|------------|
-| Framework        | .NET 9 |
+| Framework        | .NET 8 |
 | Base de Datos    | PostgreSQL |
 | ORM              | Entity Framework Core |
 | Autenticación    | ASP.NET Core Identity |
@@ -85,26 +85,6 @@ Construida con **.NET**, **Clean Architecture**, **PostgreSQL** e **Identity + J
 | Validación       | FluentValidation |
 | Mapeo            | AutoMapper |
 | Documentación    | Swagger |
-
----
-
-## ▶️ Cómo ejecutar el proyecto
-
-```bash
-dotnet restore
-dotnet ef database update
-dotnet run
-```
-
----
-
-## 🔐 Configuración de JWT con Secret Manager
-
-```bash
-dotnet user-secrets set "Jwt:Key" "TU_CLAVE_SECRETA"
-dotnet user-secrets set "Jwt:Issuer" "Sosa.Gym.API"
-dotnet user-secrets set "Jwt:Audience" "Sosa.Gym.API.FrontEnd"
-```
 
 ---
 
