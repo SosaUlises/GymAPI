@@ -242,10 +242,21 @@
         }
       }
     },
-    "/api/v1/cuotas/create": {
+    "/clientes/{clienteId}/cuotas": {
       "post": {
         "tags": [
           "Cuota"
+        ],
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -262,6 +273,37 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateCuotaModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/cuotas/generar": {
+      "post": {
+        "tags": [
+          "Cuota"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerarCuotasModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerarCuotasModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerarCuotasModel"
               }
             }
           }
@@ -861,10 +903,6 @@
       "CreateCuotaModel": {
         "type": "object",
         "properties": {
-          "clienteId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "monto": {
             "type": "number",
             "format": "double"
@@ -976,6 +1014,24 @@
           "clienteId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GenerarCuotasModel": {
+        "type": "object",
+        "properties": {
+          "anio": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false

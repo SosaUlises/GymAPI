@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
+using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota;
 using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente;
 using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes;
@@ -16,13 +17,31 @@ namespace Sosa.Gym.API.Controllers
     [TypeFilter(typeof(ExceptionManager))]
     public class CuotaController : Controller
     {
+
         [Authorize(Roles = "Administrador")]
-        [HttpPost("create")]
-        public async Task<IActionResult> Create(
-              [FromBody] CreateCuotaModel model,
-              [FromServices] ICreateCuotaCommand createCuotaCommand,
-              [FromServices] IValidator<CreateCuotaModel> validator
-              )
+        [HttpPost("/clientes/{clienteId:int}/cuotas")]
+        public async Task<IActionResult> CreateCuota(
+               [FromRoute] int clienteId,
+               [FromBody] CreateCuotaModel model,
+               [FromServices] ICreateCuotaCommand command,
+               [FromServices] IValidator<CreateCuotaModel> validator)
+        {
+            var validationResult = await validator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
+
+            var result = await command.Execute(clienteId, model);
+            return StatusCode(result.StatusCode, result);
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPost("/cuotas/generar")]
+        public async Task<IActionResult> GenerarCuotas(
+                [FromBody] GenerarCuotasModel model,
+                [FromServices] IGenerarCuotasCommand command,
+                [FromServices] IValidator<GenerarCuotasModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -32,19 +51,18 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var cuota = await createCuotaCommand.Execute(model);
-
-            return StatusCode(cuota.StatusCode, cuota);
-
+            var result = await command.Execute(model);
+            return StatusCode(result.StatusCode, result);
         }
+
 
         [Authorize(Roles = "Cliente")]
-        [HttpPost("pagar")]
+        [HttpPost("/{cuotaId:int}/pagar")]
         public async Task<IActionResult> Pagar(
-             [FromBody] PagarCuotaModel model,
-             [FromServices] IPagarCuotaCommand pagarCuotaCommand,
-             [FromServices] IValidator<PagarCuotaModel> validator
-             )
+            [FromRoute] int cuotaId,
+            [FromBody] PagarCuotaModel model,
+            [FromServices] IPagarCuotaCommand command,
+            [FromServices] IValidator<PagarCuotaModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -54,13 +72,18 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            var cuota = await pagarCuotaCommand.Execute(model, int.Parse(userId));
-
-            return StatusCode(cuota.StatusCode, cuota);
-
+            var result = await command.Execute(cuotaId, model, userId);
+            return StatusCode(result.StatusCode, result);
         }
+
 
         [Authorize(Roles = "Administrador, Cliente")]
         [HttpGet("getByClienteId/{clienteId}")]
@@ -74,7 +97,10 @@ namespace Sosa.Gym.API.Controllers
             if (clienteId == 0)
                 return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
 
-            var cuotas = await getCuotaByClienteQuery.Execute(clienteId, int.Parse(userId));
+            var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
+            bool esAdmin = roles.Contains("Administrador");
+
+            var cuotas = await getCuotaByClienteQuery.Execute(clienteId, int.Parse(userId), esAdmin);
 
             return StatusCode(cuotas.StatusCode, cuotas);
 

@@ -28,19 +28,16 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente
             _mapper = mapper;
         }
 
-        public async Task<BaseResponseModel> Execute(int clienteId, int userId)
+        public async Task<BaseResponseModel> Execute(int clienteId, int userId, bool esAdmin)
         {
             var cliente = await _dataBaseService.Clientes
                 .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(c => c.Id == clienteId);
 
             if (cliente == null)
-                return ResponseApiService.Response(
-                    StatusCodes.Status404NotFound,
-                    "Cliente no encontrado");
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
-            // Si no es admin, validar pertenencia
-            if (cliente.UsuarioId != userId)
+            if (!esAdmin && cliente.UsuarioId != userId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
@@ -53,9 +50,9 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente
                 .ThenByDescending(x => x.Mes)
                 .ToListAsync();
 
-            return ResponseApiService.Response(
-                StatusCodes.Status200OK,
-                _mapper.Map<List<GetCuotaByClienteModel>>(cuotas));
+            var data = _mapper.Map<List<GetCuotaByClienteModel>>(cuotas);
+
+            return ResponseApiService.Response(StatusCodes.Status200OK, data);
         }
     }
     }

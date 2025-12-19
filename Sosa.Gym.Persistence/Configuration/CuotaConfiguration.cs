@@ -22,6 +22,10 @@ namespace Sosa.Gym.Persistence.Configuration
             entityBuilder.Property(x => x.Mes).IsRequired();
             entityBuilder.Property(x => x.Estado).IsRequired();
 
+            entityBuilder
+             .HasIndex(x => new { x.ClienteId, x.Anio, x.Mes })
+             .IsUnique();
+
             entityBuilder.HasOne(x => x.Cliente)
                 .WithMany(x => x.Cuotas)
                 .HasForeignKey(x => x.ClienteId)

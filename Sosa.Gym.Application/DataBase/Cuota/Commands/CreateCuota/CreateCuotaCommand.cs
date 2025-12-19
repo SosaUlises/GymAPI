@@ -27,30 +27,25 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseResponseModel> Execute(CreateCuotaModel model)
+        public async Task<BaseResponseModel> Execute(int clienteId, CreateCuotaModel model)
         {
-            var cliente = await _dataBaseService.Clientes.FindAsync(model.ClienteId);
+            var cliente = await _dataBaseService.Clientes.FindAsync(clienteId);
             if (cliente == null)
-                return ResponseApiService.Response(StatusCodes.Status404NotFound,
-                    "El cliente no existe");
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "El cliente no existe");
 
-            // Evitar duplicadas
-            var existeCuota = await _dataBaseService.Cuotas.FirstOrDefaultAsync(x =>
-            x.ClienteId == model.ClienteId &&
-            x.Anio == model.Anio &&
-            x.Mes == model.Mes);
+            var existeCuota = await _dataBaseService.Cuotas
+                .AnyAsync(x => x.ClienteId == clienteId && x.Anio == model.Anio && x.Mes == model.Mes);
 
-            if (existeCuota != null)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
-                    "Ya existe una cuota para ese mes");
+            if (existeCuota)
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest, "Ya existe una cuota para ese mes");
 
             var cuota = _mapper.Map<CuotaEntity>(model);
+            cuota.ClienteId = clienteId;
 
             await _dataBaseService.Cuotas.AddAsync(cuota);
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(StatusCodes.Status201Created,
-                "Cuota creada correctamente");
+            return ResponseApiService.Response(StatusCodes.Status201Created, "Cuota creada correctamente");
         }
     }
 }

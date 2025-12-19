@@ -15,7 +15,6 @@ namespace Sosa.Gym.Application.Validators.Cuota
         {
 
             RuleFor(x => x.Mes).NotNull().NotEmpty();
-            RuleFor(x => x.ClienteId).NotNull().NotEmpty();
             RuleFor(x => x.Anio).NotNull().NotEmpty();
             RuleFor(x => x.Monto).NotNull().NotEmpty();
         }

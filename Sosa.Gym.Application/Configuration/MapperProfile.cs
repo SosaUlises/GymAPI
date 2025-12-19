@@ -98,7 +98,8 @@ namespace Sosa.Gym.Application.Configuration
 
 
             // Cuota
-            CreateMap<CuotaEntity, CreateCuotaModel>().ReverseMap();
+            CreateMap<CreateCuotaModel, CuotaEntity>()
+                .ForMember(x => x.ClienteId, opt => opt.Ignore());
             CreateMap<CuotaEntity, GetCuotaByClienteModel>().ReverseMap();
             CreateMap<CuotaEntity, GetCuotasByEstadoModel>().ReverseMap();
         }

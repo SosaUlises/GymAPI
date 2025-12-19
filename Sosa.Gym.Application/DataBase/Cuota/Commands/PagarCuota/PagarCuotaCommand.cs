@@ -16,23 +16,23 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota
             _dataBaseService = db;
         }
 
-        public async Task<BaseResponseModel> Execute(PagarCuotaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(int cuotaId, PagarCuotaModel model, int userId)
         {
-            var cuota = await _dataBaseService.Cuotas.FindAsync(model.CuotaId);
+            var cuota = await _dataBaseService.Cuotas
+                .Include(c => c.Cliente)
+                .FirstOrDefaultAsync(c => c.Id == cuotaId);
 
             if (cuota == null)
-                return ResponseApiService.Response(StatusCodes.Status404NotFound,
-                    "La cuota no existe");
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "La cuota no existe");
 
+            if (cuota.Cliente == null)
+                return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "La cuota no tiene cliente asociado");
 
             if (cuota.Cliente.UsuarioId != userId)
-                return ResponseApiService.Response(StatusCodes.Status403Forbidden,
-                    "No puedes pagar la cuota de otro cliente");
-
+                return ResponseApiService.Response(StatusCodes.Status403Forbidden, "No puedes pagar la cuota de otro cliente");
 
             if (cuota.Estado == "Pagado")
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
-                    "La cuota ya fue pagada");
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest, "La cuota ya fue pagada");
 
             cuota.Estado = "Pagado";
             cuota.FechaPago = DateTime.UtcNow;
@@ -40,8 +40,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota
 
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(StatusCodes.Status200OK,
-                cuota, "Cuota pagada correctamente");
+            return ResponseApiService.Response(StatusCodes.Status200OK, "Cuota pagada correctamente");
         }
     }
 }

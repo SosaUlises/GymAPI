@@ -8,7 +8,6 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota
 {
     public class CreateCuotaModel
     {
-        public int ClienteId { get; set; }
         public decimal Monto { get; set; }
         public int Anio { get; set; }
         public int Mes { get; set; }

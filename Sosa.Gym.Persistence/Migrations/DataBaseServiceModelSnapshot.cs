@@ -223,7 +223,8 @@ namespace Sosa.Gym.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("ClienteId", "Anio", "Mes")
+                        .IsUnique();
 
                     b.ToTable("Cuotas", (string)null);
                 });

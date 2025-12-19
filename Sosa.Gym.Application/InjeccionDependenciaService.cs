@@ -7,6 +7,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
+using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota;
 using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente;
 using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes;
@@ -82,6 +83,7 @@ namespace Sosa.Gym.Application
 
             // Cuota
             services.AddTransient<ICreateCuotaCommand, CreateCuotaCommand>();
+            services.AddTransient<IGenerarCuotasCommand, GenerarCuotasCommand>();
             services.AddTransient<IPagarCuotaCommand, PagarCuotaCommand>();
             services.AddTransient<IGetCuotaByClienteQuery, GetCuotaByClienteQuery>();
             services.AddTransient<IGetCuotasByEstadoQuery, GetCuotasByEstadoQuery>();
@@ -108,6 +110,7 @@ namespace Sosa.Gym.Application
             services.AddScoped<IValidator<LoginModel>, LoginValidator>();
 
             services.AddScoped<IValidator<CreateCuotaModel>, CreateCuotaValidator>();
+            services.AddScoped<IValidator<GenerarCuotasModel>, GenerarCuotaValidator>();
             services.AddScoped<IValidator<PagarCuotaModel>, PagarCuotaValidator>();
 
 

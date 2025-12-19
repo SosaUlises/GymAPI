@@ -139,22 +139,6 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
-    "Method": "Create",
-    "RelativePath": "api/v1/cuotas/create",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota.CreateCuotaModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
     "Method": "GetByClienteId",
     "RelativePath": "api/v1/cuotas/getByClienteId/{clienteId}",
     "HttpMethod": "GET",
@@ -473,6 +457,43 @@
       {
         "Name": "userId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "CreateCuota",
+    "RelativePath": "clientes/{clienteId}/cuotas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota.CreateCuotaModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "GenerarCuotas",
+    "RelativePath": "cuotas/generar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll.GenerarCuotasModel",
         "IsRequired": true
       }
     ],

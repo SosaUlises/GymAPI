@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente
 {
     public interface IGetCuotaByClienteQuery
     {
-        Task<BaseResponseModel> Execute(int id, int userId);
+        Task<BaseResponseModel> Execute(int clienteId, int userId, bool esAdmin);
     }
 }

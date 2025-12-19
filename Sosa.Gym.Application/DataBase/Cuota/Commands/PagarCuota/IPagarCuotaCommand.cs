@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota
 {
     public interface IPagarCuotaCommand
     {
-        Task<BaseResponseModel> Execute(PagarCuotaModel model, int userId);
+        Task<BaseResponseModel> Execute(int cuotaId, PagarCuotaModel model, int userId);
     }
 }
