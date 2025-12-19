@@ -74,7 +74,7 @@ namespace Sosa.Gym.Application
             services.AddTransient<ICreateEjercicioCommand, CreateEjercicioCommand>();
             services.AddTransient<IUpdateEjercicioCommand, UpdateEjercicioCommand>();
             services.AddTransient<IDeleteEjercicioCommand, DeleteEjercicioCommand>();
-            services.AddTransient<IGetEjerciciosByDiaRutinaQuery, GetEjerciciosByDiaRutinaQuery>();
+            services.AddTransient<IGetEjerciciosQuery, GetEjerciciosQuery>();
 
             // Progreso
             services.AddTransient<ICreateProgresoCommand, CreateProgresoCommand>();

@@ -37,7 +37,7 @@ namespace Sosa.Gym.API.Controllers
         }
 
         [Authorize(Roles = "Administrador")]
-        [HttpPost("cuotas/generar")]
+        [HttpPost("generar")]
         public async Task<IActionResult> GenerarCuotas(
                 [FromBody] GenerarCuotasModel model,
                 [FromServices] IGenerarCuotasCommand command,
@@ -107,7 +107,7 @@ namespace Sosa.Gym.API.Controllers
         }
 
         [Authorize(Roles = "Administrador, Cliente")]
-        [HttpGet("ge-by-estado/{estado}")]
+        [HttpGet("get-by-estado/{estado}")]
         public async Task<IActionResult> GetByEstado(
            string estado,
            [FromServices] IGetCuotasByEstadoQuery getCuotasByEstadoQuery

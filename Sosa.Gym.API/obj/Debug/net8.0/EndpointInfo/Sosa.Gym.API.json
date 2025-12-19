@@ -164,7 +164,7 @@
         }
       }
     },
-    "/api/v1/cliente/getAll": {
+    "/api/v1/cliente/get-all": {
       "get": {
         "tags": [
           "Cliente"
@@ -196,7 +196,7 @@
         }
       }
     },
-    "/api/v1/cliente/getById/{clienteId}": {
+    "/api/v1/cliente/get-by-id/{clienteId}": {
       "get": {
         "tags": [
           "Cliente"
@@ -219,7 +219,7 @@
         }
       }
     },
-    "/api/v1/cliente/getByDni/{dni}": {
+    "/api/v1/cliente/get-by-dni/{dni}": {
       "get": {
         "tags": [
           "Cliente"
@@ -242,7 +242,7 @@
         }
       }
     },
-    "/clientes/{clienteId}/cuotas": {
+    "/api/v1/cuotas/clientes/{clienteId}/cuotas": {
       "post": {
         "tags": [
           "Cuota"
@@ -284,7 +284,7 @@
         }
       }
     },
-    "/cuotas/generar": {
+    "/api/v1/cuotas/cuotas/generar": {
       "post": {
         "tags": [
           "Cuota"
@@ -315,7 +315,7 @@
         }
       }
     },
-    "/{cuotaId}/pagar": {
+    "/api/v1/cuotas/{cuotaId}/pagar": {
       "post": {
         "tags": [
           "Cuota"
@@ -357,7 +357,7 @@
         }
       }
     },
-    "/api/v1/cuotas/getByClienteId/{clienteId}": {
+    "/api/v1/cuotas/get-by-clienteId/{clienteId}": {
       "get": {
         "tags": [
           "Cuota"
@@ -380,7 +380,7 @@
         }
       }
     },
-    "/api/v1/cuotas/getByEstado/{estado}": {
+    "/api/v1/cuotas/get-by-estado/{estado}": {
       "get": {
         "tags": [
           "Cuota"
@@ -490,76 +490,54 @@
         }
       }
     },
-    "/api/v1/ejercicio/create": {
+    "/api/v1/ejercicios/dias-rutina/{diaRutinaId}": {
       "post": {
-        "tags": [
-          "Ejercicio"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEjercicioModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEjercicioModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEjercicioModel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/v1/ejercicio/update": {
-      "put": {
-        "tags": [
-          "Ejercicio"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateEjercicioModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateEjercicioModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateEjercicioModel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/v1/ejercicio/delete/{ejercicioId}": {
-      "delete": {
         "tags": [
           "Ejercicio"
         ],
         "parameters": [
           {
-            "name": "ejercicioId",
+            "name": "diaRutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEjercicioModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEjercicioModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEjercicioModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Ejercicio"
+        ],
+        "parameters": [
+          {
+            "name": "diaRutinaId",
             "in": "path",
             "required": true,
             "schema": {
@@ -575,14 +553,54 @@
         }
       }
     },
-    "/api/v1/ejercicio/getByDiaRutina/{diaRutinaId}": {
-      "get": {
+    "/api/v1/ejercicios/{ejercicioId}": {
+      "put": {
         "tags": [
           "Ejercicio"
         ],
         "parameters": [
           {
-            "name": "diaRutinaId",
+            "name": "ejercicioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEjercicioModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEjercicioModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEjercicioModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Ejercicio"
+        ],
+        "parameters": [
+          {
+            "name": "ejercicioId",
             "in": "path",
             "required": true,
             "schema": {
@@ -953,10 +971,6 @@
       "CreateEjercicioModel": {
         "type": "object",
         "properties": {
-          "diaRutinaId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "nombre": {
             "type": "string",
             "nullable": true
@@ -1127,10 +1141,6 @@
       "UpdateEjercicioModel": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "nombre": {
             "type": "string",
             "nullable": true

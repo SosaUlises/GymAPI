@@ -11,19 +11,20 @@ using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
-    [Route("/api/v1/ejercicio")]
+    [Route("/api/v1/ejercicios")]
     [ApiController]
     [Authorize(Roles = "Cliente")]
     [TypeFilter(typeof(ExceptionManager))]
     public class EjercicioController : Controller
     {
 
-        [HttpPost("create")]
+
+        [HttpPost("dias-rutina/{diaRutinaId:int}")]
         public async Task<IActionResult> Create(
-                 [FromBody] CreateEjercicioModel model,
-                 [FromServices] ICreateEjercicioCommand createEjercicioCommand,
-                 [FromServices] IValidator<CreateEjercicioModel> validator
-                 )
+            [FromRoute] int diaRutinaId,
+            [FromBody] CreateEjercicioModel model,
+            [FromServices] ICreateEjercicioCommand createEjercicioCommand,
+            [FromServices] IValidator<CreateEjercicioModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -33,20 +34,26 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var ejercicio = await createEjercicioCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(ejercicio.StatusCode, ejercicio);
-
+            var result = await createEjercicioCommand.Execute(diaRutinaId, model, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpPut("update")]
+
+        [HttpPut("{ejercicioId:int}")]
         public async Task<IActionResult> Update(
-                [FromBody] UpdateEjercicioModel model,
-                [FromServices] IUpdateEjercicioCommand updateEjercicioCommand,
-                [FromServices] IValidator<UpdateEjercicioModel> validator
-                )
+             [FromRoute] int ejercicioId,
+             [FromBody] UpdateEjercicioModel model,
+             [FromServices] IUpdateEjercicioCommand updateEjercicioCommand,
+             [FromServices] IValidator<UpdateEjercicioModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -56,46 +63,51 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var ejercicio = await updateEjercicioCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(ejercicio.StatusCode, ejercicio);
-
+            var result = await updateEjercicioCommand.Execute(ejercicioId, model, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpDelete("delete/{ejercicioId}")]
+        [HttpDelete("{ejercicioId:int}")]
         public async Task<IActionResult> Delete(
-            int ejercicioId,
-            [FromServices] IDeleteEjercicioCommand deleteEjercicioCommand
-            )
+             [FromRoute] int ejercicioId,
+             [FromServices] IDeleteEjercicioCommand deleteEjercicioCommand)
         {
-            if(ejercicioId == 0)
-            return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            if (ejercicioId <= 0)
+                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest, "Id inválido"));
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var ejercicio = await deleteEjercicioCommand.Execute(ejercicioId, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+                return Unauthorized(ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Token inválido"));
 
-            return StatusCode(ejercicio.StatusCode, ejercicio);
-            
+            var result = await deleteEjercicioCommand.Execute(ejercicioId, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
 
-        [HttpGet("getByDiaRutina/{diaRutinaId}")]
+        [HttpGet("dias-rutina/{diaRutinaId:int}")]
         public async Task<IActionResult> GetByDiaRutina(
-            int diaRutinaId,
-            [FromServices] IGetEjerciciosByDiaRutinaQuery getEjerciciosByDiaRutinaQuery
-            )
+             [FromRoute] int diaRutinaId,
+             [FromServices] IGetEjerciciosQuery query)
         {
-            if (diaRutinaId == 0)
-                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            if (diaRutinaId <= 0)
+                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest, "Id inválido"));
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var ejercicios = await getEjerciciosByDiaRutinaQuery.Execute(diaRutinaId, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+                return Unauthorized(ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Token inválido"));
 
-            return StatusCode(ejercicios.StatusCode, ejercicios);
-
+            var result = await query.Execute(diaRutinaId, userId);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }

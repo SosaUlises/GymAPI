@@ -18,17 +18,25 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
         public async Task<BaseResponseModel> Execute(int ejercicioId, int userId)
         {
             var ejercicio = await _dataBaseService.Ejercicios
-                              .Include(e => e.DiasRutina)
-                              .ThenInclude(dr => dr.Rutina)
-                              .FirstOrDefaultAsync(x => x.Id == ejercicioId);
+                .Include(e => e.DiasRutina)
+                .ThenInclude(dr => dr.Rutina)
+                .FirstOrDefaultAsync(x => x.Id == ejercicioId);
 
             if (ejercicio == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Ejercicio no encontrado");
 
-            var cliente = await _dataBaseService.Clientes
-                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+            var clienteId = await _dataBaseService.Clientes
+                .Where(c => c.UsuarioId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefaultAsync();
 
-            if (ejercicio.DiasRutina.Rutina.ClienteId != cliente.Id)
+            if (clienteId == 0)
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
+            if (ejercicio.DiasRutina?.Rutina == null)
+                return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "El ejercicio no tiene rutina asociada");
+
+            if (ejercicio.DiasRutina.Rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
@@ -38,9 +46,8 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
             _dataBaseService.Ejercicios.Remove(ejercicio);
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(
-                StatusCodes.Status200OK,
-                "Ejercicio borrado correctamente");
+            return ResponseApiService.Response(StatusCodes.Status200OK, "Ejercicio eliminado correctamente");
         }
+
     }
 }

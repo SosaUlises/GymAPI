@@ -8,7 +8,6 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio
 {
     public class CreateEjercicioModel
     {
-        public int DiaRutinaId { get; set; }
         public string Nombre { get; set; }
         public int Series { get; set; }
         public int Repeticiones { get; set; }

@@ -26,36 +26,43 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio
             _mapper = mapper;
         }
 
-        public async Task<BaseResponseModel> Execute(UpdateEjercicioModel model, int userId)
+        public async Task<BaseResponseModel> Execute(int ejercicioId, UpdateEjercicioModel model, int userId)
         {
             var ejercicio = await _dataBaseService.Ejercicios
-                             .Include(e => e.DiasRutina)
-                             .ThenInclude(dr => dr.Rutina)
-                             .FirstOrDefaultAsync(x => x.Id == model.Id);
+                .Include(e => e.DiasRutina)
+                .ThenInclude(dr => dr.Rutina)
+                .FirstOrDefaultAsync(x => x.Id == ejercicioId);
 
             if (ejercicio == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Ejercicio no encontrado");
 
-            var cliente = await _dataBaseService.Clientes
-                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+            var clienteId = await _dataBaseService.Clientes
+                .Where(c => c.UsuarioId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefaultAsync();
 
-            if (ejercicio.DiasRutina.Rutina.ClienteId != cliente.Id)
+            if (clienteId == 0)
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
+            if (ejercicio.DiasRutina?.Rutina == null)
+                return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "El ejercicio no tiene rutina asociada");
+
+            if (ejercicio.DiasRutina.Rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
                     "No puedes modificar ejercicios que no te pertenecen");
             }
 
-            _mapper.Map(model, ejercicio);
-            _dataBaseService.Ejercicios.Update(ejercicio);
+            ejercicio.Nombre = model.Nombre;
+            ejercicio.Series = model.Series;
+            ejercicio.Repeticiones = model.Repeticiones;
+            ejercicio.PesoUtilizado = model.PesoUtilizado;
+
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(
-                StatusCodes.Status200OK,
-                "Ejercicio actualizado");
-
+            return ResponseApiService.Response(StatusCodes.Status200OK, "Ejercicio actualizado correctamente");
         }
-
 
     }
 }

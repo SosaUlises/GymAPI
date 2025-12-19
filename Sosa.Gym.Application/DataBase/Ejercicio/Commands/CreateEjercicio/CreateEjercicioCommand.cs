@@ -27,32 +27,42 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio
             _mapper = mapper;   
         }
 
-        public async Task<BaseResponseModel> Execute(CreateEjercicioModel model, int userId)
+        public async Task<BaseResponseModel> Execute(int diaRutinaId, CreateEjercicioModel model, int userId)
         {
             var diaRutina = await _dataBaseService.DiasRutinas
-                .Include(d=> d.Rutina)
-                .FirstOrDefaultAsync(x => x.Id == model.DiaRutinaId);
+                .Include(d => d.Rutina)
+                .FirstOrDefaultAsync(x => x.Id == diaRutinaId);
 
             if (diaRutina == null)
-                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Dia de Rutina no encontrado");
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Día de rutina no encontrado");
 
-            var cliente = await _dataBaseService.Clientes
-                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+            var clienteId = await _dataBaseService.Clientes
+                .Where(c => c.UsuarioId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefaultAsync();
 
-            if (diaRutina.Rutina.ClienteId != cliente.Id)
+            if (clienteId == 0)
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
+            if (diaRutina.Rutina == null)
+                return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "El día no tiene rutina asociada");
+
+            if (diaRutina.Rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
                     "No puedes agregar ejercicios a una rutina que no te pertenece");
             }
 
-            var result = _mapper.Map<EjercicioEntity>(model);
+            var ejercicio = _mapper.Map<EjercicioEntity>(model);
+            ejercicio.DiaRutinaId = diaRutinaId;
 
-            await _dataBaseService.Ejercicios.AddAsync(result);
+            await _dataBaseService.Ejercicios.AddAsync(ejercicio);
             await _dataBaseService.SaveAsync();
-            return ResponseApiService.Response(StatusCodes.Status200OK,
-                "Ejercicio creado correctamente");
 
+            return ResponseApiService.Response(
+                StatusCodes.Status201Created,
+                "Ejercicio creado correctamente");
         }
     }
 }

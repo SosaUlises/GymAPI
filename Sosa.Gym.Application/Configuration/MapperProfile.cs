@@ -88,9 +88,9 @@ namespace Sosa.Gym.Application.Configuration
             CreateMap<DiasRutinaEntity, GetDiaRutinaModel>().ReverseMap();
 
             // Ejercicio
-            CreateMap<EjercicioEntity, CreateEjercicioModel>().ReverseMap();
-            CreateMap<EjercicioEntity, UpdateEjercicioModel>().ReverseMap();
-            CreateMap<EjercicioEntity, GetEjerciciosByDiaRutinaModel>().ReverseMap();
+            CreateMap<CreateEjercicioModel, EjercicioEntity>()
+                .ForMember(e => e.DiaRutinaId, opt => opt.Ignore());
+            CreateMap<EjercicioEntity, GetEjerciciosModel>().ReverseMap();
 
             // Progreso 
             CreateMap<ProgresoEntity, CreateProgresoModel>().ReverseMap();
