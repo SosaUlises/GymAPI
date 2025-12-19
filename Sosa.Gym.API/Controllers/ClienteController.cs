@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Sosa.Gym.Application.DataBase;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
@@ -41,26 +43,78 @@ namespace Sosa.Gym.API.Controllers
         }
 
         [Authorize(Roles = "Cliente")]
-        [HttpPut("update")]
-        public async Task<IActionResult> Update(
-            [FromBody] UpdateClienteModel model,
-            [FromServices] IUpdateClienteCommand updateClienteCommand,
-            [FromServices] IValidator<UpdateClienteModel> validator
-            )
+        [HttpPut("me")]
+        public async Task<IActionResult> UpdateMe(
+                [FromBody] UpdateClienteModel model,
+                [FromServices] IUpdateClienteCommand updateClienteCommand,
+                [FromServices] IValidator<UpdateClienteModel> validator,
+                [FromServices] IDataBaseService dataBaseService
+)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
             {
                 return BadRequest(
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest,
-                    validationResult.Errors));
+                    ResponseApiService.Response(StatusCodes.Status400BadRequest, validationResult.Errors));
             }
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var clienteUpdate = await updateClienteCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Token inválido"));
+            }
 
-            return StatusCode(clienteUpdate.StatusCode, clienteUpdate);
+            // Buscar el cliente del usuario logueado
+            var clienteId = await dataBaseService.Clientes
+                .Where(c => c.UsuarioId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefaultAsync();
+
+            if (clienteId == 0)
+            {
+                return NotFound(ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado"));
+            }
+
+           
+            var result = await updateClienteCommand.Execute(clienteId, model, userId);
+
+            return StatusCode(result.StatusCode, result);
         }
+
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("{clienteId:int}")]
+        public async Task<IActionResult> UpdateByAdmin(
+                [FromRoute] int clienteId,
+                [FromBody] UpdateClienteModel model,
+                [FromServices] IUpdateClienteCommand updateClienteCommand,
+                [FromServices] IValidator<UpdateClienteModel> validator
+)
+        {
+
+            var validationResult = await validator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(
+                    ResponseApiService.Response(
+                        StatusCodes.Status400BadRequest,
+                        validationResult.Errors));
+            }
+
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(
+                    ResponseApiService.Response(
+                        StatusCodes.Status401Unauthorized,
+                        "Token inválido"));
+            }
+
+            var result = await updateClienteCommand.Execute(clienteId, model, userId);
+
+            return StatusCode(result.StatusCode, result);
+        }
+
 
 
 

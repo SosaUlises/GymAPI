@@ -68,10 +68,52 @@
         }
       }
     },
-    "/api/v1/cliente/update": {
+    "/api/v1/cliente/me": {
       "put": {
         "tags": [
           "Cliente"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClienteModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClienteModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClienteModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/cliente/{clienteId}": {
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -969,10 +1011,6 @@
       "UpdateClienteModel": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "nombre": {
             "type": "string",
             "nullable": true
@@ -996,10 +1034,6 @@
           "rol": {
             "type": "string",
             "nullable": true
-          },
-          "id": {
-            "type": "integer",
-            "format": "int32"
           },
           "edad": {
             "type": "integer",

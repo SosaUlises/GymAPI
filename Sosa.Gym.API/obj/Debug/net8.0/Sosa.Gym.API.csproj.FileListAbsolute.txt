@@ -165,7 +165,6 @@ C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\staticwebasse
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.70C63666.Up2Date
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.API.dll
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\refint\Sosa.Gym.API.dll
@@ -173,3 +172,4 @@ C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.API.
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.API.pdb
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.API.genruntimeconfig.cache
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\ref\Sosa.Gym.API.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

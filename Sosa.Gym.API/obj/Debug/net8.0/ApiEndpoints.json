@@ -17,6 +17,27 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
+    "Method": "UpdateByAdmin",
+    "RelativePath": "api/v1/cliente/{clienteId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente.UpdateClienteModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "Create",
     "RelativePath": "api/v1/cliente/create",
     "HttpMethod": "POST",
@@ -102,8 +123,8 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
-    "Method": "Update",
-    "RelativePath": "api/v1/cliente/update",
+    "Method": "UpdateMe",
+    "RelativePath": "api/v1/cliente/me",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
