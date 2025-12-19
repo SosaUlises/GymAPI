@@ -2,6 +2,39 @@
 API RESTful para la gestión de clientes, rutinas, ejercicios, progreso físico y cuotas mensuales.  
 Construida con **.NET**, **Clean Architecture**, **PostgreSQL** e **Identity + JWT**.
 
+> [!NOTE]
+> **🚀 DESPLIEGUE EN VIVO (LIVE DEMO)**
+>
+> El proyecto se encuentra desplegado en **Render**. Al hacer clic en el enlace, accederás a la interfaz de **Swagger UI**, donde podrás probar los endpoints de la API, autenticarte y ver los esquemas de datos.
+>
+> 👉 **[Ver Documentación y API en Vivo](https://gymapi-yln2.onrender.com/index.html)**
+
+### 🔐 Guía para Probar la API
+
+La API cuenta con seguridad JWT. Para probar los endpoints protegidos, sigue estos pasos según el rol que quieras testear:
+
+#### 1. Rol Administrador (Acceso Total)
+Utiliza estas credenciales precargadas para acceder a funcionalidades de gestión:
+
+| Campo | Valor |
+| :--- | :--- |
+| **Email** | `admin@sosa.com` |
+| **Password** | `Admin123!` |
+
+**Pasos para autenticarse:**
+1. Ve al endpoint `POST /api/Auth/login`.
+2. Ingresa las credenciales de arriba y ejecuta ("Execute").
+3. Copia el `token` que recibirás en la respuesta.
+4. Sube al inicio de la página, haz clic en el botón verde **Authorize**.
+5. Escribe: `Bearer TU_TOKEN_AQUI` (respetando el espacio después de Bearer) y dale a **Authorize**.
+
+#### 2. Rol Cliente (Nuevo Usuario)
+Si deseas probar el flujo de un usuario normal:
+
+1. Ve al endpoint `POST /api/Cliente` (Crear Cliente).
+2. Rellena el formulario (JSON) con tus datos y ejecútalo para registrarte.
+3. Luego, usa tu nuevo email y contraseña en el endpoint de `Login` para obtener tu token de acceso.
+
 ---
 
 ## 🚀 Características Principales
@@ -72,7 +105,7 @@ Construida con **.NET**, **Clean Architecture**, **PostgreSQL** e **Identity + J
 
 | Categoría         | Tecnología |
 |------------------|------------|
-| Framework        | .NET 9 |
+| Framework        | .NET 8 |
 | Base de Datos    | PostgreSQL |
 | ORM              | Entity Framework Core |
 | Autenticación    | ASP.NET Core Identity |
@@ -80,26 +113,6 @@ Construida con **.NET**, **Clean Architecture**, **PostgreSQL** e **Identity + J
 | Validación       | FluentValidation |
 | Mapeo            | AutoMapper |
 | Documentación    | Swagger |
-
----
-
-## ▶️ Cómo ejecutar el proyecto
-
-```bash
-dotnet restore
-dotnet ef database update
-dotnet run
-```
-
----
-
-## 🔐 Configuración de JWT con Secret Manager
-
-```bash
-dotnet user-secrets set "Jwt:Key" "TU_CLAVE_SECRETA"
-dotnet user-secrets set "Jwt:Issuer" "Sosa.Gym.API"
-dotnet user-secrets set "Jwt:Audience" "Sosa.Gym.API.FrontEnd"
-```
 
 ---
 
