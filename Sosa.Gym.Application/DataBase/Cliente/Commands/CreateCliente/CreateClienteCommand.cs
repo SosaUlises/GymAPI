@@ -25,7 +25,7 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateClienteModel model)
+        public async Task<BaseResponseModel> Execute(CreateClienteModel model)
         {
             var existeEmail = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
             var existeDni = await _userManager.Users.FirstOrDefaultAsync(x => x.Dni == model.Dni);

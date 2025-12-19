@@ -15,7 +15,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int rutinaId, int userId)
+        public async Task<BaseResponseModel> Execute(int rutinaId, int userId)
         {
             var rutina = await _dataBaseService.Rutinas.FirstOrDefaultAsync(x => x.Id == rutinaId);
 

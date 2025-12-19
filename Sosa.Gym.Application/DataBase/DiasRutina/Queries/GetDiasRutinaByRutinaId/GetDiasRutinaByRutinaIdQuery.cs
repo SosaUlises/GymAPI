@@ -28,7 +28,7 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int rutinaId, int userId)
+        public async Task<BaseResponseModel> Execute(int rutinaId, int userId)
         {
             var diasRutina = await _dataBaseService.DiasRutinas
                                         .Where(x=> x.RutinaId == rutinaId)  

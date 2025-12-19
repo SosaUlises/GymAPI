@@ -26,7 +26,7 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById
             _mapper = mapper;   
         }
 
-        public async Task<BaseRespondeModel> Execute(int userId)
+        public async Task<BaseResponseModel> Execute(int userId)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x=> x.Id == userId);
 

@@ -26,7 +26,7 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(UpdateEjercicioModel model, int userId)
+        public async Task<BaseResponseModel> Execute(UpdateEjercicioModel model, int userId)
         {
             var ejercicio = await _dataBaseService.Ejercicios
                              .Include(e => e.DiasRutina)

@@ -27,7 +27,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateCuotaModel model)
+        public async Task<BaseResponseModel> Execute(CreateCuotaModel model)
         {
             var cliente = await _dataBaseService.Clientes.FindAsync(model.ClienteId);
             if (cliente == null)

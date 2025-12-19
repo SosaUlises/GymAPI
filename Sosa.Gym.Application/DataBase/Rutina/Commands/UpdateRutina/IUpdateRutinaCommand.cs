@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina
 {
     public interface IUpdateRutinaCommand
     {
-        Task<BaseRespondeModel> Execute(UpdateRutinaModel model, int userId);
+        Task<BaseResponseModel> Execute(UpdateRutinaModel model, int userId);
     }
 }

@@ -24,7 +24,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes
             _http = http;
         }
 
-        public async Task<BaseRespondeModel> Execute(string estado)
+        public async Task<BaseResponseModel> Execute(string estado)
         {
             var estadoLower = estado.ToLower();
             var user = _http.HttpContext.User;

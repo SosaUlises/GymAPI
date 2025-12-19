@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes
 {
     public interface IGetCuotasByEstadoQuery
     {
-        Task<BaseRespondeModel> Execute(string estado);
+        Task<BaseResponseModel> Execute(string estado);
     }
 }

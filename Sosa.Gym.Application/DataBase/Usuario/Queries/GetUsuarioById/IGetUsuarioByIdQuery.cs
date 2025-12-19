@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById
 {
     public interface IGetUsuarioByIdQuery
     {
-        Task<BaseRespondeModel> Execute(int userId);
+        Task<BaseResponseModel> Execute(int userId);
     }
 }

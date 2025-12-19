@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio
 {
     public interface ICreateEjercicioCommand
     {
-        Task<BaseRespondeModel> Execute(CreateEjercicioModel model, int userId);
+        Task<BaseResponseModel> Execute(CreateEjercicioModel model, int userId);
     }
 }

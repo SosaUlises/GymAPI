@@ -28,7 +28,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(int clienteId, int userId)
+        public async Task<BaseResponseModel> Execute(int clienteId, int userId)
         {
             var cliente = await _dataBaseService.Clientes
                 .Include(c => c.Usuario)

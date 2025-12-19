@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
 {
     public interface IGetClienteByDniQuery
     {
-        Task<BaseRespondeModel> Execute(long dni);
+        Task<BaseResponseModel> Execute(long dni);
     }
 }

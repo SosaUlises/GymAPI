@@ -26,7 +26,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
             _mapper = mapper;   
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateRutinaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(CreateRutinaModel model, int userId)
         {
             var rutina = _mapper.Map<RutinaEntity>(model);
             rutina.FechaCreacion = DateTime.UtcNow;

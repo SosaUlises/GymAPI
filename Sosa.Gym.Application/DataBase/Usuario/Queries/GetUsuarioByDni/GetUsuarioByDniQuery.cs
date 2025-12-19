@@ -27,7 +27,7 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(long dni)
+        public async Task<BaseResponseModel> Execute(long dni)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Dni == dni);
 

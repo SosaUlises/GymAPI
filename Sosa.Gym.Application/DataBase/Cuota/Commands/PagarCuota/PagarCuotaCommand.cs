@@ -16,7 +16,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota
             _dataBaseService = db;
         }
 
-        public async Task<BaseRespondeModel> Execute(PagarCuotaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(PagarCuotaModel model, int userId)
         {
             var cuota = await _dataBaseService.Cuotas.FindAsync(model.CuotaId);
 

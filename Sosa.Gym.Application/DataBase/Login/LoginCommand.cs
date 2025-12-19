@@ -32,7 +32,7 @@ namespace Sosa.Gym.Application.DataBase.Login
             _jwtService = jwtService;
         }
 
-        public async Task<BaseRespondeModel> Execute(LoginModel model)
+        public async Task<BaseResponseModel> Execute(LoginModel model)
         {
             var usuario = await _userManager.FindByEmailAsync(model.Email);
 

@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente
 {
     public interface IDeleteClienteCommand
     {
-        Task<BaseRespondeModel> Execute(int clienteId);
+        Task<BaseResponseModel> Execute(int clienteId);
     }
 }

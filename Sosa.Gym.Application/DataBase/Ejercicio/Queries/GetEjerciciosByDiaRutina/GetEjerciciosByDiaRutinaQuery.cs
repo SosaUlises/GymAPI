@@ -26,7 +26,7 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRuti
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(int diaRutinaId, int userId)
+        public async Task<BaseResponseModel> Execute(int diaRutinaId, int userId)
         {
             var ejercicios = await _dataBaseService.Ejercicios
                                                    .Where(x => x.DiaRutinaId == diaRutinaId)

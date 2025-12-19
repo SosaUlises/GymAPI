@@ -27,7 +27,7 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateDiaRutinaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(CreateDiaRutinaModel model, int userId)
         {
             var rutina = await _dataBaseService.Rutinas.FindAsync(model.RutinaId);
 

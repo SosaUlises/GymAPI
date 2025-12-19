@@ -19,7 +19,7 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int idDiaRutina, int userId)
+        public async Task<BaseResponseModel> Execute(int idDiaRutina, int userId)
         {
             var diaRutina = await _dataBaseService.DiasRutinas
                                                     .Include(d => d.Rutina)

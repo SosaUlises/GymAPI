@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Domain.Models
 {
-    public class BaseRespondeModel
+    public class BaseResponseModel
     {
         public string Message { get; set; }
         public bool Success { get; set; }

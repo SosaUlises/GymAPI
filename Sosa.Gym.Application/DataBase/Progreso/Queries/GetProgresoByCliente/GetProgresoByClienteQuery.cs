@@ -27,7 +27,7 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(int clienteId, int userId)
+        public async Task<BaseResponseModel> Execute(int clienteId, int userId)
         {
             var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(x => x.Id == clienteId);
 

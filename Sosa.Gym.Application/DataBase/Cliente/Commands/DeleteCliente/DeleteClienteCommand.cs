@@ -28,7 +28,7 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente
             _userManager = userManager;
         }
 
-        public async Task<BaseRespondeModel> Execute(int clienteId)
+        public async Task<BaseResponseModel> Execute(int clienteId)
         {
             var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(x => x.Id == clienteId);
 

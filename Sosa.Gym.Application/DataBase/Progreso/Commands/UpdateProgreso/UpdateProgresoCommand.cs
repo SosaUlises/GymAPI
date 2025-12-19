@@ -26,7 +26,7 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(UpdateProgresoModel model, int userId)
+        public async Task<BaseResponseModel> Execute(UpdateProgresoModel model, int userId)
         {
             var progreso = await _dataBaseService.Progresos
                 .FirstOrDefaultAsync(x => x.Id == model.Id);

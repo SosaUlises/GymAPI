@@ -9,7 +9,7 @@ namespace Sosa.Gym.Application.Features
 {
     public class ResponseApiService
     {
-        public static BaseRespondeModel Response(int statusCode, object Data = null, string message = null)
+        public static BaseResponseModel Response(int statusCode, object Data = null, string message = null)
         {
             bool success = false;
 
@@ -18,7 +18,7 @@ namespace Sosa.Gym.Application.Features
                 success = true;
             }
 
-            var result = new BaseRespondeModel()
+            var result = new BaseResponseModel()
             {
                 Success = success,
                 Data = Data,

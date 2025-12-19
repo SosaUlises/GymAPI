@@ -20,7 +20,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(UpdateRutinaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(UpdateRutinaModel model, int userId)
         {
             var rutina = await _dataBaseService.Rutinas.FirstOrDefaultAsync(x => x.Id == model.Id);
 

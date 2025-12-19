@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente
 {
     public interface ICreateClienteCommand
     {
-        Task<BaseRespondeModel> Execute(CreateClienteModel model);
+        Task<BaseResponseModel> Execute(CreateClienteModel model);
     }
 }

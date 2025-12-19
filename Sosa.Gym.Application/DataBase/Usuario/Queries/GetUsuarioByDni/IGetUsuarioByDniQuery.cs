@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni
 {
     public interface IGetUsuarioByDniQuery
     {
-        Task<BaseRespondeModel> Execute(long dni);
+        Task<BaseResponseModel> Execute(long dni);
     }
 }

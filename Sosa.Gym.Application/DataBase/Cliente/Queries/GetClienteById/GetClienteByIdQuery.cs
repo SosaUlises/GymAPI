@@ -25,7 +25,7 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
             _userManager = userManager;
         }
 
-        public async Task<BaseRespondeModel> Execute(int clienteId, int userId)
+        public async Task<BaseResponseModel> Execute(int clienteId, int userId)
         {
             var cliente = await _dataBaseService.Clientes
                                         .Include(x => x.Usuario)

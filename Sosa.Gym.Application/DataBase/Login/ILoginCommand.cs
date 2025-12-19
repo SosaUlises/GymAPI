@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Login
 {
     public interface ILoginCommand
     {
-        Task<BaseRespondeModel> Execute(LoginModel model);
+        Task<BaseResponseModel> Execute(LoginModel model);
     }
 }

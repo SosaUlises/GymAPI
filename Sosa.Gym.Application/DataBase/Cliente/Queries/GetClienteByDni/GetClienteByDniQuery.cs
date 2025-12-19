@@ -24,7 +24,7 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
             _mapper = mapper;   
         }
 
-        public async Task<BaseRespondeModel> Execute(long dni)
+        public async Task<BaseResponseModel> Execute(long dni)
         {
             var cliente = await _dataBaseService.Clientes
                                           .Include(x => x.Usuario)

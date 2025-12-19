@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
 {
     public interface ICreateDiaRutinaCommand
     {
-        Task<BaseRespondeModel> Execute(CreateDiaRutinaModel model, int userId);
+        Task<BaseResponseModel> Execute(CreateDiaRutinaModel model, int userId);
     }
 }

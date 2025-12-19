@@ -21,7 +21,7 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso
             _mapper = mapper;
         }
 
-        public async Task<BaseRespondeModel> Execute(CreateProgresoModel model, int userId)
+        public async Task<BaseResponseModel> Execute(CreateProgresoModel model, int userId)
         {
             var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(x => x.Id == model.ClienteId);
             if (cliente == null)

@@ -15,7 +15,7 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int ejercicioId, int userId)
+        public async Task<BaseResponseModel> Execute(int ejercicioId, int userId)
         {
             var ejercicio = await _dataBaseService.Ejercicios
                               .Include(e => e.DiasRutina)

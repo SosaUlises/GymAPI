@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota
 {
     public interface ICreateCuotaCommand
     {
-        Task<BaseRespondeModel> Execute(CreateCuotaModel model);
+        Task<BaseResponseModel> Execute(CreateCuotaModel model);
     }
 }

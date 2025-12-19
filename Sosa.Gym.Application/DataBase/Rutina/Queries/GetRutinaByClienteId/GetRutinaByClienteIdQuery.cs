@@ -25,7 +25,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseRespondeModel> Execute(int clienteId, int userId)
+        public async Task<BaseResponseModel> Execute(int clienteId, int userId)
         {
             var rutinas = await _dataBaseService.Rutinas   
                                                      .Where(x => x.ClienteId == clienteId)
