@@ -13,7 +13,6 @@ namespace Sosa.Gym.Application.Validators.Cuota
         public PagarCuotaValidator()
         {
             RuleFor(x => x.MetodoPago).NotNull().NotEmpty();
-            RuleFor(x => x.CuotaId).NotNull().NotEmpty();
         }
     }
 }

@@ -315,10 +315,21 @@
         }
       }
     },
-    "/api/v1/cuotas/pagar": {
+    "/{cuotaId}/pagar": {
       "post": {
         "tags": [
           "Cuota"
+        ],
+        "parameters": [
+          {
+            "name": "cuotaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -391,10 +402,21 @@
         }
       }
     },
-    "/api/v1/diaRutina/create": {
+    "/rutinas/{rutinaId}/dias": {
       "post": {
         "tags": [
           "DiaRutina"
+        ],
+        "parameters": [
+          {
+            "name": "rutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -422,7 +444,7 @@
         }
       }
     },
-    "/api/v1/diaRutina/delete/{diaRutinaId}": {
+    "/api/v1/dias-rutina/{diaRutinaId}": {
       "delete": {
         "tags": [
           "DiaRutina"
@@ -445,7 +467,7 @@
         }
       }
     },
-    "/api/v1/diaRutina/getDiasRutinaByRutinaId/{rutinaId}": {
+    "/api/v1/dias-rutina/rutinas/{rutinaId}": {
       "get": {
         "tags": [
           "DiaRutina"
@@ -921,10 +943,6 @@
       "CreateDiaRutinaModel": {
         "type": "object",
         "properties": {
-          "rutinaId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "nombreDia": {
             "type": "string",
             "nullable": true
@@ -1053,10 +1071,6 @@
       "PagarCuotaModel": {
         "type": "object",
         "properties": {
-          "cuotaId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "metodoPago": {
             "type": "string",
             "nullable": true

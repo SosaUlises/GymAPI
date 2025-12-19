@@ -68,7 +68,7 @@ namespace Sosa.Gym.Application
             // Dia Rutina
             services.AddTransient<ICreateDiaRutinaCommand, CreateDiaRutinaCommand>();
             services.AddTransient<IDeleteDiaRutinaCommand, DeleteDiaRutinaCommand>();
-            services.AddTransient<IGetDiasRutinaByRutinaIdQuery, GetDiasRutinaByRutinaIdQuery>();
+            services.AddTransient<IGetDiaRutinaQuery, GetDiaRutinaQuery>();
 
             // Ejercicio
             services.AddTransient<ICreateEjercicioCommand, CreateEjercicioCommand>();

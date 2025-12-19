@@ -19,7 +19,7 @@ namespace Sosa.Gym.API.Controllers
     {
 
         [Authorize(Roles = "Administrador")]
-        [HttpPost("/clientes/{clienteId:int}/cuotas")]
+        [HttpPost("clientes/{clienteId:int}/cuotas")]
         public async Task<IActionResult> CreateCuota(
                [FromRoute] int clienteId,
                [FromBody] CreateCuotaModel model,
@@ -37,7 +37,7 @@ namespace Sosa.Gym.API.Controllers
         }
 
         [Authorize(Roles = "Administrador")]
-        [HttpPost("/cuotas/generar")]
+        [HttpPost("cuotas/generar")]
         public async Task<IActionResult> GenerarCuotas(
                 [FromBody] GenerarCuotasModel model,
                 [FromServices] IGenerarCuotasCommand command,
@@ -57,7 +57,7 @@ namespace Sosa.Gym.API.Controllers
 
 
         [Authorize(Roles = "Cliente")]
-        [HttpPost("/{cuotaId:int}/pagar")]
+        [HttpPost("{cuotaId:int}/pagar")]
         public async Task<IActionResult> Pagar(
             [FromRoute] int cuotaId,
             [FromBody] PagarCuotaModel model,
@@ -86,7 +86,7 @@ namespace Sosa.Gym.API.Controllers
 
 
         [Authorize(Roles = "Administrador, Cliente")]
-        [HttpGet("getByClienteId/{clienteId}")]
+        [HttpGet("get-by-clienteId/{clienteId}")]
         public async Task<IActionResult> GetByClienteId(
             int clienteId,
             [FromServices] IGetCuotaByClienteQuery getCuotaByClienteQuery
@@ -107,7 +107,7 @@ namespace Sosa.Gym.API.Controllers
         }
 
         [Authorize(Roles = "Administrador, Cliente")]
-        [HttpGet("getByEstado/{estado}")]
+        [HttpGet("ge-by-estado/{estado}")]
         public async Task<IActionResult> GetByEstado(
            string estado,
            [FromServices] IGetCuotasByEstadoQuery getCuotasByEstadoQuery

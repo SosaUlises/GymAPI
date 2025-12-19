@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId
 {
-    public class GetDiasRutinaByRutinaIdModel
+    public class GetDiaRutinaModel
     {
-        public int RutinaId { get; set; }
+        public int Id { get; set; }
         public string NombreDia { get; set; }
     }
 }

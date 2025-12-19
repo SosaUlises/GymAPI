@@ -1,5 +1,26 @@
 [
   {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "Pagar",
+    "RelativePath": "{cuotaId}/pagar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cuotaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota.PagarCuotaModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Sosa.Gym.API.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/v1/auth/login",
@@ -170,41 +191,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
-    "Method": "Pagar",
-    "RelativePath": "api/v1/cuotas/pagar",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota.PagarCuotaModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
-    "Method": "Create",
-    "RelativePath": "api/v1/diaRutina/create",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina.CreateDiaRutinaModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
     "Method": "Delete",
-    "RelativePath": "api/v1/diaRutina/delete/{diaRutinaId}",
+    "RelativePath": "api/v1/dias-rutina/{diaRutinaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -219,8 +208,8 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
-    "Method": "GetDiasRutinaByRutinaId",
-    "RelativePath": "api/v1/diaRutina/getDiasRutinaByRutinaId/{rutinaId}",
+    "Method": "GetByRutinaId",
+    "RelativePath": "api/v1/dias-rutina/rutinas/{rutinaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -494,6 +483,27 @@
       {
         "Name": "model",
         "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll.GenerarCuotasModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
+    "Method": "CreateDiaRutina",
+    "RelativePath": "rutinas/{rutinaId}/dias",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina.CreateDiaRutinaModel",
         "IsRequired": true
       }
     ],

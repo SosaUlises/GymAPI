@@ -19,27 +19,39 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseResponseModel> Execute(int idDiaRutina, int userId)
+        public async Task<BaseResponseModel> Execute(int diaRutinaId, int userId)
         {
             var diaRutina = await _dataBaseService.DiasRutinas
-                                                    .Include(d => d.Rutina)
-                                                    .FirstOrDefaultAsync(x => x.Id == idDiaRutina);
+                .Include(d => d.Rutina)
+                .FirstOrDefaultAsync(x => x.Id == diaRutinaId);
 
-            if (diaRutina == null) 
+            if (diaRutina == null)
             {
                 return ResponseApiService.Response(
-                       StatusCodes.Status404NotFound,
-                       "El Dia de la rutina no fue encontrada");
+                    StatusCodes.Status404NotFound,
+                    "El día de la rutina no fue encontrado");
             }
 
-            var cliente = await _dataBaseService.Clientes
-                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+            var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(c => c.UsuarioId == userId);
+            if (cliente == null)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status404NotFound,
+                    "Cliente no encontrado");
+            }
+
+            if (diaRutina.Rutina == null)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status500InternalServerError,
+                    "El día no tiene rutina asociada");
+            }
 
             if (diaRutina.Rutina.ClienteId != cliente.Id)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
-                    "No puedes eliminar días a una rutina que no te pertenece");
+                    "No puedes eliminar días de una rutina que no te pertenece");
             }
 
             _dataBaseService.DiasRutinas.Remove(diaRutina);
@@ -47,7 +59,7 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
 
             return ResponseApiService.Response(
                 StatusCodes.Status200OK,
-                "Rutina borrada correctamente");
+                "Día de la rutina eliminado correctamente");
         }
     }
 }

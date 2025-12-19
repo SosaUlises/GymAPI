@@ -9,7 +9,6 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
 {
     public class CreateDiaRutinaModel
     {
-        public int RutinaId { get; set; }
         public string NombreDia { get; set; }
     }
 }

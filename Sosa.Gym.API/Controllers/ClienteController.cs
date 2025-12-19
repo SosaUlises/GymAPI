@@ -137,7 +137,7 @@ namespace Sosa.Gym.API.Controllers
         }
 
         [Authorize(Roles = "Administrador")]
-        [HttpGet("getAll")]
+        [HttpGet("get-all")]
         public async Task<IActionResult> GetAll(
             [FromServices] IGetAllClientesQuery getAllClientesQuery,
             [FromQuery] int pageNumber = 1,
@@ -161,7 +161,7 @@ namespace Sosa.Gym.API.Controllers
         }
 
         [Authorize(Roles = "Administrador, Cliente")]
-        [HttpGet("getById/{clienteId}")]
+        [HttpGet("get-by-id/{clienteId}")]
         public async Task<IActionResult> GetById(
             int clienteId,
           [FromServices] IGetClienteByIdQuery getClienteByIdQuery)
@@ -182,7 +182,7 @@ namespace Sosa.Gym.API.Controllers
 
 
         [Authorize(Roles = "Administrador")]
-        [HttpGet("getByDni/{dni}")]
+        [HttpGet("get-by-dni/{dni}")]
         public async Task<IActionResult> GetByDni(
             long dni,
           [FromServices] IGetClienteByDniQuery getClienteByDniQuery)

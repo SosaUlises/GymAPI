@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId
 {
-    public interface IGetDiasRutinaByRutinaIdQuery
+    public interface IGetDiaRutinaQuery
     {
         Task<BaseResponseModel> Execute(int rutinaId, int userId);
     }

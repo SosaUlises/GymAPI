@@ -4,27 +4,25 @@ using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutinaId;
-using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
-using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
-    [Route("/api/v1/diaRutina")]
+    [Route("/api/v1/dias-rutina")]
     [ApiController]
     [Authorize(Roles = "Cliente")]
     [TypeFilter(typeof(ExceptionManager))]
     public class DiaRutinaController : Controller
     {
 
-        [HttpPost("create")]
-        public async Task<IActionResult> Create(
-                [FromBody] CreateDiaRutinaModel model,
-                [FromServices] ICreateDiaRutinaCommand createDiaRutinaCommand,
-                [FromServices] IValidator<CreateDiaRutinaModel> validator
-                )
+        [HttpPost("/rutinas/{rutinaId:int}/dias")]
+        public async Task<IActionResult> CreateDiaRutina(
+            [FromRoute] int rutinaId,
+            [FromBody] CreateDiaRutinaModel model,
+            [FromServices] ICreateDiaRutinaCommand command,
+            [FromServices] IValidator<CreateDiaRutinaModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -34,50 +32,69 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var diaRutina = await createDiaRutinaCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(diaRutina.StatusCode, diaRutina);
+            var result = await command.Execute(rutinaId, model, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpDelete("delete/{diaRutinaId}")]
+        [Authorize(Roles = "Cliente")]
+        [HttpDelete("{diaRutinaId:int}")]
         public async Task<IActionResult> Delete(
-                int diaRutinaId,
-                [FromServices] IDeleteDiaRutinaCommand deleteDiaRutinaCommand
-                )
+             [FromRoute] int diaRutinaId,
+             [FromServices] IDeleteDiaRutinaCommand command)
         {
-
-            if (diaRutinaId == 0)
+            if (diaRutinaId <= 0)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    "Id inválido"));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var diaRutina = await deleteDiaRutinaCommand.Execute(diaRutinaId, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(diaRutina.StatusCode, diaRutina);
-
+            var result = await command.Execute(diaRutinaId, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpGet("getDiasRutinaByRutinaId/{rutinaId}")]
-        public async Task<IActionResult> GetDiasRutinaByRutinaId(
-               int rutinaId,
-               [FromServices] IGetDiasRutinaByRutinaIdQuery getDiasRutinaByRutinaIdQuery
-               )
+
+        [HttpGet("rutinas/{rutinaId:int}")]
+        public async Task<IActionResult> GetByRutinaId(
+             [FromRoute] int rutinaId,
+             [FromServices] IGetDiaRutinaQuery query
+            )
         {
-            if (rutinaId == 0)
+            if (rutinaId <= 0)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    "Id inválido"));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var diasRutinas = await getDiasRutinaByRutinaIdQuery.Execute(rutinaId, int.Parse(userId));
-            return StatusCode(diasRutinas.StatusCode, diasRutinas);
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
+            var result = await query.Execute(rutinaId, userId);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }
