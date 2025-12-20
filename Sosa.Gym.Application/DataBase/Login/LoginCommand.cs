@@ -34,18 +34,22 @@ namespace Sosa.Gym.Application.DataBase.Login
 
         public async Task<BaseResponseModel> Execute(LoginModel model)
         {
-            var usuario = await _userManager.FindByEmailAsync(model.Email);
+            var email = model.Email?.Trim();
 
+            var usuario = await _userManager.FindByEmailAsync(email);
             if (usuario == null)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest, "Usuario o contraseña incorrectos");
+                return ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Usuario o contraseña incorrectos");
 
-            var result = await _signInManager.CheckPasswordSignInAsync(usuario, model.Password, false);
+            var result = await _signInManager.CheckPasswordSignInAsync(usuario, model.Password, lockoutOnFailure: true);
+
+            if (result.IsLockedOut)
+                return ResponseApiService.Response(StatusCodes.Status423Locked, "Cuenta bloqueada temporalmente. Intenta más tarde.");
 
             if (!result.Succeeded)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest, "Usuario o contraseña incorrectos");
+                return ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Usuario o contraseña incorrectos");
 
             var roles = await _userManager.GetRolesAsync(usuario);
-            var rol = roles.FirstOrDefault();
+            var rol = roles.FirstOrDefault() ?? "Cliente";
 
             var token = _jwtService.Execute(usuario.Id.ToString(), rol, usuario);
 
@@ -62,6 +66,7 @@ namespace Sosa.Gym.Application.DataBase.Login
                 }
             }, "Login exitoso");
         }
-    }
 
     }
+
+}

@@ -29,21 +29,26 @@ namespace Sosa.Gym.External
 
 
             // Identity
-         
+
             services.AddIdentity<UsuarioEntity, IdentityRole<int>>(options =>
             {
-                // Config password
+                // Password
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequiredLength = 6;
 
+                // Lockout (anti fuerza bruta)
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
             })
-            .AddEntityFrameworkStores<DataBaseService>()
-            .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<DataBaseService>()
+                .AddDefaultTokenProviders();
 
-       
+
+
             // JWT – Configuración completa
 
             var jwtKey = configuration["Jwt_Key"];
