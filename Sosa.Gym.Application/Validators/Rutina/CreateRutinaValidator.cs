@@ -15,8 +15,6 @@ namespace Sosa.Gym.Application.Validators.Rutina
         {
             RuleFor(x => x.Nombre).NotNull().NotEmpty().MaximumLength(50);
             RuleFor(x => x.Descripcion).NotNull().NotEmpty();
-            RuleFor(x => x.FechaCreacion).NotNull();
-            RuleFor(x => x.ClienteId).NotNull();
         }
     }
 }

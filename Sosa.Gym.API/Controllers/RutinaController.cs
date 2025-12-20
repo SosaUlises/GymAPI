@@ -18,12 +18,11 @@ namespace Sosa.Gym.API.Controllers
     public class RutinaController : Controller
     {
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create(
-                [FromBody] CreateRutinaModel model,
-                [FromServices] ICreateRutinaCommand createRutinaCommand,
-                [FromServices] IValidator<CreateRutinaModel> validator
-                )
+            [FromBody] CreateRutinaModel model,
+            [FromServices] ICreateRutinaCommand createRutinaCommand,
+            [FromServices] IValidator<CreateRutinaModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -33,20 +32,25 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var rutina = await createRutinaCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(rutina.StatusCode, rutina);
-
+            var result = await createRutinaCommand.Execute(model, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpPut("update")]
+        [HttpPut("{rutinaId:int}")]
         public async Task<IActionResult> Update(
-                [FromBody] UpdateRutinaModel model,
-                [FromServices] IUpdateRutinaCommand updateRutinaCommand,
-                [FromServices] IValidator<UpdateRutinaModel> validator
-                )
+             [FromRoute] int rutinaId,
+             [FromBody] UpdateRutinaModel model,
+             [FromServices] IUpdateRutinaCommand updateRutinaCommand,
+             [FromServices] IValidator<UpdateRutinaModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -56,49 +60,58 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var rutina = await updateRutinaCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(rutina.StatusCode, rutina);
-
+            var result = await updateRutinaCommand.Execute(rutinaId, model, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpDelete("delete/{rutinaId}")]
+        [HttpDelete("{rutinaId:int}")]
         public async Task<IActionResult> Delete(
-               int rutinaId,
-               [FromServices] IDeleteRutinaCommand deleteRutinaCommand
-               )
+            [FromRoute] int rutinaId,
+            [FromServices] IDeleteRutinaCommand deleteRutinaCommand)
         {
-            if (rutinaId == 0)
+            if (rutinaId <= 0)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    "Id inválido"));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var rutina = await deleteRutinaCommand.Execute(rutinaId, int.Parse(userId));
-            return StatusCode(rutina.StatusCode, rutina);
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
+            var result = await deleteRutinaCommand.Execute(rutinaId, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpGet("getByClienteId/{clienteId}")]
-        public async Task<IActionResult> GetByClienteId(
-               int clienteId,
-               [FromServices] IGetRutinaByClienteIdQuery getRutinaByClienteIdQuery
-               )
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMine(
+            [FromServices] IGetRutinaQuery query)
         {
-            if (clienteId == 0)
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
             {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var rutinas = await getRutinaByClienteIdQuery.Execute(clienteId, int.Parse(userId));
-            return StatusCode(rutinas.StatusCode, rutinas);
-
+            var result = await query.Execute(userId);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }

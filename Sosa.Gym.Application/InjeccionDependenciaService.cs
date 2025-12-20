@@ -63,7 +63,7 @@ namespace Sosa.Gym.Application
             services.AddTransient<ICreateRutinaCommand, CreateRutinaCommand>();
             services.AddTransient<IUpdateRutinaCommand, UpdateRutinaCommand>();
             services.AddTransient<IDeleteRutinaCommand, DeleteRutinaCommand>();
-            services.AddTransient<IGetRutinaByClienteIdQuery, GetRutinaByClienteIdQuery>();
+            services.AddTransient<IGetRutinaQuery, GetRutinaQuery>();
 
             // Dia Rutina
             services.AddTransient<ICreateDiaRutinaCommand, CreateDiaRutinaCommand>();

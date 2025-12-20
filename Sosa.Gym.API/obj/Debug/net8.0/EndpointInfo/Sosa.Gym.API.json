@@ -701,7 +701,7 @@
         }
       }
     },
-    "/api/v1/rutina/create": {
+    "/api/v1/rutina": {
       "post": {
         "tags": [
           "Rutina"
@@ -732,10 +732,21 @@
         }
       }
     },
-    "/api/v1/rutina/update": {
+    "/api/v1/rutina/{rutinaId}": {
       "put": {
         "tags": [
           "Rutina"
+        ],
+        "parameters": [
+          {
+            "name": "rutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -761,9 +772,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/v1/rutina/delete/{rutinaId}": {
+      },
       "delete": {
         "tags": [
           "Rutina"
@@ -786,21 +795,10 @@
         }
       }
     },
-    "/api/v1/rutina/getByClienteId/{clienteId}": {
+    "/api/v1/rutina/me": {
       "get": {
         "tags": [
           "Rutina"
-        ],
-        "parameters": [
-          {
-            "name": "clienteId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -1030,14 +1028,6 @@
           "descripcion": {
             "type": "string",
             "nullable": true
-          },
-          "fechaCreacion": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "clienteId": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1192,10 +1182,6 @@
           "descripcion": {
             "type": "string",
             "nullable": true
-          },
-          "id": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false

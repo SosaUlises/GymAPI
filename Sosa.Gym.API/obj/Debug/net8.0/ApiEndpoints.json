@@ -383,7 +383,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
     "Method": "Create",
-    "RelativePath": "api/v1/rutina/create",
+    "RelativePath": "api/v1/rutina",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -398,8 +398,29 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
+    "Method": "Update",
+    "RelativePath": "api/v1/rutina/{rutinaId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina.UpdateRutinaModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
     "Method": "Delete",
-    "RelativePath": "api/v1/rutina/delete/{rutinaId}",
+    "RelativePath": "api/v1/rutina/{rutinaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -414,34 +435,12 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
-    "Method": "GetByClienteId",
-    "RelativePath": "api/v1/rutina/getByClienteId/{clienteId}",
+    "Method": "GetMine",
+    "RelativePath": "api/v1/rutina/me",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "clienteId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
-    "Method": "Update",
-    "RelativePath": "api/v1/rutina/update",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina.UpdateRutinaModel",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

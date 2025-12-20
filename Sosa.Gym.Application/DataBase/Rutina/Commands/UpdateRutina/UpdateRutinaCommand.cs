@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.Application.Features;
-using Sosa.Gym.Domain.Entidades.Rutina;
 using Sosa.Gym.Domain.Models;
 
 namespace Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina
@@ -20,29 +19,33 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina
             _mapper = mapper;
         }
 
-        public async Task<BaseResponseModel> Execute(UpdateRutinaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(int rutinaId, UpdateRutinaModel model, int userId)
         {
-            var rutina = await _dataBaseService.Rutinas.FirstOrDefaultAsync(x => x.Id == model.Id);
-
+            var rutina = await _dataBaseService.Rutinas.FirstOrDefaultAsync(x => x.Id == rutinaId);
             if (rutina == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Rutina no encontrada");
 
-            var cliente = await _dataBaseService.Clientes
-                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+            var clienteId = await _dataBaseService.Clientes
+                .Where(c => c.UsuarioId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefaultAsync();
 
-            if (rutina.ClienteId != cliente.Id)
+            if (clienteId == 0)
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
+            if (rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
-                    "No puedes modificar rutinas a una cuenta que no te pertenece");
+                    "No puedes modificar rutinas que no te pertenecen");
             }
 
-            _mapper.Map(model, rutina);
-            _dataBaseService.Rutinas.Update(rutina);
+            rutina.Nombre = model.Nombre;
+            rutina.Descripcion = model.Descripcion;
+
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(StatusCodes.Status200OK,
-                "Rutina actualizada correctamente");
+            return ResponseApiService.Response(StatusCodes.Status200OK, "Rutina actualizada correctamente");
         }
     }
 }

@@ -2,31 +2,30 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.Application.Features;
-using Sosa.Gym.Domain.Entidades.Rutina;
 using Sosa.Gym.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
+namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
 {
-    public class CreateRutinaCommand : ICreateRutinaCommand
+    public class GetRutinaQuery : IGetRutinaQuery
     {
         private readonly IMapper _mapper;
         private readonly IDataBaseService _dataBaseService;
 
-        public CreateRutinaCommand(
+        public GetRutinaQuery(
             IMapper mapper,
-            IDataBaseService dataBaseService)
+            IDataBaseService dataBaseService
+            )
         {
+            _mapper = mapper;
             _dataBaseService = dataBaseService;
-            _mapper = mapper;   
         }
 
-        public async Task<BaseResponseModel> Execute(CreateRutinaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(int userId)
         {
             var clienteId = await _dataBaseService.Clientes
                 .Where(c => c.UsuarioId == userId)
@@ -36,14 +35,15 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
             if (clienteId == 0)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
-            var rutina = _mapper.Map<RutinaEntity>(model);
-            rutina.ClienteId = clienteId;
-            rutina.FechaCreacion = DateTime.UtcNow;
+            var rutinas = await _dataBaseService.Rutinas
+                .Where(r => r.ClienteId == clienteId)
+                .OrderByDescending(r => r.FechaCreacion)
+                .ToListAsync();
 
-            await _dataBaseService.Rutinas.AddAsync(rutina);
-            await _dataBaseService.SaveAsync();
+            var data = _mapper.Map<List<GetRutinaModel>>(rutinas);
 
-            return ResponseApiService.Response(StatusCodes.Status201Created, "Rutina creada correctamente");
+            return ResponseApiService.Response(StatusCodes.Status200OK, data);
         }
+
     }
 }

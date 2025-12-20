@@ -17,27 +17,31 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina
 
         public async Task<BaseResponseModel> Execute(int rutinaId, int userId)
         {
-            var rutina = await _dataBaseService.Rutinas.FirstOrDefaultAsync(x => x.Id == rutinaId);
+            var rutina = await _dataBaseService.Rutinas
+                .FirstOrDefaultAsync(x => x.Id == rutinaId);
 
             if (rutina == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Rutina no encontrada");
 
-            var cliente = await _dataBaseService.Clientes
-                               .FirstOrDefaultAsync(c => c.UsuarioId == userId);
+            var clienteId = await _dataBaseService.Clientes
+                .Where(c => c.UsuarioId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefaultAsync();
 
-            if (rutina.ClienteId != cliente.Id)
+            if (clienteId == 0)
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
+            if (rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
-                    "No puedes eliminar rutinas de una cuenta que no te pertenece");
+                    "No puedes eliminar rutinas que no te pertenecen");
             }
 
             _dataBaseService.Rutinas.Remove(rutina);
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(
-                StatusCodes.Status200OK,
-                "Rutina borrada correctamente");
+            return ResponseApiService.Response(StatusCodes.Status200OK, "Rutina eliminada correctamente");
         }
     }
 }

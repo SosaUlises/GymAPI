@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
 {
-    public interface IGetRutinaByClienteIdQuery
+    public interface IGetRutinaQuery
     {
-        Task<BaseResponseModel> Execute(int clienteId, int userId);
+        Task<BaseResponseModel> Execute(int userId);
     }
 }

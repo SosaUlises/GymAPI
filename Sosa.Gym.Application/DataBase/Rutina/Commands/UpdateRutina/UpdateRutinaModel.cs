@@ -10,6 +10,5 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public int Id { get; set; }
     }
 }
