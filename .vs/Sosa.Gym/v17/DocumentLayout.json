@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\rutinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\rutinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.application\\validators\\rutina\\createrutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C77333ED-2B79-442D-952F-B2B3862883DD}|Sosa.Gym.Application\\Sosa.Gym.Application.csproj|solutionrelative:sosa.gym.application\\validators\\rutina\\createrutinavalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,32 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RutinaController.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\RutinaController.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\RutinaController.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\RutinaController.cs",
-              "RelativeToolTip": "Sosa.Gym.API\\Controllers\\RutinaController.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAtwGYAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T01:56:53.482Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CreateRutinaValidator.cs",
-              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "RelativeDocumentMoniker": "Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "RelativeToolTip": "Sosa.Gym.Application\\Validators\\Rutina\\CreateRutinaValidator.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA7wBAAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T01:56:45.49Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -26,16 +26,15 @@ namespace Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios
             _mapper = mapper;
         }
 
-        public async Task <IPagedList<GetAllUsuariosModel>> Execute(int pageNumber, int pageSize)
+        public async Task<IPagedList<GetAllUsuariosModel>> Execute(int pageNumber, int pageSize)
         {
-            var users = _userManager.Users.AsQueryable();
+            var users = _userManager.Users
+                .OrderBy(u => u.Id)
+                .AsQueryable();
 
             var queryDto = users.ProjectTo<GetAllUsuariosModel>(_mapper.ConfigurationProvider);
 
-            var pagedDate = await queryDto.ToPagedListAsync(pageNumber, pageSize);
-
-            return pagedDate;
-           
+            return await queryDto.ToPagedListAsync(pageNumber, pageSize);
         }
 
 

@@ -15,8 +15,7 @@ namespace Sosa.Gym.API.Controllers
     public class UsuarioController : ControllerBase
     {
 
-
-        [HttpGet("getAll")]
+        [HttpGet]
         public async Task<IActionResult> GetAll(
             [FromServices] IGetAllUsuariosQuery getAllUsuariosQuery,
             [FromQuery] int pageNumber = 1,
@@ -28,51 +27,41 @@ namespace Sosa.Gym.API.Controllers
 
             var data = await getAllUsuariosQuery.Execute(pageNumber, pageSize);
 
-            if (!data.Any())
-            {
-                return StatusCode(StatusCodes.Status404NotFound,
-                    ResponseApiService.Response(StatusCodes.Status404NotFound));
-            }
-
-            return StatusCode(StatusCodes.Status200OK,
-                ResponseApiService.Response(StatusCodes.Status200OK, data));
-
+            return Ok(ResponseApiService.Response(StatusCodes.Status200OK, data));
         }
 
 
-        [HttpGet("getById/{userId}")]
+        [HttpGet("{userId:int}")]
         public async Task<IActionResult> GetById(
-            int userId,
+            [FromRoute] int userId,
             [FromServices] IGetUsuarioByIdQuery getUsuarioByIdQuery)
         {
-
-            if (userId == 0)
+            if (userId <= 0)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    "Id inválido"));
             }
 
-            var data = await getUsuarioByIdQuery.Execute(userId);
-
-            return StatusCode(data.StatusCode, data);
+            var result = await getUsuarioByIdQuery.Execute(userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpGet("getByDni/{dni}")]
+        [HttpGet("dni/{dni:long}")]
         public async Task<IActionResult> GetByDni(
-            long dni,
-            [FromServices] IGetUsuarioByDniQuery getUsuarioByDniQuery)
+             [FromRoute] long dni,
+             [FromServices] IGetUsuarioByDniQuery getUsuarioByDniQuery)
         {
-
-            if (dni == 0)
+            if (dni <= 0)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest));
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    "DNI inválido"));
             }
 
-            var data = await getUsuarioByDniQuery.Execute(dni);
-
-            return StatusCode(data.StatusCode, data);
+            var result = await getUsuarioByDniQuery.Execute(dni);
+            return StatusCode(result.StatusCode, result);
         }
 
 
