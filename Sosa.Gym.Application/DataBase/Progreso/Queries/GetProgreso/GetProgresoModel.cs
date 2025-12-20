@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
 {
-    public class GetProgresoByClienteModel
+    public class GetProgresoModel
     {
-        public int ClienteId { get; set; }
+        public int Id { get; set; }
         public DateTime FechaRegistro { get; set; }
         public decimal PesoActual { get; set; }
         public decimal Pecho { get; set; }
         public decimal Brazos { get; set; }
         public decimal Cintura { get; set; }
         public decimal Piernas { get; set; }
-        public string Observaciones { get; set; }
+        public string? Observaciones { get; set; }
     }
+
 }

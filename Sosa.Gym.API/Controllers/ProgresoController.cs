@@ -10,19 +10,18 @@ using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
-    [Route("/api/v1/progreso")]
+    [Route("/api/v1/progresos")]
     [ApiController]
     [Authorize(Roles = "Cliente")]
     [TypeFilter(typeof(ExceptionManager))]
     public class ProgresoController : Controller
     {
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create(
-                 [FromBody] CreateProgresoModel model,
-                 [FromServices] ICreateProgresoCommand createProgresoCommand,
-                 [FromServices] IValidator<CreateProgresoModel> validator
-                 )
+                [FromBody] CreateProgresoModel model,
+                [FromServices] ICreateProgresoCommand createProgresoCommand,
+                [FromServices] IValidator<CreateProgresoModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -32,20 +31,25 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var progreso = await createProgresoCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(progreso.StatusCode, progreso);
-
+            var result = await createProgresoCommand.Execute(model, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpPut("update")]
+        [HttpPut("{progresoId:int}")]
         public async Task<IActionResult> Update(
-                [FromBody] UpdateProgresoModel model,
-                [FromServices] IUpdateProgresoCommand updateProgresoCommand,
-                [FromServices] IValidator<UpdateProgresoModel> validator
-                )
+             [FromRoute] int progresoId,
+             [FromBody] UpdateProgresoModel model,
+             [FromServices] IUpdateProgresoCommand updateProgresoCommand,
+             [FromServices] IValidator<UpdateProgresoModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -55,32 +59,33 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var progreso = await updateProgresoCommand.Execute(model, int.Parse(userId));
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            return StatusCode(progreso.StatusCode, progreso);
-
+            var result = await updateProgresoCommand.Execute(progresoId, model, userId);
+            return StatusCode(result.StatusCode, result);
         }
 
 
-        [HttpGet("getByCliente/{idCliente}")]
-        public async Task<IActionResult> GetProgresoByCliente(
-                int idCliente,
-                [FromServices] IGetProgresoByClienteQuery getProgresoByClienteQuery
-                )
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMine(
+            [FromServices] IGetProgresoQuery query)
         {
-
-            if (idCliente == 0)
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out var userId))
             {
-                return BadRequest(ResponseApiService.Response
-                    (StatusCodes.Status400BadRequest));
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var Getprogresos = await getProgresoByClienteQuery.Execute(idCliente, int.Parse(userId));
-
-            return StatusCode(Getprogresos.StatusCode, Getprogresos);
-
+            var result = await query.Execute(userId);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }

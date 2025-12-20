@@ -284,7 +284,7 @@
         }
       }
     },
-    "/api/v1/cuotas/cuotas/generar": {
+    "/api/v1/cuotas/generar": {
       "post": {
         "tags": [
           "Cuota"
@@ -616,7 +616,7 @@
         }
       }
     },
-    "/api/v1/progreso/create": {
+    "/api/v1/progresos": {
       "post": {
         "tags": [
           "Progreso"
@@ -647,10 +647,21 @@
         }
       }
     },
-    "/api/v1/progreso/update": {
+    "/api/v1/progresos/{progresoId}": {
       "put": {
         "tags": [
           "Progreso"
+        ],
+        "parameters": [
+          {
+            "name": "progresoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -678,21 +689,10 @@
         }
       }
     },
-    "/api/v1/progreso/getByCliente/{idCliente}": {
+    "/api/v1/progresos/me": {
       "get": {
         "tags": [
           "Progreso"
-        ],
-        "parameters": [
-          {
-            "name": "idCliente",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -993,14 +993,6 @@
       "CreateProgresoModel": {
         "type": "object",
         "properties": {
-          "clienteId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fechaRegistro": {
-            "type": "string",
-            "format": "date-time"
-          },
           "pesoActual": {
             "type": "number",
             "format": "double"
@@ -1163,10 +1155,6 @@
       "UpdateProgresoModel": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "pesoActual": {
             "type": "number",
             "format": "double"

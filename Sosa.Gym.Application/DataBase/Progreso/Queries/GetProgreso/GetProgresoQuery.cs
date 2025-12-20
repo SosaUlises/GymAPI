@@ -1,18 +1,24 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
 using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso
+namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
 {
-    public class CreateProgresoCommand : ICreateProgresoCommand
+    public class GetProgresoQuery : IGetProgresoQuery
     {
         private readonly IMapper _mapper;
         private readonly IDataBaseService _dataBaseService;
 
-        public CreateProgresoCommand(
+        public GetProgresoQuery(
             IMapper mapper,
             IDataBaseService dataBaseService
             )
@@ -21,7 +27,7 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso
             _mapper = mapper;
         }
 
-        public async Task<BaseResponseModel> Execute(CreateProgresoModel model, int userId)
+        public async Task<BaseResponseModel> Execute(int userId)
         {
             var clienteId = await _dataBaseService.Clientes
                 .Where(c => c.UsuarioId == userId)
@@ -31,14 +37,14 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso
             if (clienteId == 0)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
-            var progreso = _mapper.Map<ProgresoEntity>(model);
-            progreso.ClienteId = clienteId;
-            progreso.FechaRegistro = DateTime.UtcNow;
+            var progresos = await _dataBaseService.Progresos
+                .Where(p => p.ClienteId == clienteId)
+                .OrderByDescending(p => p.FechaRegistro)
+                .ToListAsync();
 
-            await _dataBaseService.Progresos.AddAsync(progreso);
-            await _dataBaseService.SaveAsync();
+            var data = _mapper.Map<List<GetProgresoModel>>(progresos);
 
-            return ResponseApiService.Response(StatusCodes.Status201Created, "Progreso creado correctamente");
+            return ResponseApiService.Response(StatusCodes.Status200OK, data);
         }
     }
 }

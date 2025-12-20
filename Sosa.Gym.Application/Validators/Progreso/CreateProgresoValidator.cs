@@ -17,7 +17,6 @@ namespace Sosa.Gym.Application.Validators.Progreso
             RuleFor(x => x.Brazos).NotNull().NotEmpty();
             RuleFor(x => x.Pecho).NotNull().NotEmpty();
             RuleFor(x => x.Piernas).NotNull().NotEmpty();
-            RuleFor(x => x.ClienteId).NotNull().NotEmpty();
         }
     }
 }

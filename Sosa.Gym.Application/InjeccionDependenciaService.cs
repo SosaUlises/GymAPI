@@ -79,7 +79,7 @@ namespace Sosa.Gym.Application
             // Progreso
             services.AddTransient<ICreateProgresoCommand, CreateProgresoCommand>();
             services.AddTransient<IUpdateProgresoCommand, UpdateProgresoCommand>();
-            services.AddTransient<IGetProgresoByClienteQuery, GetProgresoByClienteQuery>();
+            services.AddTransient<IGetProgresoQuery, GetProgresoQuery>();
 
             // Cuota
             services.AddTransient<ICreateCuotaCommand, CreateCuotaCommand>();

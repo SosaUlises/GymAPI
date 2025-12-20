@@ -182,7 +182,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
     "Method": "GenerarCuotas",
-    "RelativePath": "api/v1/cuotas/cuotas/generar",
+    "RelativePath": "api/v1/cuotas/generar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -336,7 +336,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ProgresoController",
     "Method": "Create",
-    "RelativePath": "api/v1/progreso/create",
+    "RelativePath": "api/v1/progresos",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -351,15 +351,20 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ProgresoController",
-    "Method": "GetProgresoByCliente",
-    "RelativePath": "api/v1/progreso/getByCliente/{idCliente}",
-    "HttpMethod": "GET",
+    "Method": "Update",
+    "RelativePath": "api/v1/progresos/{progresoId}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "idCliente",
+        "Name": "progresoId",
         "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso.UpdateProgresoModel",
         "IsRequired": true
       }
     ],
@@ -367,18 +372,12 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ProgresoController",
-    "Method": "Update",
-    "RelativePath": "api/v1/progreso/update",
-    "HttpMethod": "PUT",
+    "Method": "GetMine",
+    "RelativePath": "api/v1/progresos/me",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso.UpdateProgresoModel",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -8,12 +8,11 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso
 {
     public class UpdateProgresoModel
     {
-        public int Id { get; set; }
         public decimal PesoActual { get; set; }
         public decimal Pecho { get; set; }
         public decimal Brazos { get; set; }
         public decimal Cintura { get; set; }
         public decimal Piernas { get; set; }
-        public string Observaciones { get; set; }
+        public string? Observaciones { get; set; }
     }
 }

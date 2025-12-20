@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso
 {
     public interface IUpdateProgresoCommand
     {
-        Task<BaseResponseModel> Execute(UpdateProgresoModel model, int userId);
+        Task<BaseResponseModel> Execute(int progresoId, UpdateProgresoModel model, int userId);
     }
 }

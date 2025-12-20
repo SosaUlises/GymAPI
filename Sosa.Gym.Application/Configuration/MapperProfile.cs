@@ -93,9 +93,15 @@ namespace Sosa.Gym.Application.Configuration
             CreateMap<EjercicioEntity, GetEjerciciosModel>().ReverseMap();
 
             // Progreso 
-            CreateMap<ProgresoEntity, CreateProgresoModel>().ReverseMap();
-            CreateMap<ProgresoEntity, UpdateProgresoModel>().ReverseMap();
-            CreateMap<ProgresoEntity, GetProgresoByClienteModel>().ReverseMap();
+            CreateMap<CreateProgresoModel, ProgresoEntity>()
+                .ForMember(x => x.ClienteId, opt => opt.Ignore())
+                .ForMember(x => x.FechaRegistro, opt => opt.Ignore());
+            CreateMap<UpdateProgresoModel, ProgresoEntity>()
+               .ForMember(x => x.Id, opt => opt.Ignore())
+               .ForMember(x => x.ClienteId, opt => opt.Ignore())
+               .ForMember(x => x.FechaRegistro, opt => opt.Ignore());
+
+            CreateMap<ProgresoEntity, GetProgresoModel>().ReverseMap();
 
 
             // Cuota

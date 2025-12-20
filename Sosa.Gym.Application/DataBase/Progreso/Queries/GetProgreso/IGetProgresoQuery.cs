@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente
 {
-    public interface IGetProgresoByClienteQuery
+    public interface IGetProgresoQuery
     {
-        Task<BaseResponseModel> Execute(int clienteId, int userId);
+        Task<BaseResponseModel> Execute(int userId);
     }
 }
