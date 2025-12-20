@@ -22,6 +22,8 @@ namespace Sosa.Gym.Persistence.Configuration
             entityBuilder.Property(x => x.Apellido).IsRequired();
             entityBuilder.Property(x => x.Dni).IsRequired();
 
+            entityBuilder.HasIndex(x => x.Dni).IsUnique();
+
             entityBuilder.HasOne(x => x.Cliente)
                 .WithOne(x => x.Usuario)
                 .HasForeignKey<ClienteEntity>(x => x.UsuarioId);

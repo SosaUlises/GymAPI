@@ -21,14 +21,13 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes
 
         public async Task<IPagedList<GetAllClientesModel>> Execute(int pageNumber, int pageSize)
         {
-            var users = _dataBaseService.Clientes.Include(c => c.Usuario).AsQueryable();
+            var query = _dataBaseService.Clientes
+                .AsNoTracking()
+                .OrderByDescending(c => c.FechaRegistro) 
+                .ProjectTo<GetAllClientesModel>(_mapper.ConfigurationProvider);
 
-            var queryDto = users.ProjectTo<GetAllClientesModel>(_mapper.ConfigurationProvider);
-
-            var pagedDate = await queryDto.ToPagedListAsync(pageNumber, pageSize);
-
-            return pagedDate;
-
+            return await query.ToPagedListAsync(pageNumber, pageSize);
         }
+
     }
 }

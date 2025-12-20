@@ -37,7 +37,7 @@
         }
       }
     },
-    "/api/v1/cliente/create": {
+    "/api/v1/cliente": {
       "post": {
         "tags": [
           "Cliente"
@@ -61,6 +61,36 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -92,6 +122,16 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -139,9 +179,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/v1/cliente/delete/{clienteId}": {
+      },
       "delete": {
         "tags": [
           "Cliente"
@@ -162,41 +200,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/v1/cliente/get-all": {
-      "get": {
-        "tags": [
-          "Cliente"
-        ],
-        "parameters": [
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/v1/cliente/get-by-id/{clienteId}": {
+      },
       "get": {
         "tags": [
           "Cliente"
@@ -219,7 +223,7 @@
         }
       }
     },
-    "/api/v1/cliente/get-by-dni/{dni}": {
+    "/api/v1/cliente/dni/{dni}": {
       "get": {
         "tags": [
           "Cliente"
@@ -807,7 +811,7 @@
         }
       }
     },
-    "/api/v1/usuario/getAll": {
+    "/api/v1/usuario": {
       "get": {
         "tags": [
           "Usuario"
@@ -839,7 +843,7 @@
         }
       }
     },
-    "/api/v1/usuario/getById/{userId}": {
+    "/api/v1/usuario/{userId}": {
       "get": {
         "tags": [
           "Usuario"
@@ -862,7 +866,7 @@
         }
       }
     },
-    "/api/v1/usuario/getByDni/{dni}": {
+    "/api/v1/usuario/dni/{dni}": {
       "get": {
         "tags": [
           "Usuario"
@@ -911,10 +915,6 @@
             "type": "string",
             "nullable": true
           },
-          "rol": {
-            "type": "string",
-            "nullable": true
-          },
           "edad": {
             "type": "integer",
             "format": "int32"
@@ -930,10 +930,6 @@
           "objetivo": {
             "type": "string",
             "nullable": true
-          },
-          "fechaRegistro": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false

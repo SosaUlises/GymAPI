@@ -5,6 +5,7 @@ using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
+using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteAdmin;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll;
@@ -56,8 +57,9 @@ namespace Sosa.Gym.Application
             services.AddTransient<IDeleteClienteCommand, DeleteClienteCommand>();
             services.AddTransient<IUpdateClienteCommand, UpdateClienteCommand>();
             services.AddTransient<IGetAllClientesQuery, GetAllClientesQuery>();
-            services.AddTransient<IGetClienteByIdQuery, GetClienteByIdQuery>();
+            services.AddTransient<IGetClienteQuery, GetClienteQuery>();
             services.AddTransient<IGetClienteByDniQuery, GetClienteByDniQuery>();
+            services.AddTransient<IGetClienteByIdAdminQuery, GetClienteByIdAdminQuery>();
 
             // Rutinas
             services.AddTransient<ICreateRutinaCommand, CreateRutinaCommand>();

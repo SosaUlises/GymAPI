@@ -27,53 +27,55 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente
 
         public async Task<BaseResponseModel> Execute(CreateClienteModel model)
         {
-            var existeEmail = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
-            var existeDni = await _userManager.Users.FirstOrDefaultAsync(x => x.Dni == model.Dni);
 
-            if (existeEmail != null)
+            var existeEmail = await _userManager.Users.AnyAsync(x => x.Email == model.Email);
+            if (existeEmail)
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest,
                     $"Ya existe un usuario con el email {model.Email}");
 
-            if (existeDni != null)
+            var existeDni = await _userManager.Users.AnyAsync(x => x.Dni == model.Dni);
+            if (existeDni)
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest,
                     $"Ya existe un usuario con el DNI {model.Dni}");
 
-            // Usuario
+            // Crear usuario
             var usuario = _mapper.Map<UsuarioEntity>(model);
             usuario.UserName = model.Email;
 
-            var result = await _userManager.CreateAsync(usuario, model.Password);
+            var createUser = await _userManager.CreateAsync(usuario, model.Password);
+            if (!createUser.Succeeded)
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest, createUser.Errors, "Error al crear el usuario");
 
-            if (!result.Succeeded)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
-                    result.Errors, "Error al crear el usuario");
-
-            var rolResult = await _userManager.AddToRoleAsync(usuario, model.Rol);
+            // Asignar rol 
+            const string rolCliente = "Cliente";
+            var rolResult = await _userManager.AddToRoleAsync(usuario, rolCliente);
             if (!rolResult.Succeeded)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
-                    rolResult.Errors, "Error al asignar el rol al usuario");
+            {
+                await _userManager.DeleteAsync(usuario); // compensacion
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest, rolResult.Errors, "Error al asignar el rol");
+            }
 
-            // Cliente
-            var cliente = _mapper.Map<ClienteEntity>(model);
-            cliente.UsuarioId = usuario.Id;
-            cliente.FechaRegistro = DateTime.UtcNow;
+            // Crear cliente
+            try
+            {
+                var cliente = _mapper.Map<ClienteEntity>(model);
+                cliente.UsuarioId = usuario.Id;
+                cliente.FechaRegistro = DateTime.UtcNow;
 
-            _dataBaseService.Clientes.Add(cliente);
-            await _dataBaseService.SaveAsync();
+                _dataBaseService.Clientes.Add(cliente);
+                await _dataBaseService.SaveAsync();
 
-
-            return ResponseApiService.Response(
-                StatusCodes.Status201Created,
-                new
-                {
-                    UsuarioId = usuario.Id,
-                    cliente.Id,
-                    usuario.Email,
-                    usuario.Nombre,
-                    usuario.Apellido
-                },
-                "Cliente creado correctamente"
-            );
+                return ResponseApiService.Response(
+                    StatusCodes.Status201Created,
+                    new { UsuarioId = usuario.Id, ClienteId = cliente.Id, usuario.Email, usuario.Nombre, usuario.Apellido },
+                    "Cliente creado correctamente");
+            }
+            catch
+            {
+                // compensación si falla el insert de cliente
+                await _userManager.DeleteAsync(usuario);
+                throw;
+            }
         }
     }
 

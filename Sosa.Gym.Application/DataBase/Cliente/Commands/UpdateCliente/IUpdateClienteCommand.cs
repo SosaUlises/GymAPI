@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
 {
     public interface IUpdateClienteCommand
     {
-        Task<BaseResponseModel> Execute(int clienteId, UpdateClienteModel model, int userIdLogueado);
+        Task<BaseResponseModel> Execute(int clienteId, UpdateClienteModel model, int userIdLogueado, bool esAdmin);
     }
 }

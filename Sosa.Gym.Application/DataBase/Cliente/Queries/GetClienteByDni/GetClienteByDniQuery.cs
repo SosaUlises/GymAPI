@@ -37,7 +37,7 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
             }
 
             return ResponseApiService.Response(StatusCodes.Status200OK,
-                    _mapper.Map<GetClienteByDniModel>(cliente));
+                    _mapper.Map<GetClienteModel>(cliente));
         }
     }
 }

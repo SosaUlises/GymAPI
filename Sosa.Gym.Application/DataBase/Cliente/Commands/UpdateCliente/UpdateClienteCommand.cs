@@ -19,27 +19,21 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
         private readonly UserManager<UsuarioEntity> _userManager;
         private readonly IDataBaseService _dataBaseService;
         private readonly IMapper _mapper;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UpdateClienteCommand(
             UserManager<UsuarioEntity> userManager,
             IMapper mapper,
-            IDataBaseService dataBaseService,
-            IHttpContextAccessor httpContextAccessor)
+            IDataBaseService dataBaseService)
         {
             _userManager = userManager;
             _mapper = mapper;
             _dataBaseService = dataBaseService;
-            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<BaseResponseModel> Execute(int clienteId, UpdateClienteModel model, int userIdLogueado)
+        public async Task<BaseResponseModel> Execute(int clienteId, UpdateClienteModel model, int userIdLogueado, bool esAdmin)
         {
 
-            var httpUser = _httpContextAccessor.HttpContext?.User;
-            var roles = httpUser?.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList() ?? new List<string>();
-            bool esAdmin = roles.Contains("Administrador");
-
+        
             var cliente = await _dataBaseService.Clientes
                 .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(c => c.Id == clienteId);

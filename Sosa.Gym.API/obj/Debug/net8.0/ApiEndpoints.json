@@ -17,6 +17,43 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
+    "Method": "Create",
+    "RelativePath": "api/v1/cliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente.CreateClienteModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/cliente",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "UpdateByAdmin",
     "RelativePath": "api/v1/cliente/{clienteId}",
     "HttpMethod": "PUT",
@@ -38,24 +75,8 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
-    "Method": "Create",
-    "RelativePath": "api/v1/cliente/create",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente.CreateClienteModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "Delete",
-    "RelativePath": "api/v1/cliente/delete/{clienteId}",
+    "RelativePath": "api/v1/cliente/{clienteId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -70,45 +91,8 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
-    "Method": "GetAll",
-    "RelativePath": "api/v1/cliente/get-all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "pageNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "pageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
-    "Method": "GetByDni",
-    "RelativePath": "api/v1/cliente/get-by-dni/{dni}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dni",
-        "Type": "System.Int64",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "GetById",
-    "RelativePath": "api/v1/cliente/get-by-id/{clienteId}",
+    "RelativePath": "api/v1/cliente/{clienteId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -116,6 +100,22 @@
       {
         "Name": "clienteId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
+    "Method": "GetByDni",
+    "RelativePath": "api/v1/cliente/dni/{dni}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dni",
+        "Type": "System.Int64",
         "IsRequired": true
       }
     ],
@@ -135,6 +135,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
+    "Method": "GetMe",
+    "RelativePath": "api/v1/cliente/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -446,7 +456,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "GetAll",
-    "RelativePath": "api/v1/usuario/getAll",
+    "RelativePath": "api/v1/usuario",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -466,24 +476,8 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
-    "Method": "GetByDni",
-    "RelativePath": "api/v1/usuario/getByDni/{dni}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dni",
-        "Type": "System.Int64",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "GetById",
-    "RelativePath": "api/v1/usuario/getById/{userId}",
+    "RelativePath": "api/v1/usuario/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -491,6 +485,22 @@
       {
         "Name": "userId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
+    "Method": "GetByDni",
+    "RelativePath": "api/v1/usuario/dni/{dni}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dni",
+        "Type": "System.Int64",
         "IsRequired": true
       }
     ],

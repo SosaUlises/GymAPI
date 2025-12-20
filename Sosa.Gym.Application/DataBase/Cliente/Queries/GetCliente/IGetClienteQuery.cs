@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
 {
-    public interface IGetClienteByIdQuery
+    public interface IGetClienteQuery
     {
-        Task<BaseResponseModel> Execute(int clienteId, int userId);
+        Task<BaseResponseModel> Execute(int userId);
     }
 }

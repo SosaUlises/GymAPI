@@ -58,23 +58,21 @@ namespace Sosa.Gym.Application.Configuration
             CreateMap<ClienteEntity, UpdateClienteModel>().ReverseMap();
 
             CreateMap<ClienteEntity, GetAllClientesModel>()
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Usuario.Id))
-                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Usuario.Nombre))
-                .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Usuario.Apellido))
-                .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Usuario.Email));
+             .ForMember(dest => dest.UsuarioId, opt => opt.MapFrom(src => src.Usuario.Id))
+             .ForMember(dest => dest.ClienteId, opt => opt.MapFrom(src => src.Id))
+             .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Usuario.Nombre))
+             .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Usuario.Apellido))
+             .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))
+             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Usuario.Email));
 
-            CreateMap<ClienteEntity, GetClienteByIdModel>()
-                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Usuario.Nombre))
-                .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Usuario.Apellido))
-                .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Usuario.Email));
 
-            CreateMap<ClienteEntity, GetClienteByDniModel>()
-              .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Usuario.Nombre))
-              .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Usuario.Apellido))
-              .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Usuario.Dni))
-              .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Usuario.Email));
+            CreateMap<ClienteEntity, GetClienteModel>()
+               .ForMember(d => d.UsuarioId, o => o.MapFrom(s => s.Usuario.Id))
+               .ForMember(d => d.Nombre, o => o.MapFrom(s => s.Usuario.Nombre))
+               .ForMember(d => d.Apellido, o => o.MapFrom(s => s.Usuario.Apellido))
+               .ForMember(d => d.Dni, o => o.MapFrom(s => s.Usuario.Dni))
+               .ForMember(d => d.Email, o => o.MapFrom(s => s.Usuario.Email))
+               .ForMember(d => d.ClienteId, o => o.MapFrom(s => s.Id));
 
 
             // Rutina

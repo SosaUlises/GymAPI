@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni
 {
-    public class GetClienteByDniModel
+    public class GetClienteModel
     {
-        // User Identity
+        // Usuario
+        public int UsuarioId { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public long Dni { get; set; }
         public string Email { get; set; }
 
         // Cliente
-
-        public int Id { get; set; }
+        public int ClienteId { get; set; }
         public int Edad { get; set; }
         public decimal Altura { get; set; }
         public decimal Peso { get; set; }
