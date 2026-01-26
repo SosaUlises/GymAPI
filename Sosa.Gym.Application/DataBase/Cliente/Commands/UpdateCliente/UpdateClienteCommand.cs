@@ -18,26 +18,28 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
     {
         private readonly UserManager<UsuarioEntity> _userManager;
         private readonly IDataBaseService _dataBaseService;
-        private readonly IMapper _mapper;
 
         public UpdateClienteCommand(
             UserManager<UsuarioEntity> userManager,
-            IMapper mapper,
             IDataBaseService dataBaseService)
         {
             _userManager = userManager;
-            _mapper = mapper;
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseResponseModel> Execute(int clienteId, UpdateClienteModel model, int userIdLogueado, bool esAdmin)
+        public async Task<BaseResponseModel> Execute(
+            int clienteId,
+            UpdateClienteModel model,
+            int userIdLogueado,
+            bool esAdmin)
         {
+
             var cliente = await _dataBaseService.Clientes
-                .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(c => c.Id == clienteId);
 
             if (cliente == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
+
 
             if (!esAdmin && cliente.UsuarioId != userIdLogueado)
             {
@@ -46,23 +48,26 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
                     "No puedes acceder a datos de otro usuario");
             }
 
-            var usuario = cliente.Usuario;
+
+            var usuario = await _userManager.FindByIdAsync(cliente.UsuarioId.ToString());
             if (usuario == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Usuario no encontrado");
 
-            // Validaciones únicas
+
             var existeEmail = await _userManager.Users
                 .AnyAsync(x => x.Email == model.Email && x.Id != usuario.Id);
 
             if (existeEmail)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                return ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
                     $"Ya existe un usuario con el email {model.Email}");
 
             var existeDni = await _userManager.Users
                 .AnyAsync(x => x.Dni == model.Dni && x.Id != usuario.Id);
 
             if (existeDni)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest,
+                return ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
                     $"Ya existe un usuario con el DNI {model.Dni}");
 
 
@@ -72,10 +77,12 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
             usuario.UserName = model.Email;
             usuario.Dni = model.Dni;
 
-
             var updateUserResult = await _userManager.UpdateAsync(usuario);
             if (!updateUserResult.Succeeded)
-                return ResponseApiService.Response(StatusCodes.Status400BadRequest, updateUserResult.Errors, "Error al modificar el usuario");
+                return ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    updateUserResult.Errors,
+                    "Error al modificar el usuario");
 
 
             if (!string.IsNullOrWhiteSpace(model.Password))
@@ -84,24 +91,39 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
                 var passResult = await _userManager.ResetPasswordAsync(usuario, token, model.Password);
 
                 if (!passResult.Succeeded)
-                    return ResponseApiService.Response(StatusCodes.Status400BadRequest, passResult.Errors, "Error al modificar la contraseña");
+                    return ResponseApiService.Response(
+                        StatusCodes.Status400BadRequest,
+                        passResult.Errors,
+                        "Error al modificar la contraseña");
             }
+
 
             if (esAdmin && !string.IsNullOrWhiteSpace(model.Rol))
             {
                 var currentRoles = await _userManager.GetRolesAsync(usuario);
+                var current = currentRoles.FirstOrDefault();
 
-                if (currentRoles.Count != 1 || currentRoles[0] != model.Rol)
+                if (!string.Equals(current, model.Rol, StringComparison.OrdinalIgnoreCase))
                 {
-                    var removeRes = await _userManager.RemoveFromRolesAsync(usuario, currentRoles);
-                    if (!removeRes.Succeeded)
-                        return ResponseApiService.Response(StatusCodes.Status400BadRequest, removeRes.Errors, "Error al actualizar roles");
+                    if (current != null)
+                    {
+                        var removeRes = await _userManager.RemoveFromRoleAsync(usuario, current);
+                        if (!removeRes.Succeeded)
+                            return ResponseApiService.Response(
+                                StatusCodes.Status400BadRequest,
+                                removeRes.Errors,
+                                "Error al actualizar roles");
+                    }
 
                     var addRes = await _userManager.AddToRoleAsync(usuario, model.Rol);
                     if (!addRes.Succeeded)
-                        return ResponseApiService.Response(StatusCodes.Status400BadRequest, addRes.Errors, "Error al asignar rol");
+                        return ResponseApiService.Response(
+                            StatusCodes.Status400BadRequest,
+                            addRes.Errors,
+                            "Error al asignar rol");
                 }
             }
+
 
             cliente.Edad = model.Edad;
             cliente.Altura = model.Altura;
@@ -112,7 +134,6 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
 
             return ResponseApiService.Response(StatusCodes.Status200OK, "Cliente actualizado correctamente");
         }
-
     }
 
 }
