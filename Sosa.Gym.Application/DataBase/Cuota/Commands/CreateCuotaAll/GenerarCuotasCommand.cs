@@ -3,11 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Entidades.Cuota;
 using Sosa.Gym.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll
 {
@@ -22,7 +17,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll
 
         public async Task<BaseResponseModel> Execute(GenerarCuotasModel model)
         {
-   
+
             var clienteIds = await _db.Clientes
                 .Select(c => c.Id)
                 .ToListAsync();
@@ -47,7 +42,7 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll
                     Monto = model.Monto,
                     Anio = model.Anio,
                     Mes = model.Mes,
-                    Estado = "Pendiente",
+                    Estado = EstadoCuota.Pendiente,
                     FechaCreacion = DateTime.UtcNow,
                     FechaPago = null,
                     MetodoPago = null

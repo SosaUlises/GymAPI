@@ -172,3 +172,4 @@ C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.API.
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.API.pdb
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\Sosa.Gym.API.genruntimeconfig.cache
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\ref\Sosa.Gym.API.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

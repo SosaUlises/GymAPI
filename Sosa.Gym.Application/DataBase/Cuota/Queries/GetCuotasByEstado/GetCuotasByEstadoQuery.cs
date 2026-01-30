@@ -24,26 +24,23 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes
             _http = http;
         }
 
-        public async Task<BaseResponseModel> Execute(string estado)
+        public async Task<BaseResponseModel> Execute(
+             EstadoCuota estado,
+             int userId,
+             bool esAdmin)
         {
-            var estadoLower = estado.ToLower();
-            var user = _http.HttpContext.User;
-
-            var userId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var rol = user.FindFirst(ClaimTypes.Role).Value;
-
             IQueryable<CuotaEntity> query = _dataBaseService.Cuotas
-                .Where(x => x.Estado.ToLower() == estadoLower);
+                .Include(c => c.Cliente)
+                .Where(c => c.Estado == estado);
 
-            // Si es cliente: solo sus cuotas
-            if (rol == "Cliente")
+            if (!esAdmin)
             {
-                query = query.Where(x => x.Cliente.UsuarioId == userId);
+                query = query.Where(c => c.Cliente.UsuarioId == userId);
             }
 
             var cuotas = await query
-                .OrderByDescending(x => x.Anio)
-                .ThenByDescending(x => x.Mes)
+                .OrderByDescending(c => c.Anio)
+                .ThenByDescending(c => c.Mes)
                 .ToListAsync();
 
             if (!cuotas.Any())
@@ -57,5 +54,6 @@ namespace Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes
                 StatusCodes.Status200OK,
                 _mapper.Map<List<GetCuotasByEstadoModel>>(cuotas));
         }
+
     }
 }

@@ -6,42 +6,51 @@ using Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll;
 using Sosa.Gym.Application.DataBase.Cuota.Commands.PagarCuota;
 using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotaByCliente;
 using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes;
-using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
+using Sosa.Gym.Domain.Entidades.Cuota;
 using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
-    [Route("/api/v1/cuotas")]
+    [Route("api/v1")]
     [ApiController]
-    [TypeFilter(typeof(ExceptionManager))]
-    public class CuotaController : Controller
+    public class CuotaController : ControllerBase
     {
+        private bool TryGetUserId(out int userId)
+        {
+            userId = 0;
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return int.TryParse(userIdStr, out userId);
+        }
+
 
         [Authorize(Roles = "Administrador")]
         [HttpPost("clientes/{clienteId:int}/cuotas")]
         public async Task<IActionResult> CreateCuota(
-               [FromRoute] int clienteId,
-               [FromBody] CreateCuotaModel model,
-               [FromServices] ICreateCuotaCommand command,
-               [FromServices] IValidator<CreateCuotaModel> validator)
+            [FromRoute] int clienteId,
+            [FromBody] CreateCuotaModel model,
+            [FromServices] ICreateCuotaCommand command,
+            [FromServices] IValidator<CreateCuotaModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
+            {
                 return BadRequest(ResponseApiService.Response(
                     StatusCodes.Status400BadRequest,
                     validationResult.Errors));
+            }
 
             var result = await command.Execute(clienteId, model);
             return StatusCode(result.StatusCode, result);
         }
 
+
         [Authorize(Roles = "Administrador")]
-        [HttpPost("generar")]
+        [HttpPost("cuotas/generacion")]
         public async Task<IActionResult> GenerarCuotas(
-                [FromBody] GenerarCuotasModel model,
-                [FromServices] IGenerarCuotasCommand command,
-                [FromServices] IValidator<GenerarCuotasModel> validator)
+            [FromBody] GenerarCuotasModel model,
+            [FromServices] IGenerarCuotasCommand command,
+            [FromServices] IValidator<GenerarCuotasModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
@@ -57,7 +66,7 @@ namespace Sosa.Gym.API.Controllers
 
 
         [Authorize(Roles = "Cliente")]
-        [HttpPost("{cuotaId:int}/pagar")]
+        [HttpPost("cuotas/{cuotaId:int}/pagos")]
         public async Task<IActionResult> Pagar(
             [FromRoute] int cuotaId,
             [FromBody] PagarCuotaModel model,
@@ -72,8 +81,7 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!int.TryParse(userIdStr, out var userId))
+            if (!TryGetUserId(out var userId))
             {
                 return Unauthorized(ResponseApiService.Response(
                     StatusCodes.Status401Unauthorized,
@@ -84,43 +92,57 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-
-        [Authorize(Roles = "Administrador, Cliente")]
-        [HttpGet("get-by-clienteId/{clienteId}")]
+        [Authorize(Roles = "Administrador,Cliente")]
+        [HttpGet("cuotas/cliente/{clienteId:int}")]
         public async Task<IActionResult> GetByClienteId(
-            int clienteId,
-            [FromServices] IGetCuotaByClienteQuery getCuotaByClienteQuery
-            )
+            [FromRoute] int clienteId,
+            [FromServices] IGetCuotaByClienteQuery query)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (clienteId <= 0)
+            {
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    "ClienteId inválido"));
+            }
 
-            if (clienteId == 0)
-                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            if (!TryGetUserId(out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
-            bool esAdmin = roles.Contains("Administrador");
-
-            var cuotas = await getCuotaByClienteQuery.Execute(clienteId, int.Parse(userId), esAdmin);
-
-            return StatusCode(cuotas.StatusCode, cuotas);
-
+            var esAdmin = User.IsInRole("Administrador");
+            var result = await query.Execute(clienteId, userId, esAdmin);
+            return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador, Cliente")]
-        [HttpGet("get-by-estado/{estado}")]
+
+        [Authorize(Roles = "Administrador,Cliente")]
+        [HttpGet("cuotas/estado/{estado}")]
         public async Task<IActionResult> GetByEstado(
-           string estado,
-           [FromServices] IGetCuotasByEstadoQuery getCuotasByEstadoQuery
-           )
+            [FromRoute] string estado,
+            [FromServices] IGetCuotasByEstadoQuery query)
         {
+            if (!TryGetUserId(out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
 
-            if (estado == "")
-                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            if (!Enum.TryParse<EstadoCuota>(estado, ignoreCase: true, out var estadoEnum))
+            {
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    "Estado inválido"));
+            }
 
-            var cuotas = await getCuotasByEstadoQuery.Execute(estado);
+            var esAdmin = User.IsInRole("Administrador");
 
-            return StatusCode(cuotas.StatusCode, cuotas);
 
+            var result = await query.Execute(estadoEnum, userId, esAdmin);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }

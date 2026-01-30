@@ -20,7 +20,12 @@ namespace Sosa.Gym.Persistence.Configuration
             entityBuilder.Property(x => x.Monto).IsRequired();
             entityBuilder.Property(x => x.Anio).IsRequired();
             entityBuilder.Property(x => x.Mes).IsRequired();
-            entityBuilder.Property(x => x.Estado).IsRequired();
+            entityBuilder.Property(c => c.Estado)
+                .HasConversion<string>()
+                .IsRequired()
+                .HasDefaultValue(EstadoCuota.Pendiente);
+
+
 
             entityBuilder
              .HasIndex(x => new { x.ClienteId, x.Anio, x.Mes })
