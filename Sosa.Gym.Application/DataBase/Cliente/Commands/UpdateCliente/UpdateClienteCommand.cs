@@ -134,6 +134,28 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente
 
             return ResponseApiService.Response(StatusCodes.Status200OK, "Cliente actualizado correctamente");
         }
+
+        public async Task<BaseResponseModel> ExecuteMe(
+        UpdateClienteModel model,
+        int userIdLogueado)
+        {
+            var cliente = await _dataBaseService.Clientes
+                .FirstOrDefaultAsync(c => c.UsuarioId == userIdLogueado);
+
+            if (cliente == null)
+            {
+                return ResponseApiService.Response(
+                    StatusCodes.Status404NotFound,
+                    "Cliente no encontrado");
+            }
+
+            return await Execute(
+                cliente.Id,
+                model,
+                userIdLogueado,
+                esAdmin: false);
+        }
+
     }
 
 }

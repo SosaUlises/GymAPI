@@ -1,25 +1,28 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Sosa.Gym.Application.DataBase;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteAdmin;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetClienteByDni;
-using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
-    [Route("/api/v1/cliente")]
+    [Route("api/v1/clientes")]
     [ApiController]
-    [TypeFilter(typeof(ExceptionManager))]
-    public class ClienteController : Controller
+    public class ClienteController : ControllerBase
     {
+        private bool TryGetUserId(out int userId)
+        {
+            userId = 0;
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return int.TryParse(userIdStr, out userId);
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create(
@@ -39,91 +42,64 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Cliente")]
+        [Authorize]
         [HttpPut("me")]
         public async Task<IActionResult> UpdateMe(
-                [FromBody] UpdateClienteModel model,
-                [FromServices] IUpdateClienteCommand updateClienteCommand,
-                [FromServices] IValidator<UpdateClienteModel> validator,
-                [FromServices] IDataBaseService dataBaseService
-)
+            [FromBody] UpdateClienteModel model,
+            [FromServices] IUpdateClienteCommand updateClienteCommand,
+            [FromServices] IValidator<UpdateClienteModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
             {
-                return BadRequest(
-                    ResponseApiService.Response(StatusCodes.Status400BadRequest, validationResult.Errors));
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
             }
 
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!int.TryParse(userIdStr, out var userId))
+            if (!TryGetUserId(out var userId))
             {
-                return Unauthorized(ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Token inválido"));
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
             }
 
-            // Buscar el cliente del usuario logueado
-            var clienteId = await dataBaseService.Clientes
-                .Where(c => c.UsuarioId == userId)
-                .Select(c => c.Id)
-                .FirstOrDefaultAsync();
-
-            if (clienteId == 0)
-            {
-                return NotFound(ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado"));
-            }
-
-
-            var esAdmin = User.IsInRole("Administrador");
-            var result = await updateClienteCommand.Execute(clienteId, model, userId, esAdmin);
-
-
+            var result = await updateClienteCommand.ExecuteMe(model, userId);
             return StatusCode(result.StatusCode, result);
         }
-
 
         [Authorize(Roles = "Administrador")]
         [HttpPut("{clienteId:int}")]
         public async Task<IActionResult> UpdateByAdmin(
-                [FromRoute] int clienteId,
-                [FromBody] UpdateClienteModel model,
-                [FromServices] IUpdateClienteCommand updateClienteCommand,
-                [FromServices] IValidator<UpdateClienteModel> validator
-)
+            [FromRoute] int clienteId,
+            [FromBody] UpdateClienteModel model,
+            [FromServices] IUpdateClienteCommand updateClienteCommand,
+            [FromServices] IValidator<UpdateClienteModel> validator)
         {
-
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
             {
-                return BadRequest(
-                    ResponseApiService.Response(
-                        StatusCodes.Status400BadRequest,
-                        validationResult.Errors));
+                return BadRequest(ResponseApiService.Response(
+                    StatusCodes.Status400BadRequest,
+                    validationResult.Errors));
             }
 
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!int.TryParse(userIdStr, out var userId))
+            if (!TryGetUserId(out var userId))
             {
-                return Unauthorized(
-                    ResponseApiService.Response(
-                        StatusCodes.Status401Unauthorized,
-                        "Token inválido"));
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
             }
 
-            var esAdmin = User.IsInRole("Administrador"); 
-            var result = await updateClienteCommand.Execute(clienteId, model, userId, esAdmin);
-
-
+            var result = await updateClienteCommand.Execute(clienteId, model, userId, esAdmin: true);
             return StatusCode(result.StatusCode, result);
         }
-
-
-
 
         [Authorize(Roles = "Administrador")]
         [HttpDelete("{clienteId:int}")]
         public async Task<IActionResult> Delete(
-             [FromRoute] int clienteId,
-             [FromServices] IDeleteClienteCommand deleteClienteCommand)
+            [FromRoute] int clienteId,
+            [FromServices] IDeleteClienteCommand deleteClienteCommand)
         {
             if (clienteId <= 0)
             {
@@ -136,14 +112,12 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-
-
         [Authorize(Roles = "Administrador")]
         [HttpGet]
         public async Task<IActionResult> GetAll(
-             [FromServices] IGetAllClientesQuery getAllClientesQuery,
-             [FromQuery] int pageNumber = 1,
-             [FromQuery] int pageSize = 10)
+            [FromServices] IGetAllClientesQuery getAllClientesQuery,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
             if (pageNumber <= 0) pageNumber = 1;
             if (pageSize <= 0) pageSize = 10;
@@ -151,18 +125,16 @@ namespace Sosa.Gym.API.Controllers
 
             var data = await getAllClientesQuery.Execute(pageNumber, pageSize);
 
-            return Ok(ResponseApiService.Response(StatusCodes.Status200OK, data));
+            return StatusCode(StatusCodes.Status200OK,
+                ResponseApiService.Response(StatusCodes.Status200OK, data));
         }
 
-
-
-        [Authorize(Roles = "Cliente")]
+        [Authorize] 
         [HttpGet("me")]
         public async Task<IActionResult> GetMe(
-          [FromServices] IGetClienteQuery query)
+            [FromServices] IGetClienteQuery query)
         {
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!int.TryParse(userIdStr, out var userId))
+            if (!TryGetUserId(out var userId))
             {
                 return Unauthorized(ResponseApiService.Response(
                     StatusCodes.Status401Unauthorized,
@@ -176,8 +148,8 @@ namespace Sosa.Gym.API.Controllers
         [Authorize(Roles = "Administrador")]
         [HttpGet("{clienteId:int}")]
         public async Task<IActionResult> GetById(
-        [FromRoute] int clienteId,
-        [FromServices] IGetClienteByIdAdminQuery query)
+            [FromRoute] int clienteId,
+            [FromServices] IGetClienteByIdAdminQuery query)
         {
             if (clienteId <= 0)
             {
@@ -190,12 +162,11 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-
         [Authorize(Roles = "Administrador")]
         [HttpGet("dni/{dni:long}")]
         public async Task<IActionResult> GetByDni(
-              [FromRoute] long dni,
-              [FromServices] IGetClienteByDniQuery getClienteByDniQuery)
+            [FromRoute] long dni,
+            [FromServices] IGetClienteByDniQuery getClienteByDniQuery)
         {
             if (dni <= 0)
             {

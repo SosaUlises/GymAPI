@@ -1,5 +1,6 @@
 using Sosa.Gym.API;
 using Sosa.Gym.Application;
+using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Common;
 using Sosa.Gym.External;
 using Sosa.Gym.Persistence;
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddControllers(options => options.Filters.Add<ExceptionManager>());
 builder.Services.AddHttpContextAccessor();
 
 builder.Services
