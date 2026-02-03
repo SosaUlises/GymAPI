@@ -21,7 +21,7 @@ namespace Sosa.Gym.External.GetTokenJWT
             _configuration = configuration;
         }
 
-        public string Execute(string userId, string role, UsuarioEntity usuario)
+        public string Execute(string userId, IEnumerable<string> roles, UsuarioEntity usuario)
         {
             var jwtKey = _configuration["Jwt_Key"];
             var jwtIssuer = _configuration["Jwt_Issuer"];
@@ -38,16 +38,15 @@ namespace Sosa.Gym.External.GetTokenJWT
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
 
             var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.NameIdentifier, userId),
-            new Claim(ClaimTypes.Email, usuario.Email),
-            new Claim("Nombre", usuario.Nombre),
-            new Claim("Apellido", usuario.Apellido),
-        };
+            {
+                new Claim(ClaimTypes.NameIdentifier, userId),
+                new Claim(ClaimTypes.Email, usuario.Email ?? ""),
+                new Claim("given_name", usuario.Nombre ?? ""),
+                new Claim("family_name", usuario.Apellido ?? ""),
+            };
 
-            // Rol
-            if (!string.IsNullOrEmpty(role))
-                claims.Add(new Claim(ClaimTypes.Role, role));
+            foreach (var r in roles.Where(r => !string.IsNullOrWhiteSpace(r)))
+                claims.Add(new Claim(ClaimTypes.Role, r));
 
             var descriptor = new SecurityTokenDescriptor
             {
@@ -61,5 +60,6 @@ namespace Sosa.Gym.External.GetTokenJWT
             var token = tokenHandler.CreateToken(descriptor);
             return tokenHandler.WriteToken(token);
         }
+
     }
 }

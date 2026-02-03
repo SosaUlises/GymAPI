@@ -9,6 +9,7 @@ using Sosa.Gym.Application.External;
 using Sosa.Gym.Domain.Entidades.Usuario;
 using Sosa.Gym.External.GetTokenJWT;
 using Sosa.Gym.Persistence.DataBase;
+using System.Security.Claims;
 using System.Text;
 
 namespace Sosa.Gym.External
@@ -75,8 +76,12 @@ namespace Sosa.Gym.External
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = jwtIssuer,
                     ValidAudience = jwtAudience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+                    NameClaimType = ClaimTypes.NameIdentifier,
+                    RoleClaimType = ClaimTypes.Role,
+                    ClockSkew = TimeSpan.FromMinutes(1)
                 };
+
             });
 
 

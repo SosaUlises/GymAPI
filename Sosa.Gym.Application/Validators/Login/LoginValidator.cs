@@ -12,8 +12,9 @@ namespace Sosa.Gym.Application.Validators.Login
     {
         public LoginValidator()
         {
-            RuleFor(x => x.Email).NotNull().NotEmpty();
-            RuleFor(x => x.Password).NotNull().NotEmpty();
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+            RuleFor(x => x.Password).NotEmpty().MinimumLength(6);
+
         }
     }
 }

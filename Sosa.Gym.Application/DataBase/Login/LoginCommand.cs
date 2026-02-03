@@ -1,18 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Sosa.Gym.Application.External;
 using Sosa.Gym.Application.Features;
 using Sosa.Gym.Domain.Entidades.Usuario;
 using Sosa.Gym.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sosa.Gym.Application.DataBase.Login
 {
@@ -34,7 +25,13 @@ namespace Sosa.Gym.Application.DataBase.Login
 
         public async Task<BaseResponseModel> Execute(LoginModel model)
         {
+
             var email = model.Email?.Trim();
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(model.Password))
+            {
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest, "Email y contraseña son obligatorios");
+            }
+
 
             var usuario = await _userManager.FindByEmailAsync(email);
             if (usuario == null)
@@ -49,9 +46,10 @@ namespace Sosa.Gym.Application.DataBase.Login
                 return ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Usuario o contraseña incorrectos");
 
             var roles = await _userManager.GetRolesAsync(usuario);
-            var rol = roles.FirstOrDefault() ?? "Cliente";
+            if (roles == null || roles.Count == 0)
+                return ResponseApiService.Response(StatusCodes.Status403Forbidden, "Usuario sin rol asignado");
 
-            var token = _jwtService.Execute(usuario.Id.ToString(), rol, usuario);
+            var token = _jwtService.Execute(usuario.Id.ToString(), roles, usuario);
 
             return ResponseApiService.Response(StatusCodes.Status200OK, new
             {
@@ -62,7 +60,7 @@ namespace Sosa.Gym.Application.DataBase.Login
                     usuario.Email,
                     usuario.Nombre,
                     usuario.Apellido,
-                    Rol = rol
+                    Rol = roles
                 }
             }, "Login exitoso");
         }

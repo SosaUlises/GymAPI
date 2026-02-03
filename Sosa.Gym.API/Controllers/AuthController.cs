@@ -9,8 +9,7 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("/api/v1/auth")]
     [ApiController]
-    [TypeFilter(typeof(ExceptionManager))]
-    public class AuthController : Controller
+    public class AuthController : ControllerBase
     {
         [AllowAnonymous]
         [HttpPost("login")]

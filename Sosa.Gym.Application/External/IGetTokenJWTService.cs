@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.External
 {
     public interface IGetTokenJWTService
     {
-        string Execute(string userId, string role, UsuarioEntity usuario);
+       string Execute(string userId, IEnumerable<string> roles, UsuarioEntity usuario);
     }
 }
