@@ -27,35 +27,38 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente
 
         public async Task<BaseResponseModel> Execute(CreateClienteModel model)
         {
+            var email = model.Email?.Trim();
 
-            var existeEmail = await _userManager.Users.AnyAsync(x => x.Email == model.Email);
-            if (existeEmail)
+            if (string.IsNullOrWhiteSpace(email))
+                return ResponseApiService.Response(StatusCodes.Status400BadRequest, "Email inválido");
+
+
+            var usuarioExistente = await _userManager.FindByEmailAsync(email);
+            if (usuarioExistente != null)
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest,
-                    $"Ya existe un usuario con el email {model.Email}");
+                    $"Ya existe un usuario con el email {email}");
 
             var existeDni = await _userManager.Users.AnyAsync(x => x.Dni == model.Dni);
             if (existeDni)
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest,
                     $"Ya existe un usuario con el DNI {model.Dni}");
 
-            // Crear usuario
             var usuario = _mapper.Map<UsuarioEntity>(model);
-            usuario.UserName = model.Email;
+            usuario.UserName = email;
+            usuario.Email = email;
 
             var createUser = await _userManager.CreateAsync(usuario, model.Password);
             if (!createUser.Succeeded)
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest, createUser.Errors, "Error al crear el usuario");
 
-            // Asignar rol 
             const string rolCliente = "Cliente";
             var rolResult = await _userManager.AddToRoleAsync(usuario, rolCliente);
             if (!rolResult.Succeeded)
             {
-                await _userManager.DeleteAsync(usuario); // compensacion
+                await _userManager.DeleteAsync(usuario);
                 return ResponseApiService.Response(StatusCodes.Status400BadRequest, rolResult.Errors, "Error al asignar el rol");
             }
 
-            // Crear cliente
             try
             {
                 var cliente = _mapper.Map<ClienteEntity>(model);
@@ -72,12 +75,13 @@ namespace Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente
             }
             catch
             {
-                // compensación si falla el insert de cliente
                 await _userManager.DeleteAsync(usuario);
                 throw;
             }
         }
-    }
+    
+    
+}
 
 }
 
