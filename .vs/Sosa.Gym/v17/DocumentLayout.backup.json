@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\progresocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\progresocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|c:\\users\\ulipv\\source\\repos\\sosa.gym\\sosa.gym.api\\controllers\\ejerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{478E71EC-7466-40FD-B53C-2694A4C3E65F}|Sosa.Gym.API\\Sosa.Gym.API.csproj|solutionrelative:sosa.gym.api\\controllers\\ejerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,6 +43,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ProgresoController.cs",
+              "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\ProgresoController.cs",
+              "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\ProgresoController.cs",
+              "ToolTip": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\ProgresoController.cs",
+              "RelativeToolTip": "Sosa.Gym.API\\Controllers\\ProgresoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T02:03:49.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "EjercicioController.cs",
               "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\EjercicioController.cs",
               "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\EjercicioController.cs",
@@ -51,7 +68,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DiaRutinaController.cs",
               "DocumentMoniker": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.API\\Controllers\\DiaRutinaController.cs",
               "RelativeDocumentMoniker": "Sosa.Gym.API\\Controllers\\DiaRutinaController.cs",
@@ -59,8 +76,7 @@
               "RelativeToolTip": "Sosa.Gym.API\\Controllers\\DiaRutinaController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-03T01:59:19.732Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-03T01:59:19.732Z"
             }
           ]
         }
