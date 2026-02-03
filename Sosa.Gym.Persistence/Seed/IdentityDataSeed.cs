@@ -31,11 +31,11 @@ namespace Sosa.Gym.Persistence.Seed
                 }
             }
 
-            var adminEmail = config["Admin:Email"]?.Trim();
-            var adminPassword = config["Admin:Password"];
+            var adminEmail = config["Admin_Email"]?.Trim();
+            var adminPassword = config["Admin_Password"];
 
             if (string.IsNullOrWhiteSpace(adminEmail) || string.IsNullOrWhiteSpace(adminPassword))
-                throw new Exception("Debes configurar Admin:Email y Admin:Password como secreto");
+                throw new Exception("Debes configurar Admin_Email y Admin_Password como secreto");
 
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
