@@ -16,22 +16,25 @@ namespace Sosa.Gym.Persistence.Seed
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UsuarioEntity>>();
             var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-            // Roles
             string[] roles = { "Cliente", "Administrador" };
 
             foreach (var role in roles)
             {
                 if (!await roleManager.RoleExistsAsync(role))
                 {
-                    await roleManager.CreateAsync(new IdentityRole<int>(role));
+                    var res = await roleManager.CreateAsync(new IdentityRole<int>(role));
+                    if (!res.Succeeded)
+                    {
+                        throw new Exception("No se pudo crear el rol: " +
+                            string.Join(", ", res.Errors.Select(e => e.Description)));
+                    }
                 }
             }
 
-            // Crear Administrador
-            var adminEmail = config["Admin_Email"];
-            var adminPassword = config["Admin_Password"];
+            var adminEmail = config["Admin:Email"]?.Trim();
+            var adminPassword = config["Admin:Password"];
 
-            if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminPassword))
+            if (string.IsNullOrWhiteSpace(adminEmail) || string.IsNullOrWhiteSpace(adminPassword))
                 throw new Exception("Debes configurar Admin:Email y Admin:Password como secreto");
 
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
@@ -44,7 +47,8 @@ namespace Sosa.Gym.Persistence.Seed
                     UserName = adminEmail,
                     Nombre = "Admin",
                     Apellido = "Sistema",
-                    Dni = 000000
+                    Dni = 99999999,
+                    EmailConfirmed = true
                 };
 
                 var createResult = await userManager.CreateAsync(adminUser, adminPassword);
@@ -55,8 +59,14 @@ namespace Sosa.Gym.Persistence.Seed
                                         string.Join(", ", createResult.Errors.Select(e => e.Description)));
                 }
 
-                await userManager.AddToRoleAsync(adminUser, "Administrador");
+                var addRoleResult = await userManager.AddToRoleAsync(adminUser, "Administrador");
+                if (!addRoleResult.Succeeded)
+                {
+                    throw new Exception("No se pudo asignar rol Administrador: " +
+                                        string.Join(", ", addRoleResult.Errors.Select(e => e.Description)));
+                }
             }
         }
+
     }
 }

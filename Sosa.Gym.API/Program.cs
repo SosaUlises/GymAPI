@@ -1,18 +1,19 @@
+using Microsoft.EntityFrameworkCore;
 using Sosa.Gym.API;
 using Sosa.Gym.Application;
 using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Common;
 using Sosa.Gym.External;
 using Sosa.Gym.Persistence;
+using Sosa.Gym.Persistence.DataBase;
 using Sosa.Gym.Persistence.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// Controllers + filtro global
+builder.Services.AddControllers(options => options.Filters.Add<ExceptionManager>());
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddControllers(options => options.Filters.Add<ExceptionManager>());
 builder.Services.AddHttpContextAccessor();
 
 builder.Services
@@ -22,40 +23,42 @@ builder.Services
     .AddExternal(builder.Configuration)
     .AddPersistence(builder.Configuration);
 
-// Config CORS 
+// CORS
 var allowedOrigins = "AllowedOrigins";
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: allowedOrigins, policy =>
     {
         policy
-            .WithOrigins(
-                "http://localhost:5173",
-                "http://127.0.0.1:5173"
-            )
+            .WithOrigins("http://localhost:5173", "http://127.0.0.1:5173")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
 });
 
-
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<DataBaseService>();
+    await db.Database.MigrateAsync();
+}
+
+// Seed roles/admin
 await IdentityDataSeed.SeedRolesAsync(app);
 
-app.UseSwagger();
-app.UseSwaggerUI(options =>
+if (app.Environment.IsDevelopment())
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = string.Empty; 
-});
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseCors(allowedOrigins);
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
