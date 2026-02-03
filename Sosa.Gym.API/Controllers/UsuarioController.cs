@@ -3,18 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
-using Sosa.Gym.Application.Exceptions;
 using Sosa.Gym.Application.Features;
 
 namespace Sosa.Gym.API.Controllers
 {
-    [Route("/api/v1/usuario")]
+    [Route("api/v1/usuarios")]
     [ApiController]
     [Authorize(Roles = "Administrador")]
-    [TypeFilter(typeof(ExceptionManager))]
     public class UsuarioController : ControllerBase
     {
-
         [HttpGet]
         public async Task<IActionResult> GetAll(
             [FromServices] IGetAllUsuariosQuery getAllUsuariosQuery,
@@ -27,9 +24,10 @@ namespace Sosa.Gym.API.Controllers
 
             var data = await getAllUsuariosQuery.Execute(pageNumber, pageSize);
 
-            return Ok(ResponseApiService.Response(StatusCodes.Status200OK, data));
+            return StatusCode(
+                StatusCodes.Status200OK,
+                ResponseApiService.Response(StatusCodes.Status200OK, data));
         }
-
 
         [HttpGet("{userId:int}")]
         public async Task<IActionResult> GetById(
@@ -47,11 +45,10 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-
         [HttpGet("dni/{dni:long}")]
         public async Task<IActionResult> GetByDni(
-             [FromRoute] long dni,
-             [FromServices] IGetUsuarioByDniQuery getUsuarioByDniQuery)
+            [FromRoute] long dni,
+            [FromServices] IGetUsuarioByDniQuery getUsuarioByDniQuery)
         {
             if (dni <= 0)
             {
@@ -63,8 +60,5 @@ namespace Sosa.Gym.API.Controllers
             var result = await getUsuarioByDniQuery.Execute(dni);
             return StatusCode(result.StatusCode, result);
         }
-
-
-
     }
 }
