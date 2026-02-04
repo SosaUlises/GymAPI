@@ -35,15 +35,8 @@ namespace Sosa.Gym.API.Controllers
                     StatusCodes.Status400BadRequest,
                     validationResult.Errors));
             }
-
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await createRutinaCommand.Execute(model, userId);
+       
+            var result = await createRutinaCommand.Execute(model);
             return StatusCode(result.StatusCode, result);
         }
 
@@ -69,14 +62,7 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await updateRutinaCommand.Execute(rutinaId, model, userId);
+            var result = await updateRutinaCommand.Execute(rutinaId, model);
             return StatusCode(result.StatusCode, result);
         }
 
@@ -92,14 +78,7 @@ namespace Sosa.Gym.API.Controllers
                     "RutinaId inválido"));
             }
 
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await deleteRutinaCommand.Execute(rutinaId, userId);
+            var result = await deleteRutinaCommand.Execute(rutinaId);
             return StatusCode(result.StatusCode, result);
         }
 
