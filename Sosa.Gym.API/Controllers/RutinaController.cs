@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
-using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId;
 using Sosa.Gym.Application.Features;
 using System.Security.Claims;
 
@@ -15,12 +14,6 @@ namespace Sosa.Gym.API.Controllers
     [Authorize(Roles = "Cliente")]
     public class RutinaController : ControllerBase
     {
-        private bool TryGetUserId(out int userId)
-        {
-            userId = 0;
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return int.TryParse(userIdStr, out userId);
-        }
 
         [HttpPost]
         public async Task<IActionResult> Create(
@@ -82,19 +75,5 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [HttpGet("me")]
-        public async Task<IActionResult> GetMine(
-            [FromServices] IGetRutinaQuery query)
-        {
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await query.Execute(userId);
-            return StatusCode(result.StatusCode, result);
-        }
     }
 }

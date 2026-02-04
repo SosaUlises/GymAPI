@@ -27,35 +27,17 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseResponseModel> Execute(int rutinaId, CreateDiaRutinaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(int rutinaId, CreateDiaRutinaModel model)
         {
-            var rutina = await _dataBaseService.Rutinas.FirstOrDefaultAsync(r => r.Id == rutinaId);
-            if (rutina == null)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status404NotFound,
-                    "La rutina no fue encontrada");
-            }
+            var rutinaExiste = await _dataBaseService.Rutinas.AnyAsync(r => r.Id == rutinaId);
+            if (!rutinaExiste)
+                return ResponseApiService.Response(StatusCodes.Status404NotFound, "La rutina no fue encontrada");
 
-            var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(c => c.UsuarioId == userId);
-            if (cliente == null)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status404NotFound,
-                    "Cliente no encontrado");
-            }
-
-        
-
-            var existeDia = await _dataBaseService.DiasRutinas.AnyAsync(d =>
-                d.RutinaId == rutinaId && d.NombreDia == model.NombreDia);
+            var existeDia = await _dataBaseService.DiasRutinas
+                .AnyAsync(d => d.RutinaId == rutinaId && d.NombreDia == model.NombreDia);
 
             if (existeDia)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status400BadRequest,
-                    "Ese día ya existe en la rutina");
-            }
+                return ResponseApiService.Response(StatusCodes.Status409Conflict, "Ese día ya existe en la rutina");
 
             var diaRutina = _mapper.Map<DiasRutinaEntity>(model);
             diaRutina.RutinaId = rutinaId;
@@ -63,9 +45,8 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
             await _dataBaseService.DiasRutinas.AddAsync(diaRutina);
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(
-                StatusCodes.Status201Created,
-                "Día de la rutina agregado correctamente");
+            return ResponseApiService.Response(StatusCodes.Status201Created, new { diaRutina.Id }, "Día agregado correctamente");
         }
+
     }
 }

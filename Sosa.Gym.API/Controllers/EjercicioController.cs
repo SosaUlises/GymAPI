@@ -15,12 +15,6 @@ namespace Sosa.Gym.API.Controllers
     [Authorize(Roles = "Cliente")]
     public class EjercicioController : ControllerBase
     {
-        private bool TryGetUserId(out int userId)
-        {
-            userId = 0;
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return int.TryParse(userIdStr, out userId);
-        }
 
 
         [HttpPost("dias-rutina/{diaRutinaId:int}/ejercicios")]
@@ -45,14 +39,7 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await createEjercicioCommand.Execute(diaRutinaId, model, userId);
+            var result = await createEjercicioCommand.Execute(diaRutinaId, model);
             return StatusCode(result.StatusCode, result);
         }
 
@@ -69,14 +56,8 @@ namespace Sosa.Gym.API.Controllers
                     "DiaRutinaId inválido"));
             }
 
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
 
-            var result = await query.Execute(diaRutinaId, userId);
+            var result = await query.Execute(diaRutinaId);
             return StatusCode(result.StatusCode, result);
         }
 
@@ -103,14 +84,7 @@ namespace Sosa.Gym.API.Controllers
                     validationResult.Errors));
             }
 
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await updateEjercicioCommand.Execute(ejercicioId, model, userId);
+            var result = await updateEjercicioCommand.Execute(ejercicioId, model);
             return StatusCode(result.StatusCode, result);
         }
 
@@ -126,14 +100,7 @@ namespace Sosa.Gym.API.Controllers
                     "EjercicioId inválido"));
             }
 
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await deleteEjercicioCommand.Execute(ejercicioId, userId);
+            var result = await deleteEjercicioCommand.Execute(ejercicioId);
             return StatusCode(result.StatusCode, result);
         }
     }

@@ -19,47 +19,19 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseResponseModel> Execute(int diaRutinaId, int userId)
+        public async Task<BaseResponseModel> Execute(int diaRutinaId)
         {
             var diaRutina = await _dataBaseService.DiasRutinas
-                .Include(d => d.Rutina)
-                .FirstOrDefaultAsync(x => x.Id == diaRutinaId);
+            .FirstOrDefaultAsync(x => x.Id == diaRutinaId);
 
             if (diaRutina == null)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status404NotFound,
-                    "El día de la rutina no fue encontrado");
-            }
-
-            var cliente = await _dataBaseService.Clientes.FirstOrDefaultAsync(c => c.UsuarioId == userId);
-            if (cliente == null)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status404NotFound,
-                    "Cliente no encontrado");
-            }
-
-            if (diaRutina.Rutina == null)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status500InternalServerError,
-                    "El día no tiene rutina asociada");
-            }
-
-          /*  if (diaRutina.Rutina.ClienteId != cliente.Id)
-           {
-                return ResponseApiService.Response(
-                    StatusCodes.Status403Forbidden,
-                    "No puedes eliminar días de una rutina que no te pertenece");
-            }*/
+                return ResponseApiService.Response(404, "El día de la rutina no fue encontrado");
 
             _dataBaseService.DiasRutinas.Remove(diaRutina);
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(
-                StatusCodes.Status200OK,
-                "Día de la rutina eliminado correctamente");
+            return ResponseApiService.Response(200, "Día de la rutina eliminado correctamente");
+
         }
     }
 }

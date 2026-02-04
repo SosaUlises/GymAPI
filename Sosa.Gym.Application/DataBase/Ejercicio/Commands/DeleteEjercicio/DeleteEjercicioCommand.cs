@@ -15,7 +15,7 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<BaseResponseModel> Execute(int ejercicioId, int userId)
+        public async Task<BaseResponseModel> Execute(int ejercicioId)
         {
             var ejercicio = await _dataBaseService.Ejercicios
                 .Include(e => e.DiasRutina)
@@ -25,24 +25,10 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
             if (ejercicio == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Ejercicio no encontrado");
 
-            var clienteId = await _dataBaseService.Clientes
-                .Where(c => c.UsuarioId == userId)
-                .Select(c => c.Id)
-                .FirstOrDefaultAsync();
-
-            if (clienteId == 0)
-                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
             if (ejercicio.DiasRutina?.Rutina == null)
                 return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "El ejercicio no tiene rutina asociada");
 
-       /*     if (ejercicio.DiasRutina.Rutina.ClienteId != clienteId)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status403Forbidden,
-                    "No puedes eliminar ejercicios que no te pertenecen");
-            }
-       */
             _dataBaseService.Ejercicios.Remove(ejercicio);
             await _dataBaseService.SaveAsync();
 

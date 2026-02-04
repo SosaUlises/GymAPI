@@ -35,7 +35,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
             await _dataBaseService.Rutinas.AddAsync(rutina);
             await _dataBaseService.SaveAsync();
 
-            return ResponseApiService.Response(StatusCodes.Status201Created, "Rutina creada correctamente");
+            return ResponseApiService.Response(StatusCodes.Status201Created, new { rutina.Id }, "Rutina creada correctamente");
         }
     }
 }
