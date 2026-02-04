@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Sosa.Gym.Application.Configuration;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.AsignarRutina;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.DesasignarRutina;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignada;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignadaDetalle;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.DeleteCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
@@ -90,6 +94,11 @@ namespace Sosa.Gym.Application
             services.AddTransient<IGetCuotaByClienteQuery, GetCuotaByClienteQuery>();
             services.AddTransient<IGetCuotasByEstadoQuery, GetCuotasByEstadoQuery>();
 
+            // Asignacion de rutinas
+            services.AddTransient<IAsignarRutinaCommand, AsignarRutinaCommand>();
+            services.AddTransient<IDesasignarRutinaCommand, DesasignarRutinaCommand>();
+            services.AddTransient<IGetRutinasAsignadasQuery, GetRutinasAsignadasQuery>();
+            services.AddTransient<IGetRutinaAsignadaDetalleQuery, GetRutinaAsignadaDetalleQuery>();
 
             // Login
             services.AddTransient<ILoginCommand, LoginCommand>();

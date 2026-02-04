@@ -35,14 +35,14 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaByClienteId
             if (clienteId == 0)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
-            var rutinas = await _dataBaseService.Rutinas
-                .Where(r => r.ClienteId == clienteId)
-                .OrderByDescending(r => r.FechaCreacion)
-                .ToListAsync();
+            /*   var rutinas = await _dataBaseService.Rutinas
+                   .Where(r => r.ClienteId == clienteId)
+                   .OrderByDescending(r => r.FechaCreacion)
+                   .ToListAsync();
 
-            var data = _mapper.Map<List<GetRutinaModel>>(rutinas);
-
-            return ResponseApiService.Response(StatusCodes.Status200OK, data);
+               var data = _mapper.Map<List<GetRutinaModel>>(rutinas);
+            */
+            return ResponseApiService.Response(StatusCodes.Status200OK/*,data*/);
         }
 
     }

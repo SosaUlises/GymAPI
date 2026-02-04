@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignada;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignadaDetalle;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.CreateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Commands.UpdateCliente;
 using Sosa.Gym.Application.DataBase.Cliente.Queries.GetAllClientes;
@@ -77,7 +79,6 @@ namespace Sosa.Gym.Application.Configuration
 
             // Rutina
             CreateMap<CreateRutinaModel, RutinaEntity>()
-                .ForMember(x => x.ClienteId, opt => opt.Ignore())
                 .ForMember(x => x.FechaCreacion, opt => opt.Ignore());
 
             CreateMap<RutinaEntity, UpdateRutinaModel>().ReverseMap();
@@ -103,6 +104,26 @@ namespace Sosa.Gym.Application.Configuration
                .ForMember(x => x.FechaRegistro, opt => opt.Ignore());
 
             CreateMap<ProgresoEntity, GetProgresoModel>().ReverseMap();
+
+
+            // Asignacion de rutinas
+
+            CreateMap<RutinaAsignadaEntity, RutinaAsignadaItemModel>()
+                .ForMember(d => d.RutinaId, o => o.MapFrom(s => s.RutinaId))
+                .ForMember(d => d.Nombre, o => o.MapFrom(s => s.Rutina.Nombre))
+                .ForMember(d => d.Descripcion, o => o.MapFrom(s => s.Rutina.Descripcion))
+                .ForMember(d => d.FechaAsignacion, o => o.MapFrom(s => s.FechaAsignacion));
+
+            CreateMap<RutinaEntity, RutinaAsignadaDetalleModel>()
+                .ForMember(d => d.RutinaId, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Dias, o => o.MapFrom(s => s.DiasRutina));
+
+            CreateMap<DiasRutinaEntity, DiaRutinaDetalleModel>()
+                .ForMember(d => d.DiaRutinaId, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Ejercicios, o => o.MapFrom(s => s.Ejercicios));
+
+            CreateMap<EjercicioEntity, EjercicioDetalleModel>()
+                .ForMember(d => d.EjercicioId, o => o.MapFrom(s => s.Id));
 
 
             // Cuota

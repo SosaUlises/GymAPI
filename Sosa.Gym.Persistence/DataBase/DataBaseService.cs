@@ -9,18 +9,13 @@ using Sosa.Gym.Domain.Entidades.Progreso;
 using Sosa.Gym.Domain.Entidades.Rutina;
 using Sosa.Gym.Domain.Entidades.Usuario;
 using Sosa.Gym.Persistence.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sosa.Gym.Persistence.DataBase
 {
     public class DataBaseService : IdentityDbContext<UsuarioEntity, IdentityRole<int>, int>, IDataBaseService
     {
         public DataBaseService(DbContextOptions options) : base(options)
-        { 
+        {
 
         }
 
@@ -31,6 +26,8 @@ namespace Sosa.Gym.Persistence.DataBase
         public DbSet<RutinaEntity> Rutinas { get; set; }
         public DbSet<UsuarioEntity> Usuarios { get; set; }
         public DbSet<CuotaEntity> Cuotas { get; set; }
+        public DbSet<RutinaAsignadaEntity> RutinasAsignadas { get; set; }
+
 
         public async Task<bool> SaveAsync()
         {
@@ -44,7 +41,7 @@ namespace Sosa.Gym.Persistence.DataBase
             EntityConfiguration(modelBuilder);
         }
 
-        private void EntityConfiguration(ModelBuilder modelBuilder) 
+        private void EntityConfiguration(ModelBuilder modelBuilder)
         {
             new UsuarioConfiguration(modelBuilder.Entity<UsuarioEntity>());
             new ClienteConfiguration(modelBuilder.Entity<ClienteEntity>());
@@ -53,6 +50,7 @@ namespace Sosa.Gym.Persistence.DataBase
             new EjercicioConfiguration(modelBuilder.Entity<EjercicioEntity>());
             new DiasRutinaConfiguration(modelBuilder.Entity<DiasRutinaEntity>());
             new CuotaConfiguration(modelBuilder.Entity<CuotaEntity>());
+            new RutinaAsignadaConfiguration(modelBuilder.Entity<RutinaAsignadaEntity>());
         }
     }
 }

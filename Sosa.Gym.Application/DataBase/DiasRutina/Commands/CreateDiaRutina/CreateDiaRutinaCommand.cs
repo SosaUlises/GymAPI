@@ -45,12 +45,7 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina
                     "Cliente no encontrado");
             }
 
-            if (rutina.ClienteId != cliente.Id)
-            {
-                return ResponseApiService.Response(
-                    StatusCodes.Status403Forbidden,
-                    "No puedes agregar días a una rutina que no te pertenece");
-            }
+        
 
             var existeDia = await _dataBaseService.DiasRutinas.AnyAsync(d =>
                 d.RutinaId == rutinaId && d.NombreDia == model.NombreDia);

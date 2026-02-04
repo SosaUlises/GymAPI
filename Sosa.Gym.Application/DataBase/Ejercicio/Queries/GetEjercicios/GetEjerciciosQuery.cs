@@ -48,12 +48,12 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRuti
             if (dia.Rutina == null)
                 return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "El día no tiene rutina asociada");
 
-            if (dia.Rutina.ClienteId != clienteId)
+       /*     if (dia.Rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
                     "No puedes ver ejercicios de una rutina que no te pertenece");
-            }
+            }*/
 
             // Traer ejercicios del día
             var ejercicios = await _dataBaseService.Ejercicios

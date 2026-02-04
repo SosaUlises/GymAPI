@@ -47,12 +47,12 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio
             if (ejercicio.DiasRutina?.Rutina == null)
                 return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "El ejercicio no tiene rutina asociada");
 
-            if (ejercicio.DiasRutina.Rutina.ClienteId != clienteId)
+           /* if (ejercicio.DiasRutina.Rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
                     "No puedes modificar ejercicios que no te pertenecen");
-            }
+            }*/
 
             ejercicio.Nombre = model.Nombre;
             ejercicio.Series = model.Series;

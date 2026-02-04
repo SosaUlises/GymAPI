@@ -12,8 +12,8 @@ using Sosa.Gym.Persistence.DataBase;
 namespace Sosa.Gym.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseService))]
-    [Migration("20251220030433_PendingChanges")]
-    partial class PendingChanges
+    [Migration("20260203170109_Primera")]
+    partial class Primera
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,7 +207,9 @@ namespace Sosa.Gym.Persistence.Migrations
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("Pendiente");
 
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("timestamp with time zone");
@@ -325,7 +327,7 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.ToTable("DiasRutina", (string)null);
                 });
 
-            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.RutinaEntity", b =>
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.RutinaAsignadaEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -333,8 +335,35 @@ namespace Sosa.Gym.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Activa")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("ClienteId")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("FechaAsignacion")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("RutinaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RutinaId");
+
+                    b.HasIndex("ClienteId", "RutinaId")
+                        .IsUnique();
+
+                    b.ToTable("RutinasAsignadas", (string)null);
+                });
+
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.RutinaEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
@@ -348,8 +377,6 @@ namespace Sosa.Gym.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
 
                     b.ToTable("Rutinas", (string)null);
                 });
@@ -541,15 +568,23 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.Navigation("Rutina");
                 });
 
-            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.RutinaEntity", b =>
+            modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.RutinaAsignadaEntity", b =>
                 {
                     b.HasOne("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", "Cliente")
-                        .WithMany("Rutinas")
+                        .WithMany("RutinasAsignadas")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Sosa.Gym.Domain.Entidades.Rutina.RutinaEntity", "Rutina")
+                        .WithMany("RutinasAsignadas")
+                        .HasForeignKey("RutinaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Cliente");
+
+                    b.Navigation("Rutina");
                 });
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Cliente.ClienteEntity", b =>
@@ -558,7 +593,7 @@ namespace Sosa.Gym.Persistence.Migrations
 
                     b.Navigation("Progresos");
 
-                    b.Navigation("Rutinas");
+                    b.Navigation("RutinasAsignadas");
                 });
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.DiasRutinaEntity", b =>
@@ -569,6 +604,8 @@ namespace Sosa.Gym.Persistence.Migrations
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Rutina.RutinaEntity", b =>
                 {
                     b.Navigation("DiasRutina");
+
+                    b.Navigation("RutinasAsignadas");
                 });
 
             modelBuilder.Entity("Sosa.Gym.Domain.Entidades.Usuario.UsuarioEntity", b =>

@@ -32,10 +32,10 @@ namespace Sosa.Gym.Persistence.Configuration
                 .WithOne(x => x.Cliente)
                 .HasForeignKey(x => x.ClienteId);
 
-            entityBuilder.HasMany(x => x.Rutinas)
+            entityBuilder.HasMany(x => x.RutinasAsignadas)
                 .WithOne(x => x.Cliente)
-                .HasForeignKey(x => x.ClienteId);
-
+                .HasForeignKey(x => x.ClienteId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

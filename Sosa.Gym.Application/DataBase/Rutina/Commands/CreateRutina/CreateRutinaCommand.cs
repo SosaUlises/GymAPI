@@ -26,18 +26,10 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina
             _mapper = mapper;   
         }
 
-        public async Task<BaseResponseModel> Execute(CreateRutinaModel model, int userId)
+        public async Task<BaseResponseModel> Execute(CreateRutinaModel model)
         {
-            var clienteId = await _dataBaseService.Clientes
-                .Where(c => c.UsuarioId == userId)
-                .Select(c => c.Id)
-                .FirstOrDefaultAsync();
-
-            if (clienteId == 0)
-                return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
             var rutina = _mapper.Map<RutinaEntity>(model);
-            rutina.ClienteId = clienteId;
             rutina.FechaCreacion = DateTime.UtcNow;
 
             await _dataBaseService.Rutinas.AddAsync(rutina);

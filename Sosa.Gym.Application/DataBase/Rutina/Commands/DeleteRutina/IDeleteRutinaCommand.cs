@@ -9,6 +9,6 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina
 {
     public interface IDeleteRutinaCommand
     {
-        Task<BaseResponseModel> Execute(int rutinaId, int userId);
+        Task<BaseResponseModel> Execute(int rutinaId);
     }
 }

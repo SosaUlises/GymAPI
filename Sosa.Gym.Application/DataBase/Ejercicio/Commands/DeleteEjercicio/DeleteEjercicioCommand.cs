@@ -36,13 +36,13 @@ namespace Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio
             if (ejercicio.DiasRutina?.Rutina == null)
                 return ResponseApiService.Response(StatusCodes.Status500InternalServerError, "El ejercicio no tiene rutina asociada");
 
-            if (ejercicio.DiasRutina.Rutina.ClienteId != clienteId)
+       /*     if (ejercicio.DiasRutina.Rutina.ClienteId != clienteId)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
                     "No puedes eliminar ejercicios que no te pertenecen");
             }
-
+       */
             _dataBaseService.Ejercicios.Remove(ejercicio);
             await _dataBaseService.SaveAsync();
 

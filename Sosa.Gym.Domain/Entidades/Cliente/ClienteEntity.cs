@@ -22,7 +22,8 @@ namespace Sosa.Gym.Domain.Entidades.Cliente
         public DateTime FechaRegistro { get; set; }
 
         public ICollection<ProgresoEntity> Progresos { get; set; } = new List<ProgresoEntity>();
-        public ICollection<RutinaEntity> Rutinas { get; set; } = new List<RutinaEntity>();
+        public ICollection<RutinaAsignadaEntity> RutinasAsignadas { get; set; } = new List<RutinaAsignadaEntity>();
+
         public ICollection<CuotaEntity> Cuotas { get; set; } = new List<CuotaEntity>();
     }
 }

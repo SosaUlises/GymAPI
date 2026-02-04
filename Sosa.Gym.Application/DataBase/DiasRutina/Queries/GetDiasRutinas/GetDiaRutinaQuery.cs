@@ -34,15 +34,15 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Queries.GetDiasRutinaByRutina
                     "Cliente no encontrado");
             }
 
-            var rutinaExisteYEsMia = await _dataBaseService.Rutinas
-                .AnyAsync(r => r.Id == rutinaId && r.ClienteId == clienteId);
+          /* var rutinaExisteYEsMia = await _dataBaseService.Rutinas
+       .AnyAsync(r => r.Id == rutinaId && r.ClienteId == clienteId);
 
-            if (!rutinaExisteYEsMia)
+         if (!rutinaExisteYEsMia)
             {
                 return ResponseApiService.Response(
                     StatusCodes.Status404NotFound,
                     "Rutina no encontrada");
-            }
+            }*/
 
             var dias = await _dataBaseService.DiasRutinas
                 .Where(d => d.RutinaId == rutinaId)

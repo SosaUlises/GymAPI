@@ -47,12 +47,12 @@ namespace Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina
                     "El día no tiene rutina asociada");
             }
 
-            if (diaRutina.Rutina.ClienteId != cliente.Id)
-            {
+          /*  if (diaRutina.Rutina.ClienteId != cliente.Id)
+           {
                 return ResponseApiService.Response(
                     StatusCodes.Status403Forbidden,
                     "No puedes eliminar días de una rutina que no te pertenece");
-            }
+            }*/
 
             _dataBaseService.DiasRutinas.Remove(diaRutina);
             await _dataBaseService.SaveAsync();
