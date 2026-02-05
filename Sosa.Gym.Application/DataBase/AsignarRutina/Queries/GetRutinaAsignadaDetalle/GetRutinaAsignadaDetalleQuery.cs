@@ -36,7 +36,7 @@ namespace Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignadaD
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
             var asignada = await _db.RutinasAsignadas
-                .AnyAsync(x => x.ClienteId == clienteId && x.RutinaId == rutinaId && x.Activa);
+                .AnyAsync(x => x.ClienteId == clienteId && x.RutinaId == rutinaId);
 
             if (!asignada)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Rutina no asignada");

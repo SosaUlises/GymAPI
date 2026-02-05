@@ -37,7 +37,7 @@
         }
       }
     },
-    "/api/v1/cliente": {
+    "/api/v1/clientes": {
       "post": {
         "tags": [
           "Cliente"
@@ -98,7 +98,7 @@
         }
       }
     },
-    "/api/v1/cliente/me": {
+    "/api/v1/clientes/me": {
       "put": {
         "tags": [
           "Cliente"
@@ -139,7 +139,7 @@
         }
       }
     },
-    "/api/v1/cliente/{clienteId}": {
+    "/api/v1/clientes/{clienteId}": {
       "put": {
         "tags": [
           "Cliente"
@@ -223,7 +223,7 @@
         }
       }
     },
-    "/api/v1/cliente/dni/{dni}": {
+    "/api/v1/clientes/dni/{dni}": {
       "get": {
         "tags": [
           "Cliente"
@@ -246,7 +246,30 @@
         }
       }
     },
-    "/api/v1/cuotas/clientes/{clienteId}/cuotas": {
+    "/api/v1/clientes/{clienteId}/rutinas": {
+      "get": {
+        "tags": [
+          "ClientesRutinas"
+        ],
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/clientes/{clienteId}/cuotas": {
       "post": {
         "tags": [
           "Cuota"
@@ -288,7 +311,7 @@
         }
       }
     },
-    "/api/v1/cuotas/generar": {
+    "/api/v1/cuotas/generacion": {
       "post": {
         "tags": [
           "Cuota"
@@ -319,7 +342,7 @@
         }
       }
     },
-    "/api/v1/cuotas/{cuotaId}/pagar": {
+    "/api/v1/cuotas/{cuotaId}/pagos": {
       "post": {
         "tags": [
           "Cuota"
@@ -361,7 +384,7 @@
         }
       }
     },
-    "/api/v1/cuotas/get-by-clienteId/{clienteId}": {
+    "/api/v1/cuotas/cliente/{clienteId}": {
       "get": {
         "tags": [
           "Cuota"
@@ -384,7 +407,7 @@
         }
       }
     },
-    "/api/v1/cuotas/get-by-estado/{estado}": {
+    "/api/v1/cuotas/estado/{estado}": {
       "get": {
         "tags": [
           "Cuota"
@@ -406,7 +429,7 @@
         }
       }
     },
-    "/rutinas/{rutinaId}/dias": {
+    "/api/v1/rutinas/{rutinaId}/dias": {
       "post": {
         "tags": [
           "DiaRutina"
@@ -471,30 +494,7 @@
         }
       }
     },
-    "/api/v1/dias-rutina/rutinas/{rutinaId}": {
-      "get": {
-        "tags": [
-          "DiaRutina"
-        ],
-        "parameters": [
-          {
-            "name": "rutinaId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/v1/ejercicios/dias-rutina/{diaRutinaId}": {
+    "/api/v1/dias-rutina/{diaRutinaId}/ejercicios": {
       "post": {
         "tags": [
           "Ejercicio"
@@ -705,10 +705,40 @@
         }
       }
     },
-    "/api/v1/rutina": {
+    "/api/v1/rutinas": {
+      "get": {
+        "tags": [
+          "Rutinas"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Rutina"
+          "Rutinas"
         ],
         "requestBody": {
           "content": {
@@ -736,10 +766,31 @@
         }
       }
     },
-    "/api/v1/rutina/{rutinaId}": {
+    "/api/v1/rutinas/{rutinaId}": {
+      "get": {
+        "tags": [
+          "Rutinas"
+        ],
+        "parameters": [
+          {
+            "name": "rutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "put": {
         "tags": [
-          "Rutina"
+          "Rutinas"
         ],
         "parameters": [
           {
@@ -779,7 +830,7 @@
       },
       "delete": {
         "tags": [
-          "Rutina"
+          "Rutinas"
         ],
         "parameters": [
           {
@@ -799,10 +850,60 @@
         }
       }
     },
-    "/api/v1/rutina/me": {
-      "get": {
+    "/api/v1/rutinas/{rutinaId}/asignaciones/{clienteId}": {
+      "post": {
         "tags": [
-          "Rutina"
+          "Rutinas"
+        ],
+        "parameters": [
+          {
+            "name": "rutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "clienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Rutinas"
+        ],
+        "parameters": [
+          {
+            "name": "rutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "clienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -811,7 +912,65 @@
         }
       }
     },
-    "/api/v1/usuario": {
+    "/api/v1/rutinas/{rutinaId}/asignaciones": {
+      "get": {
+        "tags": [
+          "Rutinas"
+        ],
+        "parameters": [
+          {
+            "name": "rutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/me/rutinas": {
+      "get": {
+        "tags": [
+          "RutinasMe"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/me/rutinas/{rutinaId}": {
+      "get": {
+        "tags": [
+          "RutinasMe"
+        ],
+        "parameters": [
+          {
+            "name": "rutinaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/usuarios": {
       "get": {
         "tags": [
           "Usuario"
@@ -843,7 +1002,7 @@
         }
       }
     },
-    "/api/v1/usuario/{userId}": {
+    "/api/v1/usuarios/{userId}": {
       "get": {
         "tags": [
           "Usuario"
@@ -866,7 +1025,7 @@
         }
       }
     },
-    "/api/v1/usuario/dni/{dni}": {
+    "/api/v1/usuarios/dni/{dni}": {
       "get": {
         "tags": [
           "Usuario"

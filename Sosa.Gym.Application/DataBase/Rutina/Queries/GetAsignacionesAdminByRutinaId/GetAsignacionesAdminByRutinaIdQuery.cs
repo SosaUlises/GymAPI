@@ -31,8 +31,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetAsignacionesAdminByRut
             var items = await _db.RutinasAsignadas
                 .AsNoTracking()
                 .Where(x => x.RutinaId == rutinaId)
-                .OrderByDescending(x => x.Activa)
-                .ThenByDescending(x => x.FechaAsignacion)
+                .OrderByDescending(x => x.FechaAsignacion)
                 .Select(x => new GetAsignacionAdminItemModel
                 {
                     RutinaAsignadaId = x.Id,
@@ -40,8 +39,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetAsignacionesAdminByRut
                     Dni = x.Cliente.Usuario.Dni,
                     Nombre = x.Cliente.Usuario.Nombre,
                     Apellido = x.Cliente.Usuario.Apellido,
-                    FechaAsignacion = x.FechaAsignacion,
-                    Activa = x.Activa
+                    FechaAsignacion = x.FechaAsignacion
                 })
                 .ToListAsync();
 

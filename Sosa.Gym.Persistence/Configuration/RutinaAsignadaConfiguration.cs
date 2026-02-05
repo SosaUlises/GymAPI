@@ -12,7 +12,6 @@ namespace Sosa.Gym.Persistence.Configuration
             entityBuilder.HasKey(x => x.Id);
 
             entityBuilder.Property(x => x.FechaAsignacion).IsRequired();
-            entityBuilder.Property(x => x.Activa).IsRequired();
 
             entityBuilder.HasIndex(x => new { x.ClienteId, x.RutinaId }).IsUnique();
 

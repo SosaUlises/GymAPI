@@ -18,7 +18,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "Create",
-    "RelativePath": "api/v1/cliente",
+    "RelativePath": "api/v1/clientes",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -34,7 +34,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "GetAll",
-    "RelativePath": "api/v1/cliente",
+    "RelativePath": "api/v1/clientes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -55,7 +55,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "UpdateByAdmin",
-    "RelativePath": "api/v1/cliente/{clienteId}",
+    "RelativePath": "api/v1/clientes/{clienteId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -76,7 +76,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "Delete",
-    "RelativePath": "api/v1/cliente/{clienteId}",
+    "RelativePath": "api/v1/clientes/{clienteId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -92,7 +92,44 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "GetById",
-    "RelativePath": "api/v1/cliente/{clienteId}",
+    "RelativePath": "api/v1/clientes/{clienteId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "CreateCuota",
+    "RelativePath": "api/v1/clientes/{clienteId}/cuotas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota.CreateCuotaModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.ClientesRutinasController",
+    "Method": "GetRutinasAsignadasDeCliente",
+    "RelativePath": "api/v1/clientes/{clienteId}/rutinas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -108,7 +145,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "GetByDni",
-    "RelativePath": "api/v1/cliente/dni/{dni}",
+    "RelativePath": "api/v1/clientes/dni/{dni}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -124,7 +161,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "UpdateMe",
-    "RelativePath": "api/v1/cliente/me",
+    "RelativePath": "api/v1/clientes/me",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -140,7 +177,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.ClienteController",
     "Method": "GetMe",
-    "RelativePath": "api/v1/cliente/me",
+    "RelativePath": "api/v1/clientes/me",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -150,7 +187,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
     "Method": "Pagar",
-    "RelativePath": "api/v1/cuotas/{cuotaId}/pagar",
+    "RelativePath": "api/v1/cuotas/{cuotaId}/pagos",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -170,45 +207,8 @@
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
-    "Method": "CreateCuota",
-    "RelativePath": "api/v1/cuotas/clientes/{clienteId}/cuotas",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "clienteId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuota.CreateCuotaModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
-    "Method": "GenerarCuotas",
-    "RelativePath": "api/v1/cuotas/generar",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll.GenerarCuotasModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
     "Method": "GetByClienteId",
-    "RelativePath": "api/v1/cuotas/get-by-clienteId/{clienteId}",
+    "RelativePath": "api/v1/cuotas/cliente/{clienteId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -224,7 +224,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
     "Method": "GetByEstado",
-    "RelativePath": "api/v1/cuotas/get-by-estado/{estado}",
+    "RelativePath": "api/v1/cuotas/estado/{estado}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -232,6 +232,22 @@
       {
         "Name": "estado",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.CuotaController",
+    "Method": "GenerarCuotas",
+    "RelativePath": "api/v1/cuotas/generacion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Cuota.Commands.CreateCuotaAll.GenerarCuotasModel",
         "IsRequired": true
       }
     ],
@@ -254,15 +270,36 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
-    "Method": "GetByRutinaId",
-    "RelativePath": "api/v1/dias-rutina/rutinas/{rutinaId}",
+    "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
+    "Method": "Create",
+    "RelativePath": "api/v1/dias-rutina/{diaRutinaId}/ejercicios",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "diaRutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio.CreateEjercicioModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
+    "Method": "GetByDiaRutina",
+    "RelativePath": "api/v1/dias-rutina/{diaRutinaId}/ejercicios",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "rutinaId",
+        "Name": "diaRutinaId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -307,36 +344,25 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
-    "Method": "Create",
-    "RelativePath": "api/v1/ejercicios/dias-rutina/{diaRutinaId}",
-    "HttpMethod": "POST",
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasMeController",
+    "Method": "GetMyRutinas",
+    "RelativePath": "api/v1/me/rutinas",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "diaRutinaId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio.CreateEjercicioModel",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.EjercicioController",
-    "Method": "GetByDiaRutina",
-    "RelativePath": "api/v1/ejercicios/dias-rutina/{diaRutinaId}",
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasMeController",
+    "Method": "GetMyRutinaDetalle",
+    "RelativePath": "api/v1/me/rutinas/{rutinaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "diaRutinaId",
+        "Name": "rutinaId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -391,9 +417,30 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/rutinas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
     "Method": "Create",
-    "RelativePath": "api/v1/rutina",
+    "RelativePath": "api/v1/rutinas",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -407,9 +454,25 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/rutinas/{rutinaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
     "Method": "Update",
-    "RelativePath": "api/v1/rutina/{rutinaId}",
+    "RelativePath": "api/v1/rutinas/{rutinaId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -428,9 +491,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
     "Method": "Delete",
-    "RelativePath": "api/v1/rutina/{rutinaId}",
+    "RelativePath": "api/v1/rutinas/{rutinaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -444,19 +507,88 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Sosa.Gym.API.Controllers.RutinaController",
-    "Method": "GetMine",
-    "RelativePath": "api/v1/rutina/me",
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
+    "Method": "GetAsignacionesDeRutina",
+    "RelativePath": "api/v1/rutinas/{rutinaId}/asignaciones",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
+    "Method": "Asignar",
+    "RelativePath": "api/v1/rutinas/{rutinaId}/asignaciones/{clienteId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.RutinasController",
+    "Method": "Desasignar",
+    "RelativePath": "api/v1/rutinas/{rutinaId}/asignaciones/{clienteId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
+    "Method": "CreateDiaRutina",
+    "RelativePath": "api/v1/rutinas/{rutinaId}/dias",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutinaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina.CreateDiaRutinaModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "GetAll",
-    "RelativePath": "api/v1/usuario",
+    "RelativePath": "api/v1/usuarios",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -477,7 +609,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "GetById",
-    "RelativePath": "api/v1/usuario/{userId}",
+    "RelativePath": "api/v1/usuarios/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -493,7 +625,7 @@
   {
     "ContainingType": "Sosa.Gym.API.Controllers.UsuarioController",
     "Method": "GetByDni",
-    "RelativePath": "api/v1/usuario/dni/{dni}",
+    "RelativePath": "api/v1/usuarios/dni/{dni}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -501,27 +633,6 @@
       {
         "Name": "dni",
         "Type": "System.Int64",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Sosa.Gym.API.Controllers.DiaRutinaController",
-    "Method": "CreateDiaRutina",
-    "RelativePath": "rutinas/{rutinaId}/dias",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "rutinaId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "model",
-        "Type": "Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina.CreateDiaRutinaModel",
         "IsRequired": true
       }
     ],

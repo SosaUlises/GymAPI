@@ -18,7 +18,6 @@ namespace Sosa.Gym.Domain.Entidades.Rutina
         public RutinaEntity Rutina { get; set; } = null!;
 
         public DateTime FechaAsignacion { get; set; } = DateTime.UtcNow;
-        public bool Activa { get; set; } = true;
 
     }
 }

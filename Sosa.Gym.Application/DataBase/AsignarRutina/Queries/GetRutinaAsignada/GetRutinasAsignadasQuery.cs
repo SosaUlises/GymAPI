@@ -37,7 +37,7 @@ namespace Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignada
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
             var data = await _db.RutinasAsignadas
-                .Where(x => x.ClienteId == clienteId && x.Activa)
+                .Where(x => x.ClienteId == clienteId)
                 .OrderByDescending(x => x.FechaAsignacion)
                 .ProjectTo<RutinaAsignadaItemModel>(_mapper.ConfigurationProvider)
                 .ToListAsync();

@@ -28,37 +28,30 @@ namespace Sosa.Gym.Application.DataBase.AsignarRutina.Commands.AsignarRutina
             if (!clienteExiste)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Cliente no encontrado");
 
-            var asignacion = await _db.RutinasAsignadas
-                .FirstOrDefaultAsync(x => x.RutinaId == rutinaId && x.ClienteId == clienteId);
+            var yaExiste = await _db.RutinasAsignadas
+                .AnyAsync(x => x.RutinaId == rutinaId && x.ClienteId == clienteId);
 
-            if (asignacion != null)
+            if (yaExiste)
             {
-                if (asignacion.Activa)
-                {
-                    return ResponseApiService.Response(
-                        StatusCodes.Status409Conflict,
-                        "La rutina ya está asignada a este cliente");
-                }
-
-                asignacion.Activa = true;
-                asignacion.FechaAsignacion = DateTime.UtcNow;
-                await _db.SaveAsync();
-
-                return ResponseApiService.Response(StatusCodes.Status200OK, "Rutina re-asignada correctamente");
+                return ResponseApiService.Response(
+                    StatusCodes.Status409Conflict,
+                    "La rutina ya está asignada a este cliente");
             }
 
             var nueva = new RutinaAsignadaEntity
             {
                 RutinaId = rutinaId,
                 ClienteId = clienteId,
-                Activa = true,
                 FechaAsignacion = DateTime.UtcNow
             };
 
-            _db.RutinasAsignadas.Add(nueva);
+            await _db.RutinasAsignadas.AddAsync(nueva);
             await _db.SaveAsync();
 
-            return ResponseApiService.Response(StatusCodes.Status201Created, "Rutina asignada correctamente");
+            return ResponseApiService.Response(
+                StatusCodes.Status201Created,
+                new { nueva.Id },
+                "Rutina asignada correctamente");
         }
     }
 }

@@ -26,16 +26,14 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinasAsignadasAdminB
             var items = await _db.RutinasAsignadas
                 .AsNoTracking()
                 .Where(x => x.ClienteId == clienteId)
-                .OrderByDescending(x => x.Activa)
-                .ThenByDescending(x => x.FechaAsignacion)
+                .OrderByDescending(x => x.FechaAsignacion)
                 .Select(x => new GetRutinaAsignadaAdminItemModel
                 {
                     RutinaAsignadaId = x.Id,
                     RutinaId = x.RutinaId,
                     Nombre = x.Rutina.Nombre,
                     Descripcion = x.Rutina.Descripcion,
-                    FechaAsignacion = x.FechaAsignacion,
-                    Activa = x.Activa
+                    FechaAsignacion = x.FechaAsignacion
                 })
                 .ToListAsync();
 

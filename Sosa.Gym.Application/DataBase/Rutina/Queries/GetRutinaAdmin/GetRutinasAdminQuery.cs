@@ -31,7 +31,7 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaAdmin
                     Nombre = r.Nombre,
                     Descripcion = r.Descripcion,
                     FechaCreacion = r.FechaCreacion,
-                    TotalAsignacionesActivas = _db.RutinasAsignadas.Count(ra => ra.RutinaId == r.Id && ra.Activa)
+                    TotalAsignacionesActivas = _db.RutinasAsignadas.Count(ra => ra.RutinaId == r.Id)
                 });
 
             var total = await query.CountAsync();

@@ -30,10 +30,7 @@ namespace Sosa.Gym.Application.DataBase.AsignarRutina.Commands.DesasignarRutina
             if (asignacion == null)
                 return ResponseApiService.Response(StatusCodes.Status404NotFound, "Asignación no encontrada");
 
-            if (!asignacion.Activa)
-                return ResponseApiService.Response(StatusCodes.Status409Conflict, "La rutina ya estaba desasignada");
-
-            asignacion.Activa = false;
+            _db.RutinasAsignadas.Remove(asignacion);
             await _db.SaveAsync();
 
             return ResponseApiService.Response(StatusCodes.Status200OK, "Rutina desasignada correctamente");
