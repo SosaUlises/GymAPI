@@ -6,17 +6,15 @@ using Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
 using Sosa.Gym.Application.Features;
-using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
     [Route("api/v1")]
     [ApiController]
-    [Authorize(Roles = "Cliente")]
     public class EjercicioController : ControllerBase
     {
 
-
+        [Authorize(Roles = "Administrador")]
         [HttpPost("dias-rutina/{diaRutinaId:int}/ejercicios")]
         public async Task<IActionResult> Create(
             [FromRoute] int diaRutinaId,
@@ -43,7 +41,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-
+        [Authorize(Roles = "Administrador")]
         [HttpGet("dias-rutina/{diaRutinaId:int}/ejercicios")]
         public async Task<IActionResult> GetByDiaRutina(
             [FromRoute] int diaRutinaId,
@@ -61,7 +59,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-
+        [Authorize(Roles = "Administrador")]
         [HttpPut("ejercicios/{ejercicioId:int}")]
         public async Task<IActionResult> Update(
             [FromRoute] int ejercicioId,
@@ -88,6 +86,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpDelete("ejercicios/{ejercicioId:int}")]
         public async Task<IActionResult> Delete(
             [FromRoute] int ejercicioId,

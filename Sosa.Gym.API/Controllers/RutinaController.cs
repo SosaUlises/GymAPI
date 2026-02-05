@@ -1,20 +1,21 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.AsignarRutina;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.DesasignarRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.Features;
-using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
     [Route("api/v1/rutinas")]
     [ApiController]
-    [Authorize(Roles = "Cliente")]
     public class RutinaController : ControllerBase
     {
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public async Task<IActionResult> Create(
             [FromBody] CreateRutinaModel model,
@@ -28,11 +29,12 @@ namespace Sosa.Gym.API.Controllers
                     StatusCodes.Status400BadRequest,
                     validationResult.Errors));
             }
-       
+
             var result = await createRutinaCommand.Execute(model);
             return StatusCode(result.StatusCode, result);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPut("{rutinaId:int}")]
         public async Task<IActionResult> Update(
             [FromRoute] int rutinaId,
@@ -59,6 +61,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpDelete("{rutinaId:int}")]
         public async Task<IActionResult> Delete(
             [FromRoute] int rutinaId,
@@ -74,6 +77,35 @@ namespace Sosa.Gym.API.Controllers
             var result = await deleteRutinaCommand.Execute(rutinaId);
             return StatusCode(result.StatusCode, result);
         }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPost("{rutinaId:int}/asignaciones/{clienteId:int}")]
+        public async Task<IActionResult> Asignar(
+            [FromRoute] int rutinaId,
+            [FromRoute] int clienteId,
+            [FromServices] IAsignarRutinaCommand command)
+        {
+            if (rutinaId <= 0) return BadRequest(ResponseApiService.Response(400, "RutinaId inválido"));
+            if (clienteId <= 0) return BadRequest(ResponseApiService.Response(400, "ClienteId inválido"));
+
+            var result = await command.Execute(rutinaId, clienteId);
+            return StatusCode(result.StatusCode, result);
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("{rutinaId:int}/asignaciones/{clienteId:int}")]
+        public async Task<IActionResult> Desasignar(
+            [FromRoute] int rutinaId,
+            [FromRoute] int clienteId,
+            [FromServices] IDesasignarRutinaCommand command)
+        {
+            if (rutinaId <= 0) return BadRequest(ResponseApiService.Response(400, "RutinaId inválido"));
+            if (clienteId <= 0) return BadRequest(ResponseApiService.Response(400, "ClienteId inválido"));
+
+            var result = await command.Execute(rutinaId, clienteId);
+            return StatusCode(result.StatusCode, result);
+        }
+
 
     }
 }

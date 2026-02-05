@@ -4,16 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.DeleteDiaRutina;
 using Sosa.Gym.Application.Features;
-using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
     [Route("api/v1")]
     [ApiController]
-    [Authorize(Roles = "Cliente")]
     public class DiaRutinaController : ControllerBase
     {
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost("rutinas/{rutinaId:int}/dias")]
         public async Task<IActionResult> CreateDiaRutina(
             [FromRoute] int rutinaId,
@@ -39,7 +38,8 @@ namespace Sosa.Gym.API.Controllers
             var result = await command.Execute(rutinaId, model);
             return StatusCode(result.StatusCode, result);
         }
-    
+
+        [Authorize(Roles = "Administrador")]
         [HttpDelete("dias-rutina/{diaRutinaId:int}")]
         public async Task<IActionResult> Delete(
             [FromRoute] int diaRutinaId,
