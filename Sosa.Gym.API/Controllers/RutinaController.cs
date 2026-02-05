@@ -3,92 +3,93 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.AsignarRutina;
 using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.DesasignarRutina;
-using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignada;
-using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignadaDetalle;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Queries.GetAsignacionesAdminByRutinaId;
+using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaAdmin;
+using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaDetalleAdmin;
 using Sosa.Gym.Application.Features;
-using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
     [Route("api/v1/rutinas")]
     [ApiController]
-    public class RutinaController : ControllerBase
+    [Authorize(Roles = "Administrador")]
+    public class RutinasController : ControllerBase
     {
 
-        private bool TryGetUserId(out int userId)
+        [HttpGet]
+        public async Task<IActionResult> GetAll(
+            [FromServices] IGetRutinasAdminQuery query,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 20)
         {
-            userId = 0;
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return int.TryParse(userIdStr, out userId);
-        }
-
-        [Authorize(Roles = "Administrador")]
-        [HttpPost]
-        public async Task<IActionResult> Create(
-            [FromBody] CreateRutinaModel model,
-            [FromServices] ICreateRutinaCommand createRutinaCommand,
-            [FromServices] IValidator<CreateRutinaModel> validator)
-        {
-            var validationResult = await validator.ValidateAsync(model);
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(ResponseApiService.Response(
-                    StatusCodes.Status400BadRequest,
-                    validationResult.Errors));
-            }
-
-            var result = await createRutinaCommand.Execute(model);
+            var result = await query.Execute(pageNumber, pageSize);
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+
+        [HttpGet("{rutinaId:int}")]
+        public async Task<IActionResult> GetById(
+            [FromRoute] int rutinaId,
+            [FromServices] IGetRutinaAdminDetalleQuery query)
+        {
+            if (rutinaId <= 0)
+                return BadRequest(ResponseApiService.Response(400, "RutinaId inválido"));
+
+            var result = await query.Execute(rutinaId);
+            return StatusCode(result.StatusCode, result);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(
+            [FromBody] CreateRutinaModel model,
+            [FromServices] ICreateRutinaCommand command,
+            [FromServices] IValidator<CreateRutinaModel> validator)
+        {
+            var validation = await validator.ValidateAsync(model);
+            if (!validation.IsValid)
+                return BadRequest(ResponseApiService.Response(400, validation.Errors));
+
+            var result = await command.Execute(model);
+            return StatusCode(result.StatusCode, result);
+        }
+
+
         [HttpPut("{rutinaId:int}")]
         public async Task<IActionResult> Update(
             [FromRoute] int rutinaId,
             [FromBody] UpdateRutinaModel model,
-            [FromServices] IUpdateRutinaCommand updateRutinaCommand,
+            [FromServices] IUpdateRutinaCommand command,
             [FromServices] IValidator<UpdateRutinaModel> validator)
         {
             if (rutinaId <= 0)
-            {
-                return BadRequest(ResponseApiService.Response(
-                    StatusCodes.Status400BadRequest,
-                    "RutinaId inválido"));
-            }
+                return BadRequest(ResponseApiService.Response(400, "RutinaId inválido"));
 
-            var validationResult = await validator.ValidateAsync(model);
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(ResponseApiService.Response(
-                    StatusCodes.Status400BadRequest,
-                    validationResult.Errors));
-            }
+            var validation = await validator.ValidateAsync(model);
+            if (!validation.IsValid)
+                return BadRequest(ResponseApiService.Response(400, validation.Errors));
 
-            var result = await updateRutinaCommand.Execute(rutinaId, model);
+            var result = await command.Execute(rutinaId, model);
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+
         [HttpDelete("{rutinaId:int}")]
         public async Task<IActionResult> Delete(
             [FromRoute] int rutinaId,
-            [FromServices] IDeleteRutinaCommand deleteRutinaCommand)
+            [FromServices] IDeleteRutinaCommand command)
         {
             if (rutinaId <= 0)
-            {
-                return BadRequest(ResponseApiService.Response(
-                    StatusCodes.Status400BadRequest,
-                    "RutinaId inválido"));
-            }
+                return BadRequest(ResponseApiService.Response(400, "RutinaId inválido"));
 
-            var result = await deleteRutinaCommand.Execute(rutinaId);
+            var result = await command.Execute(rutinaId);
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+
         [HttpPost("{rutinaId:int}/asignaciones/{clienteId:int}")]
         public async Task<IActionResult> Asignar(
             [FromRoute] int rutinaId,
@@ -102,7 +103,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+
         [HttpDelete("{rutinaId:int}/asignaciones/{clienteId:int}")]
         public async Task<IActionResult> Desasignar(
             [FromRoute] int rutinaId,
@@ -116,38 +117,17 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Cliente")]
-        [HttpGet("me")]
-        public async Task<IActionResult> GetMyRutinas(
-         [FromServices] IGetRutinasAsignadasQuery query)
-        {
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
 
-            var result = await query.Execute(userId);
+        [HttpGet("{rutinaId:int}/asignaciones")]
+        public async Task<IActionResult> GetAsignacionesDeRutina(
+            [FromRoute] int rutinaId,
+            [FromServices] IGetAsignacionesAdminByRutinaIdQuery query)
+        {
+            if (rutinaId <= 0)
+                return BadRequest(ResponseApiService.Response(400, "RutinaId inválido"));
+
+            var result = await query.Execute(rutinaId);
             return StatusCode(result.StatusCode, result);
         }
-
-        [Authorize(Roles = "Cliente")]
-        [HttpGet("me/{rutinaId:int}")]
-        public async Task<IActionResult> GetMyRutinaDetalle(
-         [FromRoute] int rutinaId,
-         [FromServices] IGetRutinaAsignadaDetalleQuery query)
-        {
-            if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
-
-            var result = await query.Execute(rutinaId, userId);
-            return StatusCode(result.StatusCode, result);
-        }
-
     }
 }
