@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.AsignarRutina;
 using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.DesasignarRutina;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignada;
+using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignadaDetalle;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
 using Sosa.Gym.Application.Features;
+using System.Security.Claims;
 
 namespace Sosa.Gym.API.Controllers
 {
@@ -14,6 +17,13 @@ namespace Sosa.Gym.API.Controllers
     [ApiController]
     public class RutinaController : ControllerBase
     {
+
+        private bool TryGetUserId(out int userId)
+        {
+            userId = 0;
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return int.TryParse(userIdStr, out userId);
+        }
 
         [Authorize(Roles = "Administrador")]
         [HttpPost]
@@ -106,6 +116,38 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
+        [Authorize(Roles = "Cliente")]
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMyRutinas(
+         [FromServices] IGetRutinasAsignadasQuery query)
+        {
+            if (!TryGetUserId(out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
+
+            var result = await query.Execute(userId);
+            return StatusCode(result.StatusCode, result);
+        }
+
+        [Authorize(Roles = "Cliente")]
+        [HttpGet("me/{rutinaId:int}")]
+        public async Task<IActionResult> GetMyRutinaDetalle(
+         [FromRoute] int rutinaId,
+         [FromServices] IGetRutinaAsignadaDetalleQuery query)
+        {
+            if (!TryGetUserId(out var userId))
+            {
+                return Unauthorized(ResponseApiService.Response(
+                    StatusCodes.Status401Unauthorized,
+                    "Token inválido"));
+            }
+
+            var result = await query.Execute(rutinaId, userId);
+            return StatusCode(result.StatusCode, result);
+        }
 
     }
 }
