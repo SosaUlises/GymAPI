@@ -29,8 +29,10 @@ using Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.CreateRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.DeleteRutina;
 using Sosa.Gym.Application.DataBase.Rutina.Commands.UpdateRutina;
+using Sosa.Gym.Application.DataBase.Rutina.Queries.GetAsignacionesAdminByRutinaId;
 using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaAdmin;
 using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinaDetalleAdmin;
+using Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinasAsignadasAdminByCliente;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetAllUsuarios;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioByDni;
 using Sosa.Gym.Application.DataBase.Usuario.Queries.GetUsuarioById;
@@ -72,6 +74,8 @@ namespace Sosa.Gym.Application
 
             services.AddTransient<IGetRutinaAdminDetalleQuery, GetRutinaAdminDetalleQuery>();
             services.AddTransient<IGetRutinasAdminQuery, GetRutinasAdminQuery>();
+            services.AddTransient<IGetAsignacionesAdminByRutinaIdQuery, GetAsignacionesAdminByRutinaIdQuery>();
+            services.AddTransient<IGetRutinasAsignadasAdminByClienteIdQuery, GetRutinasAsignadasAdminByClienteIdQuery>();
 
 
             // Dia Rutina
