@@ -23,6 +23,7 @@ using Sosa.Gym.Application.DataBase.Ejercicio.Commands.DeleteEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.UpdateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
 using Sosa.Gym.Application.DataBase.Entrenador.Commands.CreateEntrenador;
+using Sosa.Gym.Application.DataBase.Entrenador.Commands.DeleteEntrenador;
 using Sosa.Gym.Application.DataBase.Entrenador.Commands.UpdateEntrenador;
 using Sosa.Gym.Application.DataBase.Login;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
@@ -98,6 +99,7 @@ namespace Sosa.Gym.Application
             // Entrenador
             services.AddTransient<ICreateEntrenadorCommand, CreateEntrenadorCommand>();
             services.AddTransient<IUpdateEntrenadorCommand, UpdateEntrenadorCommand>();
+            services.AddTransient<IDeleteEntrenadorCommand, DeleteEntrenadorCommand>();
 
             // Cuota
             services.AddTransient<ICreateCuotaCommand, CreateCuotaCommand>();
