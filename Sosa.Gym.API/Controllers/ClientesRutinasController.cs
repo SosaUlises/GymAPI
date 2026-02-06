@@ -7,7 +7,7 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("api/v1/clientes")]
     [ApiController]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Entrenador")]
     public class ClientesRutinasController : ControllerBase
     {
 

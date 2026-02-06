@@ -9,10 +9,10 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("api/v1")]
     [ApiController]
+    [Authorize(Roles = "Administrador,Entrenador")]
     public class DiaRutinaController : ControllerBase
     {
 
-        [Authorize(Roles = "Administrador")]
         [HttpPost("rutinas/{rutinaId:int}/dias")]
         public async Task<IActionResult> CreateDiaRutina(
             [FromRoute] int rutinaId,
@@ -39,7 +39,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+
         [HttpDelete("dias-rutina/{diaRutinaId:int}")]
         public async Task<IActionResult> Delete(
             [FromRoute] int diaRutinaId,

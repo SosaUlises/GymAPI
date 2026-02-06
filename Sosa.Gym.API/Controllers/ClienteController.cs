@@ -112,7 +112,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,Entrenador")]
         [HttpGet]
         public async Task<IActionResult> GetAll(
             [FromServices] IGetAllClientesQuery getAllClientesQuery,
@@ -145,7 +145,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,Entrenador")]
         [HttpGet("{clienteId:int}")]
         public async Task<IActionResult> GetById(
             [FromRoute] int clienteId,
@@ -162,7 +162,7 @@ namespace Sosa.Gym.API.Controllers
             return StatusCode(result.StatusCode, result);
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,Entrenador")]
         [HttpGet("dni/{dni:long}")]
         public async Task<IActionResult> GetByDni(
             [FromRoute] long dni,

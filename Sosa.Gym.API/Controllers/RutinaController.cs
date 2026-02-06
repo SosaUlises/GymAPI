@@ -15,7 +15,7 @@ namespace Sosa.Gym.API.Controllers
 {
     [Route("api/v1/rutinas")]
     [ApiController]
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Entrenador")]
     public class RutinasController : ControllerBase
     {
 
