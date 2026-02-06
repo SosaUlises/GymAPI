@@ -13,6 +13,5 @@ namespace Sosa.Gym.Application.DataBase.Rutina.Queries.GetRutinasAsignadasAdminB
         public string Nombre { get; set; } = null!;
         public string Descripcion { get; set; } = null!;
         public DateTime FechaAsignacion { get; set; }
-        public bool Activa { get; set; }
     }
 }
