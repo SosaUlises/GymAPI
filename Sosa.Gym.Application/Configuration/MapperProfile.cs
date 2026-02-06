@@ -11,6 +11,7 @@ using Sosa.Gym.Application.DataBase.Cuota.Queries.GetCuotasPendientes;
 using Sosa.Gym.Application.DataBase.DiasRutina.Commands.CreateDiaRutina;
 using Sosa.Gym.Application.DataBase.Ejercicio.Commands.CreateEjercicio;
 using Sosa.Gym.Application.DataBase.Ejercicio.Queries.GetEjerciciosByDiaRutina;
+using Sosa.Gym.Application.DataBase.Entrenador.Commands.CreateEntrenador;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso;
 using Sosa.Gym.Application.DataBase.Progreso.Queries.GetProgresoByCliente;
@@ -102,6 +103,8 @@ namespace Sosa.Gym.Application.Configuration
 
             CreateMap<ProgresoEntity, GetProgresoModel>().ReverseMap();
 
+            // Entrenador
+            CreateMap<CreateEntrenadorModel, UsuarioEntity>();
 
             // Asignacion de rutinas
 

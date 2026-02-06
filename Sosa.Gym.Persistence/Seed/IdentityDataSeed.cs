@@ -16,7 +16,8 @@ namespace Sosa.Gym.Persistence.Seed
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UsuarioEntity>>();
             var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-            string[] roles = { "Cliente", "Administrador" };
+            string[] roles = { "Cliente", "Entrenador", "Administrador" };
+
 
             foreach (var role in roles)
             {

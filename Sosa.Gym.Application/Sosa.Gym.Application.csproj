@@ -35,4 +35,8 @@
     <ProjectReference Include="..\Sosa.Gym.Domain\Sosa.Gym.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataBase\Entrenador\Queries\" />
+  </ItemGroup>
+
 </Project>
