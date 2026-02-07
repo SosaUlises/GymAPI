@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sosa.Gym.Common\Sosa.Gym.Common.csproj" />
     <ProjectReference Include="..\Sosa.Gym.Domain\Sosa.Gym.Domain.csproj" />
   </ItemGroup>
 

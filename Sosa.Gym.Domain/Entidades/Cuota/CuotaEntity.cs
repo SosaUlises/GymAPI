@@ -19,12 +19,13 @@ namespace Sosa.Gym.Domain.Entidades.Cuota
         public int Anio { get; set; }
         public int Mes { get; set; }
 
+        public DateTime FechaVencimiento { get; set; } 
+
         public EstadoCuota Estado { get; set; } = EstadoCuota.Pendiente;
 
         public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
         public DateTime? FechaPago { get; set; }
 
         public string? MetodoPago { get; set; }
-
     }
 }

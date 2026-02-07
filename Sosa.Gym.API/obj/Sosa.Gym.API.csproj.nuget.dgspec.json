@@ -179,6 +179,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Common\\Sosa.Gym.Common.csproj": {
+                "projectPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Common\\Sosa.Gym.Common.csproj"
+              },
               "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj": {
                 "projectPath": "C:\\Users\\ulipv\\source\\repos\\Sosa.Gym\\Sosa.Gym.Domain\\Sosa.Gym.Domain.csproj"
               }

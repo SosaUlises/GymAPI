@@ -16,7 +16,7 @@ namespace Sosa.Gym.Persistence.Configuration
         {
             entityBuilder.ToTable("Cuotas");
             entityBuilder.HasKey(x => x.Id);
-
+            entityBuilder.Property(x => x.FechaVencimiento).IsRequired();
             entityBuilder.Property(x => x.Monto).IsRequired();
             entityBuilder.Property(x => x.Anio).IsRequired();
             entityBuilder.Property(x => x.Mes).IsRequired();
