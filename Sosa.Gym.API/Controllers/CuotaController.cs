@@ -65,28 +65,20 @@ namespace Sosa.Gym.API.Controllers
         }
 
 
-        [Authorize(Roles = "Cliente")]
-        [HttpPost("cuotas/{cuotaId:int}/pagos")]
-        public async Task<IActionResult> Pagar(
-            [FromRoute] int cuotaId,
-            [FromBody] PagarCuotaModel model,
-            [FromServices] IPagarCuotaCommand command,
-            [FromServices] IValidator<PagarCuotaModel> validator)
+        [Authorize(Roles = "Administrador,Entrenador")]
+        [HttpPost("cuotas/{cuotaId:int}/registrar-pago")]
+        public async Task<IActionResult> RegistrarPago(
+         [FromRoute] int cuotaId,
+         [FromBody] PagarCuotaModel model,
+         [FromServices] IPagarCuotaCommand command,
+         [FromServices] IValidator<PagarCuotaModel> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
-            {
-                return BadRequest(ResponseApiService.Response(
-                    StatusCodes.Status400BadRequest,
-                    validationResult.Errors));
-            }
+                return BadRequest(ResponseApiService.Response(StatusCodes.Status400BadRequest, validationResult.Errors));
 
             if (!TryGetUserId(out var userId))
-            {
-                return Unauthorized(ResponseApiService.Response(
-                    StatusCodes.Status401Unauthorized,
-                    "Token inválido"));
-            }
+                return Unauthorized(ResponseApiService.Response(StatusCodes.Status401Unauthorized, "Token inválido"));
 
             var result = await command.Execute(cuotaId, model, userId);
             return StatusCode(result.StatusCode, result);
