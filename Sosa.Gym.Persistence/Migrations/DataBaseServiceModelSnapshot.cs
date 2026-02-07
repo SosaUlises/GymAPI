@@ -214,6 +214,9 @@ namespace Sosa.Gym.Persistence.Migrations
                     b.Property<DateTime?>("FechaPago")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime>("FechaVencimiento")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("Mes")
                         .HasColumnType("integer");
 

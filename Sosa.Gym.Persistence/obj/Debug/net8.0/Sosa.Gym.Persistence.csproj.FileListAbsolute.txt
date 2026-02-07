@@ -18,3 +18,5 @@ C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Persistence\obj\Debug\net8.0\refin
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Persistence\obj\Debug\net8.0\Sosa.Gym.Persistence.pdb
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Persistence\obj\Debug\net8.0\Sosa.Gym.Persistence.genruntimeconfig.cache
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Persistence\obj\Debug\net8.0\ref\Sosa.Gym.Persistence.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Persistence\bin\Debug\net8.0\Sosa.Gym.Common.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Persistence\bin\Debug\net8.0\Sosa.Gym.Common.pdb

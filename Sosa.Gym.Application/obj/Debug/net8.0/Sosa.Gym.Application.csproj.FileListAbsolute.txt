@@ -16,3 +16,5 @@ C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Application\obj\Debug\net8.0\refin
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Application\obj\Debug\net8.0\Sosa.Gym.Application.pdb
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Application\obj\Debug\net8.0\Sosa.Gym.Application.genruntimeconfig.cache
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Application\obj\Debug\net8.0\ref\Sosa.Gym.Application.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Application\bin\Debug\net8.0\Sosa.Gym.Common.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.Application\bin\Debug\net8.0\Sosa.Gym.Common.pdb

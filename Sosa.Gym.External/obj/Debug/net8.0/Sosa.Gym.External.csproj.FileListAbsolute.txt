@@ -20,3 +20,5 @@ C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.External\obj\Debug\net8.0\refint\S
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.External\obj\Debug\net8.0\Sosa.Gym.External.pdb
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.External\obj\Debug\net8.0\Sosa.Gym.External.genruntimeconfig.cache
 C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.External\obj\Debug\net8.0\ref\Sosa.Gym.External.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.External\bin\Debug\net8.0\Sosa.Gym.Common.dll
+C:\Users\ulipv\source\repos\Sosa.Gym\Sosa.Gym.External\bin\Debug\net8.0\Sosa.Gym.Common.pdb

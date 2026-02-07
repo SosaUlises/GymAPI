@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sosa.Gym.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce0223a7751fe6ec8272a21567ab72ee4d9280ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f10a2f9b0abc6f0c252db63d4fcee698da4ecdb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sosa.Gym.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sosa.Gym.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

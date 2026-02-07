@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Sosa.Gym.Application.Configuration;
+using Sosa.Gym.Application.DataBase.Acceso.Commands.ValidarIngreso;
 using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.AsignarRutina;
 using Sosa.Gym.Application.DataBase.AsignarRutina.Commands.DesasignarRutina;
 using Sosa.Gym.Application.DataBase.AsignarRutina.Queries.GetRutinaAsignada;
@@ -122,6 +123,9 @@ namespace Sosa.Gym.Application
 
             // Login
             services.AddTransient<ILoginCommand, LoginCommand>();
+
+            // Validar Ingreso
+            services.AddTransient<IValidarIngresoPorDniCommand, ValidarIngresoPorDniCommand>();
 
             // Validators
             services.AddScoped<IValidator<CreateClienteModel>, CreateClienteValidator>();

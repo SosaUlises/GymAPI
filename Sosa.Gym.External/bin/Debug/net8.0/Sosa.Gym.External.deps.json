@@ -1178,6 +1178,7 @@
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
           "Microsoft.EntityFrameworkCore": "9.0.10",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
+          "Sosa.Gym.Common": "1.0.0",
           "Sosa.Gym.Domain": "1.0.0",
           "Swashbuckle.AspNetCore": "9.0.6",
           "System.IdentityModel.Tokens.Jwt": "8.14.0",
@@ -1186,6 +1187,29 @@
         },
         "runtime": {
           "Sosa.Gym.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Sosa.Gym.Common/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
+          "FluentValidation": "12.1.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.22",
+          "Microsoft.AspNetCore.Identity": "2.3.1",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.22",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
+          "Microsoft.EntityFrameworkCore": "9.0.10",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
+          "Swashbuckle.AspNetCore": "9.0.6",
+          "X.PagedList": "10.5.9",
+          "X.PagedList.EF": "10.5.9"
+        },
+        "runtime": {
+          "Sosa.Gym.Common.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1976,6 +2000,11 @@
       "hashPath": "x.pagedlist.ef.10.5.9.nupkg.sha512"
     },
     "Sosa.Gym.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sosa.Gym.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
