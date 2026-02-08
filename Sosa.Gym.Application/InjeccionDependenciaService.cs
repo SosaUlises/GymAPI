@@ -150,7 +150,10 @@ namespace Sosa.Gym.Application
             services.AddScoped<IValidator<PagarCuotaModel>, PagarCuotaValidator>();
 
             // IA Service
-            services.AddHttpClient<IGenerarRutinaPreviewService, GenerarRutinaPreviewService>();
+            services.AddHttpClient<IGenerarRutinaPreviewService, GenerarRutinaPreviewService>(c =>
+            {
+                c.Timeout = TimeSpan.FromSeconds(25);
+            });
 
 
             return services;

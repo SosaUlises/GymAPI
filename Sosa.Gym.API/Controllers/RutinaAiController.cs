@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sosa.Gym.Application.DataBase.IA_Service.Commands.GenerarRutinaPreviewService;
-using Sosa.Gym.Application.DataBase.IA_Service.GenerarRutinaPreviewService;
 
 namespace Sosa.Gym.API.Controllers
 {
