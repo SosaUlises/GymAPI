@@ -40,56 +40,67 @@ namespace Sosa.Gym.Application.DataBase.IA_Service.Commands.GenerarRutinaPreview
 
             var system = """
                 Eres un entrenador personal profesional.
-                Devuelve ÚNICAMENTE JSON válido.
-                No uses markdown.
-                No agregues texto fuera del JSON.
-                No inventes campos fuera del schema.
-                Todos los ejercicios deben tener:
-                - series (int > 0)
-                - repeticiones (int > 0)
-                - pesoUtilizado = 0
+
+                Devuelve ÚNICAMENTE un JSON válido.
+                No agregues texto, comentarios ni markdown.
+                No expliques nada.
+
+                Reglas obligatorias:
+                - EXACTAMENTE {DiasPorSemana} días
+                - Cada día tiene EXACTAMENTE 4 ejercicios
+                - series y repeticiones dependen del nivel
+                - pesoUtilizado SIEMPRE = 0
+                - nombreDia debe ser: "Día 1", "Día 2", etc.
+                - No cortes la respuesta
+                - No dejes JSON incompleto
                 """;
 
-            var user = @$"
-            Objetivo: {request.Objetivo}
-            Días por semana: {request.DiasPorSemana}
-            Nivel: {request.Nivel}
-            Duración por sesión (min): {request.DuracionMinutos}
-            Equipamiento: {request.Equipamiento ?? "no especificado"}
-            Restricciones: {request.Restricciones ?? "ninguna"}
 
-            Genera una rutina semanal. Formato JSON exacto:
-            {{
-              ""nombre"": ""string"",
-              ""descripcion"": ""string"",
-              ""dias"": [
-                {{
-                  ""nombreDia"": ""string"",
-                  ""ejercicios"": [
-                    {{
-                      ""nombre"": ""string"",
-                      ""series"": 3,
-                      ""repeticiones"": 10,
-                      ""pesoUtilizado"": 0
-                    }}
+            var user = $$"""
+            Objetivo: {{request.Objetivo}}
+            Días por semana: {{request.DiasPorSemana}}
+            Nivel: {{request.Nivel}}
+            Duración por sesión (min): {{request.DuracionMinutos}}
+            Equipamiento: {{request.Equipamiento ?? "no especificado"}}
+            Restricciones: {{request.Restricciones ?? "ninguna"}}
+
+            Formato JSON EXACTO (no modificar):
+
+            {
+              "nombre": "string",
+              "descripcion": "string",
+              "dias": [
+                {
+                  "nombreDia": "Día 1",
+                  "ejercicios": [
+                    {
+                      "nombre": "string",
+                      "series": 0,
+                      "repeticiones": 0,
+                      "pesoUtilizado": 0
+                    }
                   ]
-                }}
+                }
               ]
-            }}
-            ";
+            }
+            """;
+
+
 
 
             var payload = new
             {
                 model = "gpt-4o-mini",
-                messages = new object[]
-                {
+                messages = new[]
+                 {
                     new { role = "system", content = system },
                     new { role = "user", content = user }
                 },
-                temperature = 0.4,
-                max_tokens = 700
+                temperature = 0.3,
+                max_tokens = 1000
             };
+
+
 
             var json = JsonSerializer.Serialize(payload);
 
@@ -123,6 +134,20 @@ namespace Sosa.Gym.Application.DataBase.IA_Service.Commands.GenerarRutinaPreview
                     return ResponseApiService.Response(StatusCodes.Status502BadGateway, "Respuesta vacía de OpenAI");
 
                 var jsonOnly = ExtractJsonObject(RemoveCodeFences(content));
+
+                var finishReason = doc.RootElement
+                .GetProperty("choices")[0]
+                .GetProperty("finish_reason")
+                .GetString();
+
+                if (finishReason == "length")
+                {
+                    return ResponseApiService.Response(
+                        StatusCodes.Status502BadGateway,
+                        "La respuesta de IA fue truncada. Intente nuevamente."
+                    );
+                }
+
 
                 var rutina = JsonSerializer.Deserialize<RutinaPreviewResponse>(
                     jsonOnly,
