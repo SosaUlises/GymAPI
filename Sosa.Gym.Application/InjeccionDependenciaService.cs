@@ -29,6 +29,7 @@ using Sosa.Gym.Application.DataBase.Entrenador.Commands.UpdateEntrenador;
 using Sosa.Gym.Application.DataBase.Entrenador.Queries.GetAllEntrenadores;
 using Sosa.Gym.Application.DataBase.Entrenador.Queries.GetEntrenadorByDni;
 using Sosa.Gym.Application.DataBase.Entrenador.Queries.GetEntrenadorById;
+using Sosa.Gym.Application.DataBase.IA_Service.Commands.GenerarRutinaPreviewService;
 using Sosa.Gym.Application.DataBase.Login;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.CreateProgreso;
 using Sosa.Gym.Application.DataBase.Progreso.Commands.UpdateProgreso;
@@ -147,6 +148,9 @@ namespace Sosa.Gym.Application
             services.AddScoped<IValidator<CreateCuotaModel>, CreateCuotaValidator>();
             services.AddScoped<IValidator<GenerarCuotasModel>, GenerarCuotaValidator>();
             services.AddScoped<IValidator<PagarCuotaModel>, PagarCuotaValidator>();
+
+            // IA Service
+            services.AddHttpClient<IGenerarRutinaPreviewService, GenerarRutinaPreviewService>();
 
 
             return services;
