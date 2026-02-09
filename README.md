@@ -1,127 +1,120 @@
 # 🏋️‍♂️ Sosa Gym API
 
-API REST para la gestión integral de un gimnasio: usuarios, clientes, entrenadores, rutinas, cuotas y generación de rutinas asistida por IA.
-
-Desarrollada con **.NET 8**, **Clean Architecture**, **CQRS**, **PostgreSQL**, **ASP.NET Identity + JWT**
+API REST para la gestión integral de un gimnasio, desarrollada en **.NET 8** con un enfoque técnico y orientado a arquitectura limpia, seguridad por roles y lógica de negocio real.
 
 ---
 
-## 🚀 Demo en Vivo (Swagger)
+## 📌 Descripción Técnica
 
-La API se encuentra desplegada en **Render** y cuenta con documentación interactiva mediante **Swagger UI**:
+Sosa Gym API implementa **Clean Architecture** y **CQRS** para separar responsabilidades, facilitar el mantenimiento y permitir la escalabilidad del sistema. Utiliza **ASP.NET Core Identity + JWT** para autenticación y autorización, **PostgreSQL (Neon)** como base de datos y **Entity Framework Core** como ORM.
+
+Incluye además un módulo de **IA (OpenAI)** para la generación de rutinas de entrenamiento en modo *preview*, pensado como extensión inteligente del dominio.
+
+---
+
+## 🚀 Demo en Vivo
+
+Swagger UI desplegado en Render:
 
 👉 https://gymapi-yln2.onrender.com/index.html
 
-Desde Swagger podés:
-- Autenticarte con JWT
-- Probar endpoints según el rol
-- Explorar modelos y contratos de la API
+Desde Swagger se puede:
+- Autenticarse con JWT
+- Probar endpoints protegidos por rol
+- Inspeccionar contratos y esquemas
 
 ---
 
 ## 👥 Roles del Sistema
 
-| Rol | Descripción |
+| Rol | Capacidades |
 |----|-------------|
 | **Administrador** | Acceso total al sistema |
 | **Entrenador** | Gestión de rutinas, días, ejercicios y asignaciones |
-| **Cliente** | Lectura de rutinas asignadas y consulta de estados |
+| **Cliente** | Lectura de rutinas asignadas y estado de cuotas |
+
+La autorización se maneja mediante atributos:
+
+```csharp
+[Authorize(Roles = "Administrador,Entrenador")]
+```
 
 ---
 
-## 🔐 Autenticación y Autorización
+## 🔐 Seguridad
 
 - ASP.NET Core Identity
 - JWT Bearer Tokens
-- Autorización por roles mediante atributos
-
-Ejemplo:
-
-```csharp
-[Authorize(Roles = "Administrador")]
-```
-
-### Credenciales Administrador (Demo)
-
-- **Email:** admin@sosa.com  
-- **Password:** Admin123!
+- Hash seguro de contraseñas
+- Autorización basada en roles
 
 ---
 
 ## 🧩 Funcionalidades Principales
 
 ### 🧑‍🏫 Rutinas de Entrenamiento
-
 - CRUD completo de rutinas
 - Estructura jerárquica:
   - Rutina → Días → Ejercicios
 - Asignación y desasignación de rutinas a clientes
-- Un cliente puede tener múltiples rutinas activas
-- Control de permisos por rol (Administrador / Entrenador)
-
----
+- Múltiples rutinas activas por cliente
 
 ### 💰 Cuotas Mensuales
-
-- Generación automática de cuotas mensuales
-- Estados de cuota:
+- Generación automática de cuotas por período
+- Estados:
   - Pendiente
   - Pagada
   - Vencida
-- Cálculo automático de vencimiento por período
+- Cálculo automático de vencimiento
 - Validación de acceso según estado de cuota
 
----
-
 ### 🪪 Acceso por DNI
-
 - Ingreso de clientes mediante DNI
-- Verificación automática de:
+- Verificación automática:
   - Existencia del cliente
-  - Estado de la cuota
+  - Estado de cuota
 - Bloqueo de acceso si la cuota está vencida
 
----
-
 ### 🤖 IA – Generador de Rutinas (Preview)
-
 - Integración con OpenAI
 - Generación de rutinas personalizadas según:
   - Objetivo
   - Nivel
   - Días por semana
-  - Duración por sesión
+  - Duración
   - Equipamiento
   - Restricciones
-- Endpoint de tipo **preview** 
+- Endpoint *preview* 
 - Respuesta estrictamente en JSON
-- Compatible con el modelo del dominio
-- Blindaje de seguridad: `pesoUtilizado = 0` en todos los ejercicios
+- Compatible con modelos del dominio
+- Blindaje de seguridad: `pesoUtilizado = 0`
 
 ---
 
-## 🧠 Arquitectura y Calidad de Código
+## 🧠 Arquitectura
 
-- Clean Architecture
-- CQRS (Commands / Queries)
-- AutoMapper
+### Capas del Proyecto
+
+```
+📂 Domain        → Entidades y reglas de negocio
+📂 Application   → Commands, Queries, Validaciones, Servicios
+📂 Persistence   → EF Core, Configuraciones, Migrations
+📂 API           → Controllers, Auth, Swagger
+```
+
+### CQRS
+- **Commands**: operaciones de escritura
+- **Queries**: operaciones de lectura
+
+---
+
+## 🧪 Calidad de Código
+
 - FluentValidation
+- AutoMapper
 - Manejo global de excepciones
 - Separación estricta de responsabilidades
-- Código preparado para escalar
-
----
-
-## 🏗️ Arquitectura del Proyecto
-
-### 🧱 Capas
-
-```
-📂 Domain          → Entidades y reglas de negocio
-📂 Application     → Commands, Queries, Validaciones, Servicios
-📂 Persistence     → EF Core, Configuraciones, Migrations
-📂 API             → Controllers, Auth, Swagger
-```
+- Código preparado para escalar y extender
 
 ---
 
@@ -133,18 +126,17 @@ Ejemplo:
 | API | ASP.NET Core |
 | Base de Datos | PostgreSQL (Neon) |
 | ORM | Entity Framework Core |
-| Autenticación | Identity + JWT |
+| Auth | Identity + JWT |
 | Validación | FluentValidation |
 | Mapping | AutoMapper |
 | IA | OpenAI API |
 | Deploy | Render |
-| Documentación | Swagger |
+| Docs | Swagger |
 
 ---
 
 ## 👤 Autor
 
-**Ulises Sosa**
-
-Proyecto desarrollado como **portfolio backend profesional**, con foco en arquitectura limpia, seguridad por roles, lógica de negocio real e integración con inteligencia artificial.
+**Ulises Sosa**  
+Proyecto desarrollado como portfolio backend profesional, con foco en arquitectura limpia, seguridad, dominio realista e integración con IA.
 
